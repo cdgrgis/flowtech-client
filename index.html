@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>FLOW TECHNIQUES</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,6 +12,182 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <h1>Welcome to Your Flow Technique Database</h1>
+      <h3>Keep track of what techniques you've learned so far or hope to one day achieve</h3>
+
+      <br>
+      <hr>
+      <br>
+      
+      <form id="sign-up">
+        <fieldset>
+          <legend>Sign Up</legend>
+          <input name="credentials[email]" type="email" placeholder="Email" required>
+          <input name="credentials[password]" type="password" placeholder="Password" required>
+          <input name="credentials[password_confirmation]" type="password" placeholder="Password Confirmation" required>
+
+          <button>Sign Up</button>
+          <div id="sign-up-display"></div>
+          <div id="sign-up-error-display"></div>
+        </fieldset>
+      </form>
+
+      <br>
+      <hr>
+      <br>
+
+      <form id="sign-in">
+        <fieldset>
+          <legend>Sign In</legend>
+          <input name="credentials[email]" type="email" placeholder="Email" required>
+          <input name="credentials[password]" type="password" placeholder="Password" required>
+
+          <button>Sign In</button>
+          <div id="sign-in-display"></div>
+          <div id="sign-in-error-display"></div>
+        </fieldset>
+      </form>
+
+      <br>
+      <hr>
+      <br>
+
+      <form id="change-password">
+        <fieldset>
+          <legend>Change Password</legend>
+          <input name="passwords[old]" type="password" placeholder="Old Password" required>
+          <input name="passwords[new]" type="password" placeholder="New Password" required>
+
+          <button>Update</button>
+          <div id="change-password-display"></div>
+          <div id="change-password-error-display"></div>
+        </fieldset>
+      </form>
+
+      <br>
+      <hr>
+      <br>
+
+      <fieldset>
+        <legend>Sign Out</legend>
+        <button id="sign-out">Sign Out</button>
+        <div id="sign-out-display"></div>
+        <div id="sign-out-error-display"></div>
+      </fieldset>
+
+      <br>
+      <hr>
+      <br>
+
+      
+      <fieldset>
+        <legend>Get Techniques</legend>
+        
+        <button id="technique-index">GET</button>
+        <button id="technique-index-personal">GET Mine</button>
+        <div id="technique-index-display"></div>
+        <div id="technique-index-error-display"></div>
+      </fieldset>
+    
+
+      <br>
+      <hr>
+      <br>
+
+      <form id="technique-show">
+        <fieldset>
+          <legend>Show Technique</legend>
+          <input name="technique[id]" type="text" placeholder="Technique ID" required>
+         
+
+          <button>SHOW</button>
+          <div id="technique-show-display"></div>
+          <div id="technique-show-error-display"></div>
+        </fieldset>
+      </form>
+
+      <br>
+      <hr>
+      <br>
+
+      <form id="technique-create">
+        <fieldset>
+          <legend>Create a Technique</legend>
+          <input name="technique[name]" type="text" placeholder="Name" required>
+          <br>
+          <br>
+          <input name="technique[timing]" id="create-split" type="radio" value="Split" checked>
+          <label for="split">Split</label>          
+          <input name="technique[timing]" id="create-together" type="radio" value="Together">
+          <label for="together">Together</label>
+          
+          <br>
+          <br>
+          
+          <input name="technique[direction]" id="create-same" type="radio" value="Same" checked>
+          <label for="create-same">Same</label>          
+          <input name="technique[direction]" id="create-opposite" type="radio" value="Opposite">
+          <label for="create-opposite">Opposite</label>
+          
+          <br>
+          <br>
+
+          <button>Create</button>
+          <div id="technique-create-display"></div>
+          <div id="technique-create-error-display"></div>
+        </fieldset>
+      </form>
+
+      <br>
+      <hr>
+      <br>
+
+      <form id="technique-update">
+        <fieldset>
+          <legend>Update a Technique</legend>
+          <input name="technique[name]" type="text" placeholder="Name" required>
+          <input name="technique[id]" type="text" placeholder="Technique Id" required>
+          <br>
+          <br>
+          <input name="technique[timing]" id="update-split" type="radio" value="Split" checked>
+          <label for="update-split">Split</label>          
+          <input name="technique[timing]" id="update-together" type="radio" value="Together">
+          <label for="update-together">Together</label>
+          
+          <br>
+          <br>
+          
+          <input name="technique[direction]" id="update-same" type="radio" value="Same" checked>
+          <label for="same">Same</label>          
+          <input name="technique[direction]" id="update-opposite" type="radio" value="Opposite">
+          <label for="opposite">Opposite</label>
+          
+          <br>
+          <br>
+        
+          <button>Update</button>
+          <div id="technique-update-display"></div>
+          <div id="technique-update-error-display"></div>
+        </fieldset>
+        </form>
+
+        <br>
+        <hr>
+        <br>
+
+        <form id="technique-destroy">
+          <fieldset>
+            <legend>Delete a Technique</legend>
+            <input name="technique[id]" type="text" placeholder="Technique Id" required>
+
+            <button>Delete</button>
+            <div id="technique-destroy-display"></div>
+            <div id="technique-destroy-error-display"></div>
+          </fieldset>
+        </form>
+
+        <br>
+        <hr>
+        <br>
     </body>
 </html>
