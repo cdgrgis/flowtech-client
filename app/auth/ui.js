@@ -27,6 +27,8 @@ const onSignUpFailure = err => {
 const onSignInSuccess = responseData => {
   // Let the user know the sign in was successful
   $('#sign-in-display').text('Sign in successful')
+  $('#before-sign-in').hide()
+  $('#after-sign-in').show()
   console.log(responseData)
   // Clear forms
   $('form').trigger('reset')
@@ -74,6 +76,8 @@ const onChangePasswordFailure = err => {
 const onSignOutSuccess = responseData => {
   // Let the user know the sign-out was successful
   $('#sign-out-display').text('Sign out successful')
+  $('#after-sign-in').hide()
+  $('#before-sign-in').show()
 
   // Clear forms
   $('form').trigger('reset')

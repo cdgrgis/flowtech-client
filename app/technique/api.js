@@ -15,6 +15,16 @@ const techniqueIndex = () => {
   })
 }
 
+const techniqueIndexPersonal = formData => {
+  return $.ajax({
+    method: 'GET',
+    url: config.apiUrl + '/users/:id',
+    headers: {
+      Authorization: `Bearer ${store.user.token}`
+    }
+  })
+}
+
 // API call for technique create
 const techniqueShow = formData => {
   return $.ajax({
@@ -64,6 +74,7 @@ const techniqueDestroy = formData => {
 
 module.exports = {
   techniqueIndex,
+  techniqueIndexPersonal,
   techniqueShow,
   techniqueCreate,
   techniqueUpdate,

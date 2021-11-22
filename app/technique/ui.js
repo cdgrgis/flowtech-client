@@ -14,9 +14,9 @@ const onTechniqueIndexSuccess = responseData => {
     techniqueHtml += `
       <div class ="technique-library">
         <h1>${technique.name}</h1>
-        <h3>Timing: ${technique.timing} / Direction: ${technique.direction}
-        <h3>Technique Id: ${technique._id}
-        <h3>Added by: ${technique.owner.email}
+        <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
+        <h3>Technique Id: ${technique._id}</h3>
+        <h3>Added by: ${technique.owner.email}</h3>
         <br>
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         <br><br><br>
@@ -25,7 +25,6 @@ const onTechniqueIndexSuccess = responseData => {
   }
 
   $('#technique-index-display').html(techniqueHtml)
-  $('form').trigger('reset')
 }
 
 const onTechniqueIndexFailure = err => {
@@ -33,6 +32,39 @@ const onTechniqueIndexFailure = err => {
   $('#technique-destroy-index-display').text('Failed to retrieve Techniques')
 
   // Clear error message
+  setTimeout(() => {
+    $('#technique-index-error-display').text('')
+  }, 5000)
+}
+
+const onTechniqueIndexPersonalSuccess = responseData => {
+  console.log(responseData)
+  console.log('user ', responseData.user)
+  console.log('tech ', responseData.user.techniques)
+
+  let techniqueHtml = ''
+  
+  for (let i = 0; i < responseData.user.techniques.length;  i++) {
+    const technique = responseData.user.techniques[i]
+    techniqueHtml += `
+      <div class ="technique-library">
+        <h1>${technique.name}</h1>
+        <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3> 
+        <h3>Technique Id: ${technique._id}</h3>
+        <br>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        <br><br><br>
+      </div>
+      `  
+  }
+
+  $('#technique-index-display').html(techniqueHtml)
+}
+
+const onTechniqueIndexPersonalFailure = err => {
+  console.log(err)
+  $('#technique-index-error-display').text('Failed to retrieve personal techniques')
+
   setTimeout(() => {
     $('#technique-index-error-display').text('')
   }, 5000)
@@ -46,9 +78,9 @@ const onTechniqueShowSuccess = responseData => {
     <br><br>
     <div class ="technique-library">
       <h1>${technique.name}</h1>
-      <h3>Timing: ${technique.timing} / Direction: ${technique.direction}
-      <h3>Technique Id: ${technique._id}
-      <h3>Added by: ${technique.owner.email}
+      <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
+      <h3>Technique Id: ${technique._id}</h3>
+      <h3>Added by: ${technique.owner.email}</h3>
     </div>
     ` 
   $('#technique-show-display').html(techniqueHtml)
@@ -74,8 +106,8 @@ const onTechniqueCreateSuccess = responseData => {
     <br><br>
     <div class ="technique-library">
       <h1>${technique.name}</h1>
-      <h3>Timing: ${technique.timing} / Direction: ${technique.direction}
-      <h3>Technique Id: ${technique._id}
+      <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
+      <h3>Technique Id: ${technique._id}</h3>
     </div>
     ` 
   
@@ -137,6 +169,8 @@ const onTechniqueDestroyFailure = err => {
 module.exports = {
   onTechniqueIndexSuccess,
   onTechniqueIndexFailure,
+  onTechniqueIndexPersonalSuccess,
+  onTechniqueIndexPersonalFailure,
   onTechniqueShowSuccess,
   onTechniqueShowFailure,
   onTechniqueCreateSuccess,
