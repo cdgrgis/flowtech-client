@@ -11,12 +11,18 @@ const onTechniqueIndexSuccess = responseData => {
   
   for (let i = 0; i < responseData.techniques.length;  i++) {
     const technique = responseData.techniques[i]
+    
+    
+    const userName = technique.owner.userName ? technique.owner.userName : technique.owner.email
+   
     techniqueHtml += `
       <div class ="technique-library">
         <h1>${technique.name}</h1>
         <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
+        <h3>Description: ${technique.description}</h3>
+        
         <h3>Technique Id: ${technique._id}</h3>
-        <h3>Added by: ${technique.owner.email}</h3>
+        <h3>Added by: ${userName}</h3>
         <br>
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         <br><br><br>

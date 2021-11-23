@@ -1,5 +1,6 @@
 const authEvents = require('./auth/events')
 const techniqueEvents = require('./technique/events')
+const sequenceEvents = require('./sequence/events')
 
 $(() => {
   // Event listener for user sign-up
@@ -14,6 +15,13 @@ $(() => {
   $('#technique-create').on('submit', techniqueEvents.onTechniqueCreate)
   $('#technique-update').on('submit', techniqueEvents.onTechniqueUpdate)
   $('#technique-destroy').on('submit', techniqueEvents.onTechniqueDestroy)
+
+  $('#sequence-index').on('click', sequenceEvents.onSequenceIndex)
+  $('#sequence-show').on('submit', sequenceEvents.onSequenceShow)
+  $('#sequence-create').on('submit', sequenceEvents.onSequenceCreate)
+  $('#sequence-create-add-technique').on('click', sequenceEvents.onSequenceCreateAddTechnique)
+  $('#sequence-update').on('submit', sequenceEvents.onSequenceUpdate)
+  $('#sequence-destroy').on('submit', sequenceEvents.onSequenceDestroy)
 
   window.onload = authEvents.onRefreshSignIn()
 })
