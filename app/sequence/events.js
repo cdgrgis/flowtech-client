@@ -59,46 +59,43 @@ const onSequenceCreate = event => {
   
   // Obtain the data from the form fields
   const formData = getFormFields(event.target)
-  console.log(formData)
   
-  let sequenceData = ''
+  
+  let sequenceData 
 
   console.log('key 3 ', (Object.keys(formData.sequence))[2])
 
-  sequenceData += `
-  {
+  sequenceData = {
     "sequence": {
-      "name": "${formData.sequence.name}",
-      "techniques": ["${formData.sequence.technique1}", "${formData.sequence.technique2}"
-        `
-  
-    if(Object.keys(formData.sequence)[store.count]) {
-      for (let i = 3; i < Object.keys(formData.sequence).length; i++) {
-      
-      sequenceData += `
-      , "${formData.sequence[Object.keys(formData.sequence)[i]]}" ]
-      }
+      "name": formData.sequence.name,
+      "techniques": [
+        formData.sequence.technique1,
+        formData.sequence.technique2
+      ]
     }
-      `
-    } 
-  } else {
-    sequenceData += `]
   }
-}
-    `
+  console.log('techniques', sequenceData["sequence"]["techniques"])
+  console.log('tech 3 ', Object.values(formData.sequence)[3])
+  
+  
+  if(Object.keys(formData.sequence)[store.count]) {
+    for (let i = 3; i < Object.keys(formData.sequence).length; i++) {
+      sequenceData["sequence"]["techniques"] = Object.values(formData.sequence)[1-i]
+   
+    }
   }
-  console.log(sequenceData)
+  console.log('sequence data before api ', sequenceData)
   
 
   // Call the technique-create api function
-  api.sequenceCreate(sequenceData)
-    .then(ui.onSequenceCreateSuccess) 
-    .catch(ui.onSequenceCreateFailure)
+  // api.sequenceCreate(sequenceData)
+  //   .then(ui.onSequenceCreateSuccess) 
+  //   .catch(ui.onSequenceCreateFailure)
 }
 
 const onSequenceCreateAddTechnique = () => {
   const additionalTechniqueHtml = `
-  <input name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
+  <input value="619be577b819d832e0656070" name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
   <br>
   `
   $('#sequence-create-additional-techniques').append(additionalTechniqueHtml)

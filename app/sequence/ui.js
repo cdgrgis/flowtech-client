@@ -126,10 +126,10 @@ const onSequenceShowFailure = err => {
 
 const onSequenceCreateSuccess = responseData => {
   const sequence = responseData.sequence
-  console.log(sequence)
-  console.log(responseData)
-  console.log(sequence.owner)
-  sequenceHtml += `
+  console.log('sequence.techniques', sequence.techniques)
+ 
+  console.log('owner', sequence.owner)
+  sequenceHtml = `
       <div class ="sequence-library">
         <h1>${sequence.name}</h1>
         <h3>Technique 1: ${sequence.techniques[0].name}</h3>
@@ -142,16 +142,19 @@ const onSequenceCreateSuccess = responseData => {
     }
     sequenceHtml += `
         <h3>Sequence Id: ${sequence._id}</h3>
-        <h3>Added by: ${userName}</h3>
         <br>
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         <br><br><br>
       </div>
       ` 
   
-  $('#sequence-create-display').html(sequenceHtml)
+  $('#sequence-create-display').text('Sequence created Successfully')
   $('form').trigger('reset')
   store.count = 3
+
+  setTimeout(() => {
+    $('#sequence-create-display').text('')
+  }, 5000)
 }
 
 const onSequenceCreateFailure = err => {
