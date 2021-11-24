@@ -96,7 +96,7 @@ const onSequenceCreate = event => {
 const onSequenceCreateAddTechnique = () => {
   // Set the input to a variable
   const additionalTechniqueHtml = `
-  <input value="619b0dc596cf88f4b0d39310" name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
+  <input name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
   <br>
   `
   // Add the input underneath the previous inputs
@@ -117,7 +117,7 @@ const onSequenceUpdate = event => {
    let techniquesArray = [formData.sequence.technique1, formData.sequence.technique2] 
   
    // Cycle through the sequence data's keys starting with the optional third technique
-   for (let i = 3; i < Object.keys(formData.sequence).length; i++) {
+   for (let i = 4; i < Object.keys(formData.sequence).length; i++) {
      // If additional Technique exists...
      if(Object.keys(formData.sequence)[i]) {
        // push it to the techniquesArray
@@ -129,7 +129,8 @@ const onSequenceUpdate = event => {
    const sequenceData = {
      "sequence": {
        "name": formData.sequence.name,
-       "techniques": techniquesArray
+       "techniques": techniquesArray,
+       "id": formData.sequence.id
      }
    }
 
@@ -145,7 +146,7 @@ const onSequenceUpdate = event => {
 const onSequenceUpdateAddTechnique = () => {
   // Set the input to a variable
   const additionalTechniqueHtml = `
-  <input value="619b0dc596cf88f4b0d39310" name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
+  <input name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
   <br>
   `
   // Add the input underneath the previous inputs
