@@ -11,7 +11,7 @@ const onSequenceIndexSuccess = responseData => {
   
   for (let i = 0; i < responseData.sequences.length;  i++) {
     const sequence = responseData.sequences[i]
-    
+    console.log('sequence ', sequence)
     
     const userName = sequence.owner.userName ? sequence.owner.userName : sequence.owner.email
    
@@ -125,7 +125,8 @@ const onSequenceShowFailure = err => {
 }
 
 const onSequenceCreateSuccess = responseData => {
-  const sequence = responseData.sequence
+  console.log(responseData)
+  const sequence = responseData.sequenceData
   console.log('sequence.techniques', sequence.techniques)
  
   console.log('owner', sequence.owner)

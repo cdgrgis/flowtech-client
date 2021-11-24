@@ -59,46 +59,49 @@ const onSequenceCreate = event => {
   
   // Obtain the data from the form fields
   const formData = getFormFields(event.target)
-  
-  
-  let sequenceData 
 
-  console.log('key 3 ', (Object.keys(formData.sequence))[2])
-
-  sequenceData = {
+  // Set techniques in an array per Sequence model
+  let techniquesArray = [formData.sequence.technique1, formData.sequence.technique2] 
+  
+  // Cycle through the sequence data's keys starting with the optional third technique
+  for (let i = 3; i < Object.keys(formData.sequence).length; i++) {
+    // If additional Technique exists...
+    if(Object.keys(formData.sequence)[i]) {
+      // push it to the techniquesArray
+      techniquesArray.push(Object.values(formData.sequence)[i])
+    }
+  }
+  
+  // Format the data per the Sequence model
+  const sequenceData = {
     "sequence": {
       "name": formData.sequence.name,
-      "techniques": [
-        formData.sequence.technique1,
-        formData.sequence.technique2
-      ]
+      "techniques": techniquesArray
     }
   }
-  console.log('techniques', sequenceData["sequence"]["techniques"])
-  console.log('tech 3 ', Object.values(formData.sequence)[3])
-  
-  
-  if(Object.keys(formData.sequence)[store.count]) {
-    for (let i = 3; i < Object.keys(formData.sequence).length; i++) {
-      sequenceData["sequence"]["techniques"] = Object.values(formData.sequence)[1-i]
-   
-    }
-  }
+
+ 
   console.log('sequence data before api ', sequenceData)
   
 
-  // Call the technique-create api function
-  // api.sequenceCreate(sequenceData)
-  //   .then(ui.onSequenceCreateSuccess) 
-  //   .catch(ui.onSequenceCreateFailure)
+  // Call the technique-create ajax function
+   api.sequenceCreate(sequenceData)
+      // Call the technique-create success function
+     .then(ui.onSequenceCreateSuccess) 
+     // Call the technique-create failure function
+     .catch(ui.onSequenceCreateFailure)
 }
 
+// Function to add another technique input to update form
 const onSequenceCreateAddTechnique = () => {
+  // Set the input to a variable
   const additionalTechniqueHtml = `
-  <input value="619be577b819d832e0656070" name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
+  <input value="619b0dc596cf88f4b0d39310" name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
   <br>
   `
+  // Add the input underneath the previous inputs
   $('#sequence-create-additional-techniques').append(additionalTechniqueHtml)
+  // Increase the count of keys in the sequence object ( object used for create & update sequences)
   store.count++
 }
 
@@ -109,12 +112,46 @@ const onSequenceUpdate = event => {
   
   // Obtain the data from the form fields
   const formData = getFormFields(event.target)
-  console.log('form data ', formData)
 
-  // Call the technique-create api function
-  api.sequenceUpdate(formData)
+   // Set techniques in an array per Sequence model
+   let techniquesArray = [formData.sequence.technique1, formData.sequence.technique2] 
+  
+   // Cycle through the sequence data's keys starting with the optional third technique
+   for (let i = 3; i < Object.keys(formData.sequence).length; i++) {
+     // If additional Technique exists...
+     if(Object.keys(formData.sequence)[i]) {
+       // push it to the techniquesArray
+       techniquesArray.push(Object.values(formData.sequence)[i])
+     }
+   }
+   
+   // Format the data per the Sequence model
+   const sequenceData = {
+     "sequence": {
+       "name": formData.sequence.name,
+       "techniques": techniquesArray
+     }
+   }
+
+  // Call the technique-update ajax function
+  api.sequenceUpdate(sequenceData)
+    // Call the sequence-update success function
     .then(ui.onSequenceUpdateSuccess) 
+    // Call the sequence-update failure function
     .catch(ui.onSequenceUpdateFailure)
+}
+
+// Function to add another technique input to update form
+const onSequenceUpdateAddTechnique = () => {
+  // Set the input to a variable
+  const additionalTechniqueHtml = `
+  <input value="619b0dc596cf88f4b0d39310" name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
+  <br>
+  `
+  // Add the input underneath the previous inputs
+  $('#sequence-update-additional-techniques').append(additionalTechniqueHtml)
+  // Increase the count of keys in the sequence object ( object used for create & update sequences)
+  store.count++
 }
 
 // Sequence Destroy
@@ -126,9 +163,11 @@ const onSequenceDestroy = event => {
   const formData = getFormFields(event.target)
   console.log(formData)
 
-  // Call the technique-create api function
+  // Call the technique-destroy api function
   api.sequenceDestroy(formData)
+    // Call the technique-destroy success function
     .then(ui.onSequenceDestroySuccess) 
+    // Call the technique-destroy failure function
     .catch(ui.onSequenceDestroyFailure)
 }
 
@@ -139,5 +178,6 @@ module.exports = {
  onSequenceCreate,
  onSequenceCreateAddTechnique,
  onSequenceUpdate,
+ onSequenceUpdateAddTechnique,
  onSequenceDestroy
 }

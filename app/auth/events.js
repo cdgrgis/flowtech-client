@@ -87,11 +87,37 @@ const onSignOut = event => {
     .catch(ui.onSignOutFailure)
 }
 
+const onSignUpModalOpen = event => {
+  event.preventDefault()
+ 
+
+  $('#sign-up-modal').css('display', 'block')
+}
+
+const onSignUpModalClose = event => {
+  event.preventDefault()
+ 
+
+  $('#sign-up-modal').css('display', 'none')
+}
+
+// const onSignUpModalOutsideClick = event => {
+//   event.preventDefault()
+
+//   if (event.target == $('#sign-up-modal')[0] && $('#sign-up-modal').css('display') === 'block') {
+//     $('#sign-up-modal').css('display', 'none')
+//   }
+  
+// }
+
 
 module.exports = {
   onSignUp,
   onSignIn,
   onRefreshSignIn,
   onChangePassword,
-  onSignOut
+  onSignOut,
+  // onSignUpModalOpen,
+  // onSignUpModalClose,
+  // onSignUpModalOutsideClick
 }

@@ -18,8 +18,31 @@
       <br>
       <hr>
       <br>
+
+      <button id="sign-up-modal-button">Sign Up</button>
+      <div id="sign-up-modal" class="modal">
+
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          
+          <form id="sign-up" method="post">
+            <fieldset>
+              <legend>Sign Up</legend>
+              <input name="credentials[email]" type="email" placeholder="Email" required>
+              <input name="credentials[password]" type="password" placeholder="Password" required>
+              <input name="credentials[password_confirmation]" type="password" placeholder="Password Confirmation" required>
+  
+              <button>Sign Up</button>
+              <div id="sign-up-display"></div>
+              <div id="sign-up-error-display"></div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
+      <br><br>
       <section id="before-sign-in">
-        <form id="sign-up">
+        <!-- <form id="sign-up">
           <fieldset>
             <legend>Sign Up</legend>
             <input name="credentials[email]" type="email" placeholder="Email" required>
@@ -30,7 +53,7 @@
             <div id="sign-up-display"></div>
             <div id="sign-up-error-display"></div>
           </fieldset>
-        </form>
+        </form> -->
 
         <br>
         <hr>
@@ -225,8 +248,8 @@
               <input name="sequence[name]" type="text" placeholder="Name" value="My Sequence" required>
               <br>
               <br>
-              <input name="sequence[technique1]" type="text" placeholder="Technique 1" value="619be577b819d832e0656070" required>
-              <input name="sequence[technique2]" type="text" placeholder="Technique 2" value="619d53b6e095ef2c78dc8e74" required>
+              <input name="sequence[technique1]" type="text" placeholder="Technique 1" value="619b0dc596cf88f4b0d39310" required>
+              <input name="sequence[technique2]" type="text" placeholder="Technique 2" value="619b0dc596cf88f4b0d39310" required>
               <div id="sequence-create-additional-techniques"></div>
 
               <br><br>
@@ -247,11 +270,12 @@
             <fieldset>
               <legend>Update a Sequence</legend>
               <input name="sequence[name]" type="text" placeholder="Name" required>
+              <input name="sequence[id]" type="text" placeholder="Sequence Id" required>
               <br>
               <br>
               <input name="sequence[technique1]" type="text" placeholder="First Technique" required>
               <input name="sequence[technique2]" type="text" placeholder="Second Technique" required>
-              <input name="sequence[technique3]" type="text" placeholder="Third Technique" >
+              <div id="sequence-update-additional-techniques"></div>
               
               <br>
               <br>
@@ -261,6 +285,8 @@
               <div id="sequence-update-error-display"></div>
             </fieldset>
           </form>
+
+          <button id="sequence-update-add-technique">Add another Technique</button>
     
             <br>
             <hr>

@@ -1,6 +1,7 @@
 const authEvents = require('./auth/events')
 const techniqueEvents = require('./technique/events')
 const sequenceEvents = require('./sequence/events')
+const { nodeName } = require('jquery')
 
 $(() => {
   // Event listener for user sign-up
@@ -21,7 +22,13 @@ $(() => {
   $('#sequence-create').on('submit', sequenceEvents.onSequenceCreate)
   $('#sequence-create-add-technique').on('click', sequenceEvents.onSequenceCreateAddTechnique)
   $('#sequence-update').on('submit', sequenceEvents.onSequenceUpdate)
+  $('#sequence-update-add-technique').on('click', sequenceEvents.onSequenceUpdateAddTechnique)
   $('#sequence-destroy').on('submit', sequenceEvents.onSequenceDestroy)
 
+  $('#sign-up-modal-button').on('click', authEvents.onSignUpModalOpen)
+  $('.close').on('click', authEvents.onSignUpModalClose) 
+  $('#sign-up-modal').on('click', event => {event.preventDefault(); console.log(event.target)})
+
   window.onload = authEvents.onRefreshSignIn()
+  // window.onclick = authEvents.onSignUpModalOutsideClick
 })
