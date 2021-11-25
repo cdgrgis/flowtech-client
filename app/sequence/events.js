@@ -60,18 +60,18 @@ const onSequenceCreate = event => {
   // Obtain the data from the form fields
   const formData = getFormFields(event.target)
 
-  // Set techniques in an array per Sequence model
-  let techniquesArray = [formData.sequence.technique1, formData.sequence.technique2] 
-  
+  // Initialize an array for technique ids
+  const techniquesArray = [] 
+
   // Cycle through the sequence data's keys starting with the optional third technique
-  for (let i = 3; i < Object.keys(formData.sequence).length; i++) {
+  for (let i = 1; i < Object.keys(formData.sequence).length; i++) {
     // If additional Technique exists...
     if(Object.keys(formData.sequence)[i]) {
       // push it to the techniquesArray
       techniquesArray.push(Object.values(formData.sequence)[i])
     }
   }
-  
+
   // Format the data per the Sequence model
   const sequenceData = {
     "sequence": {
@@ -96,7 +96,7 @@ const onSequenceCreate = event => {
 const onSequenceCreateAddTechnique = () => {
   // Set the input to a variable
   const additionalTechniqueHtml = `
-  <input name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
+  <input name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count} value="619ad852ce33cd3bfdcaa3a7">  
   <br>
   `
   // Add the input underneath the previous inputs
@@ -146,8 +146,8 @@ const onSequenceUpdate = event => {
 const onSequenceUpdateAddTechnique = () => {
   // Set the input to a variable
   const additionalTechniqueHtml = `
-  <input name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
-  <br>
+  <input name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}" value="619ad852ce33cd3bfdcaa3a7">  
+  <br> 
   `
   // Add the input underneath the previous inputs
   $('#sequence-update-additional-techniques').append(additionalTechniqueHtml)

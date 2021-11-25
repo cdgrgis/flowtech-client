@@ -127,18 +127,19 @@ const onSequenceShowFailure = err => {
 const onSequenceCreateSuccess = responseData => {
   console.log('response data ', responseData)
   const sequence = responseData.sequenceData
+  const techniqueData = responseData.techniqueData
   console.log('sequence.techniques', sequence.techniques)
  
   console.log('owner', sequence.owner)
   sequenceHtml = `
       <div class ="sequence-library">
         <h1>${sequence.name}</h1>
-        <h3>Technique 1: ${sequence.techniques[0].name}</h3>
-        <h3>Technique 2: ${sequence.techniques[1].name}</h3>
+        <h3>Technique 1: ${techniqueData[0].name}</h3>
+        <h3>Technique 2: ${techniqueData[1].name}</h3>
         `
-    for (let j = 2; j < sequence.techniques.length; j++) {
+    for (let i = 2; i < sequence.techniques.length; i++) {
       sequenceHtml += `
-        <h3>Technique ${j + 1}: ${sequence.techniques[j].name}</h3>
+        <h3>Technique ${i + 1}: ${techniqueData[i].name}</h3>
         `
     }
     sequenceHtml += `
@@ -168,9 +169,32 @@ const onSequenceCreateFailure = err => {
   }, 5000)
 }
 
-const onSequenceUpdateSuccess = () => {
+const onSequenceUpdateSuccess = (responseData) => {
+  console.log('response data ', responseData)
+  const techniqueData = responseData.techniqueData
+  const sequenceData = responseData.sequenceData.sequence
 
-  $('#sequence-update-display').text('Sequence Updated')
+  sequenceHtml = `
+  <div class ="sequence-library">
+    <h1>${sequenceData.name}</h1>
+    <h3>Technique 1: ${techniqueData[0].name}</h3>
+    <h3>Technique 2: ${techniqueData[1].name}</h3>
+    `
+  for (let i = 2; i < techniqueData.length; i++) {
+  sequenceHtml += `
+    <h3>Technique ${i + 1}: ${techniqueData[i].name}</h3>
+    `
+  }
+  sequenceHtml += `
+    <h3>Sequence Id: ${sequenceData.id}</h3>
+    <br>
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    <br><br><br>
+    </div>
+  ` 
+
+
+  $('#sequence-update-display').html(sequenceHtml)
   $('form').trigger('reset')
 
   // Clear success message
@@ -202,7 +226,8 @@ const onSequenceDestroySuccess = () => {
 const onSequenceDestroyFailure = err => {
   console.log(err)
   $('#sequence-destroy-error-display').text('Failed to Delete Sequence')
-
+  $('form').trigger('reset')
+  
   // Clear error message
   setTimeout(() => {
     $('#sequence-destroy-error-display').text('')
