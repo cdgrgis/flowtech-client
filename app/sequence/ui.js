@@ -50,22 +50,28 @@ const onSequenceIndexFailure = err => {
 }
 
 const onSequenceIndexPersonalSuccess = responseData => {
-  console.log(responseData)
+ 
   console.log('user ', responseData.user)
   console.log('tech ', responseData.user.sequences)
+  console.log('tech length ', responseData.user.sequences[0].techniques.length)
+  console.log('tech 1 ', responseData.user.sequences[0].techniques[0])
 
-  let techniqueHtml = ''
+  let sequenceHtml = ''
   
   for (let i = 0; i < responseData.user.sequences.length;  i++) {
     const sequence = responseData.user.sequences[i]
-    techniqueHtml += `
+    sequenceHtml += `
       <div class ="sequence-library">
-        <h1>${sequence.name}</h1>
-        <h3>Technique 1: ${sequence.techniques[0].name}</h3>
-      <h3>Technique 2: ${sequence.techniques[1].name}</h3>
-      <h3>Technique 3: ${sequence.techniques[2].name}</h3>
+        <h1>${sequence.name}</h1> `
 
-        <h3>Sequence Id: ${sequence._id}</h3>
+    for (let j = 0; j < sequence.techniques.length; j++) {
+      sequenceHtml += `
+        <h3>Technique ${j + 1}: ${sequence.techniques[j].name}</h3> `
+    }
+    console.log('sequence html ', sequenceHtml)
+
+    sequenceHtml += `
+        <h3>Sequence Id: ${sequence[i]._id}</h3>
         <br>
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         <br><br><br>
@@ -151,7 +157,9 @@ const onSequenceCreateSuccess = responseData => {
       ` 
   
   $('#sequence-create-display').html(sequenceHtml)
+  $('#sequence-create-additional-techniques').html('')
   $('form').trigger('reset')
+
   store.count = 3
 
   setTimeout(() => {
@@ -195,6 +203,7 @@ const onSequenceUpdateSuccess = (responseData) => {
 
 
   $('#sequence-update-display').html(sequenceHtml)
+  $('#sequence-update-additional-techniques').html('')
   $('form').trigger('reset')
 
   // Clear success message

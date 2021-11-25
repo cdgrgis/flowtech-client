@@ -28,13 +28,15 @@ const onSequenceIndexPersonal = event => {
    // Stop the browser from refreshing
    event.preventDefault()
   
-   console.log(store.user.sequences)
+   
 
    api.sequenceIndexPersonal()
     .then(ui.onSequenceIndexPersonalSuccess)
     .catch(ui.onSequenceIndexPersonalFailure)
   
 }
+
+
 
 // Sequence Show
 const onSequenceShow = event => {

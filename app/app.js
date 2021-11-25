@@ -18,6 +18,7 @@ $(() => {
   $('#technique-destroy').on('submit', techniqueEvents.onTechniqueDestroy)
 
   $('#sequence-index').on('click', sequenceEvents.onSequenceIndex)
+  $('#sequence-index-personal').on('click', sequenceEvents.onSequenceIndexPersonal)
   $('#sequence-show').on('submit', sequenceEvents.onSequenceShow)
   $('#sequence-create').on('submit', sequenceEvents.onSequenceCreate)
   $('#sequence-create-add-technique').on('click', sequenceEvents.onSequenceCreateAddTechnique)
