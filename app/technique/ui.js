@@ -45,13 +45,14 @@ const onTechniqueIndexFailure = err => {
 
 const onTechniqueIndexPersonalSuccess = responseData => {
   console.log(responseData)
-  console.log('user ', responseData.user)
-  console.log('tech ', responseData.user.techniques)
+  console.log('user ', responseData.userData)
+  console.log('tech ', responseData.userData.techniques)
+  const techniquesData = responseData.userData.techniques
 
   let techniqueHtml = ''
   
-  for (let i = 0; i < responseData.user.techniques.length;  i++) {
-    const technique = responseData.user.techniques[i]
+  for (let i = 0; i < techniquesData.length;  i++) {
+    const technique = techniquesData[i]
     techniqueHtml += `
       <div class ="technique-library">
         <h1>${technique.name}</h1>
