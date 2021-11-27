@@ -1,0 +1,28 @@
+ <!-- Button to open create sequence modal -->
+ <button id="sequence-create-modal-button">Create Sequence</button>
+
+ <!-- Create sequence Modal -->
+ <div id="sequence-create-modal" class="modal">
+
+   <!-- Create sequence Content -->
+   <div class="modal-content">
+     <!-- Close modal button (appears as `x`) -->
+     <span class="close">&times;</span>
+ 
+     <!-- Create sequence form -->
+     <form>
+       <fieldset>
+         <legend>Create Sequence</legend>
+         <input id="sequence-create-sequence-id" name="sequence[id]" type="text" placeholder="Sequence Id" required>
+
+         <!-- Submit create sequence data button -->
+         <button id="sequence-create-submit-modal">Create</button>
+         
+         <!-- Displays error messages -->
+         <div id="sequence-create-error-display"></div>
+       </fieldset>
+     </form>
+   </div>
+ </div>
+ <!-- Displays success messages -->
+ <div id="sequence-create-display"></div>

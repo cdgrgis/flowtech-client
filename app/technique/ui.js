@@ -45,9 +45,9 @@ const onTechniqueIndexFailure = err => {
 
 const onTechniqueIndexPersonalSuccess = responseData => {
   console.log(responseData)
-  console.log('user ', responseData.userData)
-  console.log('tech ', responseData.userData.techniques)
-  const techniquesData = responseData.userData.techniques
+  console.log('user ', responseData.user)
+  console.log('tech ', responseData.user.techniques)
+  const techniquesData = responseData.user.techniques
 
   let techniqueHtml = ''
   
@@ -92,6 +92,9 @@ const onTechniqueShowSuccess = responseData => {
     ` 
   $('#technique-show-display').html(techniqueHtml)
   $('form').trigger('reset')
+
+  // Close all modals
+  $('.modal').css('display', 'none')
 }
 
 const onTechniqueShowFailure = err => {
@@ -156,6 +159,9 @@ const onTechniqueUpdateFailure = err => {
 const onTechniqueDestroySuccess = () => {
   $('#technique-destroy-display').text('Technique Destroyed')
   $('form').trigger('reset')
+
+  // Close all modals
+  $('.modal').css('display', 'none')
 
     // Clear success message
     setTimeout(() => {

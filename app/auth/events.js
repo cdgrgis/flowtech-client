@@ -13,7 +13,14 @@ const onSignUp = event => {
   event.preventDefault()
 
   // Obtain the data from the form fields
-  const formData = getFormFields(event.target)
+  
+  const formData = {
+    "credentials": {
+      "email": $('#sign-up-email').val(),
+      "password": $('#sign-up-password').val(),
+      "password_confirmation": $('#sign-up-password-confirmation').val()
+    }
+  }
 
   // Call the sign-up api function
   api.signUp(formData)
@@ -31,7 +38,13 @@ const onSignIn = event => {
   event.preventDefault()
 
   // Obtain the data from the form fields
-  const formData = getFormFields(event.target)
+ 
+  const formData = {
+    "credentials": {
+      "email": $('#sign-in-email').val(),
+      "password": $('#sign-in-password').val()
+    }
+  }
 
   // Set email & password to browser's session storage
   sessionStorage.setItem('email', formData.credentials.email)
@@ -52,7 +65,7 @@ const onRefreshSignIn = () => {
       'password': sessionStorage.getItem('password')
     }
   }
-
+ 
   // If user is already signed in, call API sign-in
   if (sessionStorage.getItem('email')) {
     api.signIn(formData)
@@ -67,7 +80,12 @@ const onChangePassword = event => {
   event.preventDefault()
 
   // Obtain the data from the form fields
-  const formData = getFormFields(event.target)
+  const formData = {
+    "passwords": {
+      "old": $('#change-password-old-pw').val(),
+      "new": $('#change-password-new-pw').val()
+    }
+  }
 
   // Call the sign-up api function
   api.changePassword(formData)
@@ -87,19 +105,7 @@ const onSignOut = event => {
     .catch(ui.onSignOutFailure)
 }
 
-const onSignUpModalOpen = event => {
-  event.preventDefault()
- 
 
-  $('#sign-up-modal').css('display', 'block')
-}
-
-const onSignUpModalClose = event => {
-  event.preventDefault()
- 
-
-  $('#sign-up-modal').css('display', 'none')
-}
 
 // const onSignUpModalOutsideClick = event => {
 //   event.preventDefault()
@@ -111,13 +117,48 @@ const onSignUpModalClose = event => {
 // }
 
 
+const onSignUpModal = event => {
+  event.preventDefault()
+
+  console.log('email', $('#sign-up-email').val())
+  console.log('pw', $('#sign-up-password').val())
+  console.log('pw conf', $('#sign-up-password-confirmation').val)
+
+  const formData = {
+    "credentials": {
+      "email": $('#sign-up-email').val(),
+      "password": $('#sign-up-password').val(),
+      "password_confirmation": $('#sign-up-password-confirmation').val()
+    }
+  }
+
+  api.signUp(formData)
+  .then(ui.onSignUpSuccess)
+  .then(() => api.signIn(formData))
+    .then(ui.onSignInSuccess)
+    .catch(ui.onSignInFailure)  
+  .catch(ui.onSignUpFailure)
+}
+
+
+const onSignInModal = (event) => {
+  event.preventDefault()
+
+  console.log('event ', event)
+  console.log('email', $('#sign-in-email').val())
+  console.log('pw', $('#sign-in-password').val())
+
+  
+}
+
+
 module.exports = {
   onSignUp,
   onSignIn,
   onRefreshSignIn,
   onChangePassword,
-  onSignOut,
-  // onSignUpModalOpen,
-  // onSignUpModalClose,
+  onSignOut, 
+  onSignUpModal,
+  onSignInModal
   // onSignUpModalOutsideClick
 }

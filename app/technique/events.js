@@ -39,7 +39,12 @@ const onTechniqueShow = event => {
   event.preventDefault()
   
   // Obtain the data from the form fields
-  const formData = getFormFields(event.target)
+  const formData = {
+    "technique": {
+      "id": $('#technique-show-technique-id').val()
+    }
+  }
+
   console.log(formData)
 
   // Call the technique-create api function
@@ -85,7 +90,12 @@ const onTechniqueDestroy = event => {
   event.preventDefault()
   
   // Obtain the data from the form fields
-  const formData = getFormFields(event.target)
+  const formData = {
+    "technique": {
+      "id": $('#technique-destroy-technique-id').val()
+    }
+  }
+
   console.log(formData)
 
   // Call the technique-create api function

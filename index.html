@@ -16,31 +16,10 @@
       <h3>Keep track of what techniques you've learned so far or hope to one day achieve</h3>
 
       <br>
-      <hr>
       <br>
 
-      <button id="sign-up-modal-button">Sign Up</button>
-      <div id="sign-up-modal" class="modal">
+     
 
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          
-          <form id="sign-up" method="post">
-            <fieldset>
-              <legend>Sign Up</legend>
-              <input name="credentials[email]" type="email" placeholder="Email" required>
-              <input name="credentials[password]" type="password" placeholder="Password" required>
-              <input name="credentials[password_confirmation]" type="password" placeholder="Password Confirmation" required>
-  
-              <button>Sign Up</button>
-              <div id="sign-up-display"></div>
-              <div id="sign-up-error-display"></div>
-            </fieldset>
-          </form>
-        </div>
-      </div>
-
-      <br><br>
       <section id="before-sign-in">
         <!-- <form id="sign-up">
           <fieldset>
@@ -55,10 +34,8 @@
           </fieldset>
         </form> -->
 
-        <br>
-        <hr>
-        <br>
-
+       
+<!-- 
         <form id="sign-in">
           <fieldset>
             <legend>Sign In</legend>
@@ -69,11 +46,69 @@
             <div id="sign-in-display"></div>
             <div id="sign-in-error-display"></div>
           </fieldset>
-        </form>
-      </section>
+        </form>  -->
+
+
+        <button id="sign-up-modal-button">Sign Up</button>
+        <div id="sign-up-modal" class="modal">
+  
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            
+            <form method="post">
+              <fieldset>
+                <legend>Sign Up</legend>
+                <input id="sign-up-email" name="credentials[email]" type="email" placeholder="Email" required>
+                <input id="sign-up-password" name="credentials[password]" type="password" placeholder="Password" required>
+                <input id="sign-up-password-confirmation" name="credentials[password_confirmation]" type="password" placeholder="Password Confirmation" required>
+    
+                <button id="sign-up">Sign Up</button>
+                <div id="sign-up-error-display"></div>
+                
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <div id="sign-up-display"></div>
+        
+  
+        <br><hr><br>
+  
+        <!-- Button to open sign-in modal -->
+        <button id="sign-in-modal-button">Sign In</button>
+
+        <!-- Sign in Modal -->
+        <div id="sign-in-modal" class="modal">
+  
+          <!-- Sign in Content -->
+          <div class="modal-content">
+            <!-- Close modal button (appears as `x`) -->
+            <span class="close">&times;</span>
+        
+            <!-- Sign in form -->
+            <form>
+              <fieldset>
+                <legend>Sign In</legend>
+                <input id="sign-in-email" name="credentials[email]" type="email" placeholder="Email" required>
+                <input id="sign-in-password" name="credentials[password]" type="password" placeholder="Password" required>
+  
+                <!-- Submit sign in data button -->
+                <button id="submit-modal-sign-in">Sign In</button>
+                
+                <!-- Displays error messages -->
+                <div id="sign-in-error-display"></div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <!-- Displays success messages -->
+        <div id="sign-in-display"></div>
+       
+      </section> 
     
       <section id="after-sign-in">
-        <form id="change-password">
+
+        <!-- <form id="change-password">
           <fieldset>
             <legend>Change Password</legend>
             <input name="passwords[old]" type="password" placeholder="Old Password" required>
@@ -83,7 +118,38 @@
             <div id="change-password-display"></div>
             <div id="change-password-error-display"></div>
           </fieldset>
-        </form>
+        </form> -->
+        
+        <!-- Button to open change password modal -->
+        <button id="change-password-modal-button">Change Password</button>
+
+        <!-- Change password Modal -->
+        <div id="change-password-modal" class="modal">
+
+          <!-- Change password Content -->
+          <div class="modal-content">
+            <!-- Close modal button (appears as `x`) -->
+            <span class="close">&times;</span>
+        
+            <!-- Sign in form -->
+            <form>
+              <fieldset>
+                <legend>Change Password</legend>
+                <input id="change-password-old-pw" name="passwords[old]" type="password" placeholder="Old Password" required>
+                <input id="change-password-new-pw" name="passwords[new]" type="password" placeholder="New Password" required>
+
+                <!-- Submit change password data button -->
+                <button id="submit-modal-change-password">Change Password</button>
+                
+                <!-- Displays error messages -->
+                <div id="change-password-error-display"></div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <!-- Displays success messages -->
+        <div id="change-password-display"></div>
+        
 
         <br>
         <hr>
@@ -115,7 +181,7 @@
         <hr>
         <br>
 
-        <form id="technique-show">
+        <!-- <form id="technique-show">
           <fieldset>
             <legend>Show Technique</legend>
             <input name="technique[id]" type="text" placeholder="Technique ID" required>
@@ -125,7 +191,36 @@
             <div id="technique-show-display"></div>
             <div id="technique-show-error-display"></div>
           </fieldset>
-        </form>
+        </form> -->
+
+        <!-- Button to open change password modal -->
+        <button id="technique-show-modal-button">Show Technique</button>
+
+        <!-- Show technique Modal -->
+        <div id="technique-show-modal" class="modal">
+
+          <!-- Show technique Content -->
+          <div class="modal-content">
+            <!-- Close modal button (appears as `x`) -->
+            <span class="close">&times;</span>
+        
+            <!-- Show technique form -->
+            <form>
+              <fieldset>
+                <legend>Show Technique</legend>
+                <input id="technique-show-technique-id" name="technique[id]" type="text" placeholder="Technique Id" required>
+
+                <!-- Submit show technique data button -->
+                <button id="technique-show-submit-modal">Show</button>
+                
+                <!-- Displays error messages -->
+                <div id="technique-show-error-display"></div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <!-- Displays success messages -->
+        <div id="technique-show-display"></div>
 
         <br>
         <hr>
@@ -141,6 +236,9 @@
             <label for="split">Split</label>          
             <input name="technique[timing]" id="create-together" type="radio" value="Together">
             <label for="together">Together</label>
+
+
+            
             
             <br>
             <br>
@@ -157,7 +255,7 @@
             <div id="technique-create-display"></div>
             <div id="technique-create-error-display"></div>
           </fieldset>
-        </form>
+        </form> 
 
         <br>
         <hr>
@@ -196,7 +294,7 @@
           <hr>
           <br>
 
-          <form id="technique-destroy">
+          <!-- <form id="technique-destroy">
             <fieldset>
               <legend>Delete a Technique</legend>
               <input name="technique[id]" type="text" placeholder="Technique Id" required>
@@ -205,7 +303,40 @@
               <div id="technique-destroy-display"></div>
               <div id="technique-destroy-error-display"></div>
             </fieldset>
-          </form>
+          </form> -->
+
+           <!-- Button to open change password modal -->
+          <button id="technique-destroy-modal-button">Destroy Technique</button>
+
+          <!-- Destroy technique Modal -->
+          <div id="technique-destroy-modal" class="modal">
+
+            <!-- Destroy technique Content -->
+            <div class="modal-content">
+              <!-- Close modal button (appears as `x`) -->
+              <span class="close">&times;</span>
+          
+              <!-- Destroy technique form -->
+              <form>
+                <fieldset>
+                  <legend>Destroy Technique</legend>
+                  <input id="technique-destroy-technique-id" name="technique[id]" type="text" placeholder="Technique Id" required>
+
+                  <!-- Submit destroy technique data button -->
+                  <button id="technique-destroy-submit-modal">Destroy</button>
+                  
+                  <!-- Displays error messages -->
+                  <div id="technique-destroy-error-display"></div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+          <!-- Displays success messages -->
+          <div id="technique-destroy-display"></div>
+
+
+
+
         </section>
           <br>
           <hr>
@@ -226,7 +357,7 @@
           <hr>
           <br>
     
-          <form id="sequence-show">
+          <!-- <form id="sequence-show">
             <fieldset>
               <legend>Show Sequence</legend>
               <input name="sequence[id]" type="text" placeholder="Sequence ID" required>
@@ -236,20 +367,50 @@
               <div id="sequence-show-display"></div>
               <div id="sequence-show-error-display"></div>
             </fieldset>
-          </form>
-    
+          </form> -->
+
+          
+           <!-- Button to open show sequence modal -->
+          <button id="sequence-show-modal-button">Show Sequence</button>
+
+          <!-- Show sequence Modal -->
+          <div id="sequence-show-modal" class="modal">
+
+            <!-- Show sequence Content -->
+            <div class="modal-content">
+              <!-- Close modal button (appears as `x`) -->
+              <span class="close">&times;</span>
+          
+              <!-- Show sequence form -->
+              <form>
+                <fieldset>
+                  <legend>Show Sequence</legend>
+                  <input id="sequence-show-sequence-id" name="sequence[id]" type="text" placeholder="Sequence Id" required>
+
+                  <!-- Submit show sequence data button -->
+                  <button id="sequence-show-submit-modal">Show</button>
+                  
+                  <!-- Displays error messages -->
+                  <div id="sequence-show-error-display"></div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+          <!-- Displays success messages -->
+          <div id="sequence-show-display"></div>
+
           <br>
           <hr>
           <br>
     
-          <form id="sequence-create">
+          <!-- <form id="sequence-create">
             <fieldset>
               <legend>Create a Sequence</legend>
-              <input name="sequence[name]" type="text" placeholder="Name" value="My Sequence" required>
+              <input name="sequence[name]" type="text" placeholder="Name" required>
               <br>
               <br>
-              <input name="sequence[technique1]" type="text" placeholder="Technique 1" value="619d53b6e095ef2c78dc8e74" required>
-              <input name="sequence[technique2]" type="text" placeholder="Technique 2" value="619d53b6e095ef2c78dc8e74" required>
+              <input name="sequence[technique1]" type="text" placeholder="Technique 1" required>
+              <input name="sequence[technique2]" type="text" placeholder="Technique 2" required>
               <div id="sequence-create-additional-techniques"></div>
 
               <br><br>
@@ -260,7 +421,44 @@
             </fieldset>
           </form>
           
-          <button id="sequence-create-add-technique">Add another Technique</button>
+          <button id="sequence-create-add-technique">Add another Technique</button> -->
+
+
+           <!-- Button to open create sequence modal -->
+          <button id="sequence-create-modal-button">Create Sequence</button>
+
+          <!-- Create sequence Modal -->
+          <div id="sequence-create-modal" class="modal">
+
+            <!-- Create sequence Content -->
+            <div class="modal-content">
+              <!-- Close modal button (appears as `x`) -->
+              <span class="close">&times;</span>
+          
+              <!-- Create sequence form -->
+              <form id="sequence-create">
+                <fieldset>
+                  <legend>Create a Sequence</legend>
+                  <input id="sequence-create-name" name="sequence[name]" type="text" placeholder="Name" required>
+                  <br>
+                  <br>
+                  <input id="sequence-create-technique1" name="sequence[technique1]" type="text" placeholder="Technique 1" required>
+                  <input id="sequence-create-technique2" name="sequence[technique2]" type="text" placeholder="Technique 2" required>
+                  <div id="sequence-create-additional-techniques"></div>
+    
+                  <br><br>
+    
+                  <button id="sequence-create-submit-modal">Create</button>
+                  <div id="sequence-create-error-display"></div>
+                </fieldset>
+              </form>
+              <button id="sequence-create-add-technique">Add another Technique</button>
+            </div>
+          </div>
+          <!-- Displays success messages -->
+          <div id="sequence-create-display"></div>
+
+
 
           <br>
           <hr>
@@ -269,12 +467,12 @@
           <form id="sequence-update">
             <fieldset>
               <legend>Update a Sequence</legend>
-              <input name="sequence[name]" type="text" placeholder="Name" value="My Updated Sequence" required>
-              <input name="sequence[id]" type="text" placeholder="Sequence Id" value="619f2119136a5222462f395c" required>
+              <input name="sequence[name]" type="text" placeholder="Name" required>
+              <input name="sequence[id]" type="text" placeholder="Sequence Id" required>
               <br>
               <br>
-              <input name="sequence[technique1]" type="text" placeholder="First Technique" value="619ad852ce33cd3bfdcaa3a7" required>
-              <input name="sequence[technique2]" type="text" placeholder="Second Technique" value="619ad852ce33cd3bfdcaa3a7" required>
+              <input name="sequence[technique1]" type="text" placeholder="First Technique" required>
+              <input name="sequence[technique2]" type="text" placeholder="Second Technique" required>
               <div id="sequence-update-additional-techniques"></div>
               
               <br>

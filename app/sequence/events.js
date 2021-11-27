@@ -44,8 +44,13 @@ const onSequenceShow = event => {
   event.preventDefault()
   
   // Obtain the data from the form fields
-  const formData = getFormFields(event.target)
-  console.log('from data ', formData)
+  const formData = {
+    "sequence": {
+      "id": $('#sequence-show-sequence-id').val()
+    }
+  }
+
+  console.log('form data ', formData)
 
   // Call the technique-create api function
   api.sequenceShow(formData)
@@ -60,24 +65,24 @@ const onSequenceCreate = event => {
   event.preventDefault()
   
   // Obtain the data from the form fields
-  const formData = getFormFields(event.target)
+  // const formData = getFormFields(event.target)
 
   // Initialize an array for technique ids
   const techniquesArray = [] 
 
   // Cycle through the sequence data's keys starting with the optional third technique
-  for (let i = 1; i < Object.keys(formData.sequence).length; i++) {
+  for (let i = 1; i < store.count; i++) {
     // If additional Technique exists...
-    if(Object.keys(formData.sequence)[i]) {
+    if($(`#sequence-create-technique${i}`).val()) {
       // push it to the techniquesArray
-      techniquesArray.push(Object.values(formData.sequence)[i])
+      techniquesArray.push($(`#sequence-create-technique${i}`).val())
     }
   }
 
   // Format the data per the Sequence model
   const sequenceData = {
     "sequence": {
-      "name": formData.sequence.name,
+      "name": $('#sequence-create-name').val(),
       "techniques": techniquesArray
     }
   }
@@ -98,9 +103,11 @@ const onSequenceCreate = event => {
 const onSequenceCreateAddTechnique = () => {
   // Set the input to a variable
   const additionalTechniqueHtml = `
-  <input name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count} value="619ad852ce33cd3bfdcaa3a7">  
+  <input id="sequence-create-technique${store.count}" name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
   <br>
   `
+
+  console.log(additionalTechniqueHtml)
   // Add the input underneath the previous inputs
   $('#sequence-create-additional-techniques').append(additionalTechniqueHtml)
   // Increase the count of keys in the sequence object ( object used for create & update sequences)
@@ -148,7 +155,7 @@ const onSequenceUpdate = event => {
 const onSequenceUpdateAddTechnique = () => {
   // Set the input to a variable
   const additionalTechniqueHtml = `
-  <input name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}" value="619ad852ce33cd3bfdcaa3a7">  
+  <input name="sequence[technique${store.count}]" type="text" placeholder="Technique ${store.count}">  
   <br> 
   `
   // Add the input underneath the previous inputs
