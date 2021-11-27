@@ -12,16 +12,12 @@ const onSignUp = event => {
   // Stop the browser from refreshing
   event.preventDefault()
 
-  // Obtain the data from the form fields
-  
-  const formData = {
-    "credentials": {
-      "email": $('#sign-up-email').val(),
-      "password": $('#sign-up-password').val(),
-      "password_confirmation": $('#sign-up-password-confirmation').val()
-    }
-  }
 
+  // Obtain the data from the form fields
+  const formData = getFormFields(event.target)
+
+  console.log('form data ', formData)
+  
   // Call the sign-up api function
   api.signUp(formData)
     .then(ui.onSignUpSuccess)
@@ -38,13 +34,7 @@ const onSignIn = event => {
   event.preventDefault()
 
   // Obtain the data from the form fields
- 
-  const formData = {
-    "credentials": {
-      "email": $('#sign-in-email').val(),
-      "password": $('#sign-in-password').val()
-    }
-  }
+  const formData = getFormFields(event.target)
 
   // Set email & password to browser's session storage
   sessionStorage.setItem('email', formData.credentials.email)
@@ -80,12 +70,7 @@ const onChangePassword = event => {
   event.preventDefault()
 
   // Obtain the data from the form fields
-  const formData = {
-    "passwords": {
-      "old": $('#change-password-old-pw').val(),
-      "new": $('#change-password-new-pw').val()
-    }
-  }
+  const formData = getFormFields(event.target)
 
   // Call the sign-up api function
   api.changePassword(formData)
@@ -117,48 +102,12 @@ const onSignOut = event => {
 // }
 
 
-const onSignUpModal = event => {
-  event.preventDefault()
-
-  console.log('email', $('#sign-up-email').val())
-  console.log('pw', $('#sign-up-password').val())
-  console.log('pw conf', $('#sign-up-password-confirmation').val)
-
-  const formData = {
-    "credentials": {
-      "email": $('#sign-up-email').val(),
-      "password": $('#sign-up-password').val(),
-      "password_confirmation": $('#sign-up-password-confirmation').val()
-    }
-  }
-
-  api.signUp(formData)
-  .then(ui.onSignUpSuccess)
-  .then(() => api.signIn(formData))
-    .then(ui.onSignInSuccess)
-    .catch(ui.onSignInFailure)  
-  .catch(ui.onSignUpFailure)
-}
-
-
-const onSignInModal = (event) => {
-  event.preventDefault()
-
-  console.log('event ', event)
-  console.log('email', $('#sign-in-email').val())
-  console.log('pw', $('#sign-in-password').val())
-
-  
-}
-
 
 module.exports = {
   onSignUp,
   onSignIn,
   onRefreshSignIn,
   onChangePassword,
-  onSignOut, 
-  onSignUpModal,
-  onSignInModal
+  onSignOut
   // onSignUpModalOutsideClick
 }

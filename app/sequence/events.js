@@ -44,11 +44,7 @@ const onSequenceShow = event => {
   event.preventDefault()
   
   // Obtain the data from the form fields
-  const formData = {
-    "sequence": {
-      "id": $('#sequence-show-sequence-id').val()
-    }
-  }
+  const formData = getFormFields(event.target)
 
   console.log('form data ', formData)
 
@@ -65,24 +61,24 @@ const onSequenceCreate = event => {
   event.preventDefault()
   
   // Obtain the data from the form fields
-  // const formData = getFormFields(event.target)
+  const formData = getFormFields(event.target)
 
   // Initialize an array for technique ids
   const techniquesArray = [] 
 
   // Cycle through the sequence data's keys starting with the optional third technique
-  for (let i = 1; i < store.count; i++) {
+  for (let i = 1; i < Object.keys(formData.sequence).length; i++) {
     // If additional Technique exists...
-    if($(`#sequence-create-technique${i}`).val()) {
+    if(Object.keys(formData.sequence)[i]) {
       // push it to the techniquesArray
-      techniquesArray.push($(`#sequence-create-technique${i}`).val())
+      techniquesArray.push(Object.values(formData.sequence)[i])
     }
   }
 
   // Format the data per the Sequence model
   const sequenceData = {
     "sequence": {
-      "name": $('#sequence-create-name').val(),
+      "name": formData.sequence.name,
       "techniques": techniquesArray
     }
   }
@@ -119,29 +115,29 @@ const onSequenceUpdate = event => {
   // Stop the browser from refreshing
   event.preventDefault()
   
-  // Obtain the data from the form fields
   const formData = getFormFields(event.target)
 
-   // Set techniques in an array per Sequence model
-   let techniquesArray = [formData.sequence.technique1, formData.sequence.technique2] 
+  // Set techniques in an array per Sequence model
+  let techniquesArray = [] 
   
-   // Cycle through the sequence data's keys starting with the optional third technique
-   for (let i = 4; i < Object.keys(formData.sequence).length; i++) {
-     // If additional Technique exists...
-     if(Object.keys(formData.sequence)[i]) {
-       // push it to the techniquesArray
-       techniquesArray.push(Object.values(formData.sequence)[i])
-     }
-   }
-   
-   // Format the data per the Sequence model
-   const sequenceData = {
-     "sequence": {
-       "name": formData.sequence.name,
-       "techniques": techniquesArray,
-       "id": formData.sequence.id
-     }
-   }
+  // Cycle through the sequence data's keys starting with the optional third technique
+  for (let i = 2; i < Object.keys(formData.sequence).length; i++) {
+    // If additional Technique exists...
+    if(Object.keys(formData.sequence)[i]) {
+      // push it to the techniquesArray
+      techniquesArray.push(Object.values(formData.sequence)[i])
+    }
+  }
+
+  // Format the data per the Sequence model
+  const sequenceData = {
+    "sequence": {
+      "name": formData.sequence.name,
+      "techniques": techniquesArray,
+      "id": formData.sequence.id
+    }
+  }
+
 
   // Call the technique-update ajax function
   api.sequenceUpdate(sequenceData)

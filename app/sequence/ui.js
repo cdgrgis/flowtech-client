@@ -44,18 +44,18 @@ const onSequenceIndexSuccess = responseData => {
   }
 
   // Pass the html to the sequence's index display 
-  $('#sequence-index-display').html(sequenceHtml)
+  $('#sequence-display').html(sequenceHtml)
 }
 
 // In case of sequence index failure
 const onSequenceIndexFailure = err => {
   console.log(err)
   // Send a message to the user
-  $('#sequence-destroy-index-display').text('Failed to retrieve Sequences')
+  $('#sequence-error-display').text('Failed to retrieve Sequences')
 
   // Clear error message
   setTimeout(() => {
-    $('#sequence-index-error-display').text('')
+    $('#sequence-error-display').text('')
   }, 5000)
 }
 
@@ -96,7 +96,7 @@ const onSequenceIndexPersonalSuccess = responseData => {
       `  
   }
   // Pass the html to the sequence's index display 
-  $('#sequence-index-display').html(sequenceHtml)
+  $('#sequence-display').html(sequenceHtml)
 }
 
 // In case of personal sequence index failure
@@ -104,11 +104,11 @@ const onSequenceIndexPersonalFailure = err => {
   console.log(err)
 
   // Send a message to the user
-  $('#sequence-index-error-display').text('Failed to retrieve personal sequences')
+  $('#sequence-error-display').text('Failed to retrieve personal sequences')
 
   // Clear error message
   setTimeout(() => {
-    $('#sequence-index-error-display').text('')
+    $('#sequence-error-display').text('')
   }, 5000)
 }
 
@@ -148,23 +148,23 @@ const onSequenceShowSuccess = responseData => {
       </div>
       ` 
   // Pass the html to the sequence's index display 
-  $('#sequence-show-display').html(sequenceHtml)
+  $('#sequence-display').html(sequenceHtml)
   // Reset all forms
   $('form').trigger('reset')
 
     // Close all modals
-    $('.modal').css('display', 'none')
+    $('.modal').hide()
 }
 
 // In case of sequence show failure
 const onSequenceShowFailure = err => {
   console.log(err)
   // Send a message to the user
-  $('#sequence-show-error-display').text('Sequence not found')
+  $('#sequence-error-display').text('Sequence not found')
 
   // Clear error message
   setTimeout(() => {
-    $('#sequence-show-error-display').text('')
+    $('#sequence-error-display').text('')
   }, 5000)
 }
 
@@ -203,7 +203,7 @@ const onSequenceCreateSuccess = responseData => {
       ` 
   
   // Pass the html to the sequence's create display 
-  $('#sequence-create-display').html(sequenceHtml)
+  $('#sequence-display').html(sequenceHtml)
 
   // Clear the additional technique inputs
   // $('#sequence-create-additional-techniques').html('')
@@ -212,7 +212,7 @@ const onSequenceCreateSuccess = responseData => {
   $('form').trigger('reset')
 
   // Close all modals
-  $('.modal').css('display', 'none')
+  $('.modal').hide()
 
   // Reset store.count to 3 (meaning there are currently no more than 2 techniques in create input)
   store.count = 3
@@ -223,11 +223,11 @@ const onSequenceCreateFailure = err => {
   console.log(err)
 
   // Send a message to the user
-  $('#sequence-destroy-create-display').text('Failed to Create Sequence')
+  $('#sequence-error-display').text('Failed to Create Sequence')
 
   // Clear error message
   setTimeout(() => {
-    $('#sequence-create-error-display').text('')
+    $('#sequence-error-display').text('')
   }, 5000)
 }
 
@@ -267,38 +267,44 @@ const onSequenceUpdateSuccess = (responseData) => {
   ` 
 
   // Pass the html to the sequence's index display 
-  $('#sequence-update-display').html(sequenceHtml)
+  $('#sequence-display').html(sequenceHtml)
 
   // Clear the additional technique inputs
   $('#sequence-update-additional-techniques').html('')
 
   // Reset all forms
   $('form').trigger('reset')
+
+  // Close all modals
+  $('.modal').hide()
 }
 
 // In case of sequence update failure
 const onSequenceUpdateFailure = err => {
   console.log(err)
   // Send a message to the user
-  $('#sequence-update-error-display').text('Failed to Update Sequence')
+  $('#sequence-error-display').text('Failed to Update Sequence')
 
   // Clear error message
   setTimeout(() => {
-    $('#sequence-update-error-display').text('')
+    $('#sequence-error-display').text('')
   }, 5000)
 }
 
 // Code to run upon the success of sequence destroy
 const onSequenceDestroySuccess = () => {
   // Send a message to the user
-  $('#sequence-destroy-display').text('Sequence Destroyed')
+  $('#sequence-display').text('Sequence Destroyed')
 
   // Reset all forms
   $('form').trigger('reset')
 
+  // Close all modals
+  $('.modal').hide()
+
   // Clear success message
   setTimeout(() => {
-    $('#sequence-destroy-display').text('')
+    $('#sequence-display').text('')
   }, 5000)
 }
 
@@ -306,11 +312,11 @@ const onSequenceDestroySuccess = () => {
 const onSequenceDestroyFailure = err => {
   console.log(err)
   // Send a message to the user
-  $('#sequence-destroy-error-display').text('Failed to Delete Sequence')
+  $('#sequence-error-display').text('Failed to Delete Sequence')
   
   // Clear error message
   setTimeout(() => {
-    $('#sequence-destroy-error-display').text('')
+    $('#sequence-error-display').text('')
   }, 5000)
 }
 

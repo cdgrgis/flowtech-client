@@ -8,7 +8,7 @@ const onSignUpSuccess = responseData => {
   console.log(responseData)
   // Clear forms
   $('form').trigger('reset')
-  $('.modal').css('display', 'none')
+  $('.modal').hide()
 
   // Clear success message
   setTimeout(() => {
@@ -30,7 +30,7 @@ const onSignInSuccess = responseData => {
   $('#sign-in-display').text('Sign in successful')
   $('#before-sign-in').hide()
   $('#after-sign-in').show()
-  $('#sign-up-modal').css('display', 'none')
+  $('#sign-up-modal').hide()
   console.log(responseData)
   // Clear forms
   $('form').trigger('reset')
@@ -61,7 +61,7 @@ const onChangePasswordSuccess = responseData => {
   $('form').trigger('reset')
 
   // Close all modals
-  $('.modal').css('display', 'none')
+  $('.modal').hide()
 
   // Clear success message
   setTimeout(() => {
