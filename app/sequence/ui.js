@@ -44,7 +44,7 @@ const onSequenceIndexSuccess = responseData => {
   }
 
   // Pass the html to the sequence's index display 
-  $('#sequence-display').html(sequenceHtml)
+  $('#database-content-display').html(sequenceHtml)
 }
 
 // In case of sequence index failure
@@ -96,7 +96,7 @@ const onSequenceIndexPersonalSuccess = responseData => {
       `  
   }
   // Pass the html to the sequence's index display 
-  $('#sequence-display').html(sequenceHtml)
+  $('#database-content-display').html(sequenceHtml)
 }
 
 // In case of personal sequence index failure
@@ -148,7 +148,7 @@ const onSequenceShowSuccess = responseData => {
       </div>
       ` 
   // Pass the html to the sequence's index display 
-  $('#sequence-display').html(sequenceHtml)
+  $('#database-content-display').html(sequenceHtml)
   // Reset all forms
   $('form').trigger('reset')
 
@@ -203,7 +203,7 @@ const onSequenceCreateSuccess = responseData => {
       ` 
   
   // Pass the html to the sequence's create display 
-  $('#sequence-display').html(sequenceHtml)
+  $('#database-content-display').html(sequenceHtml)
 
   // Clear the additional technique inputs
   // $('#sequence-create-additional-techniques').html('')
@@ -267,7 +267,7 @@ const onSequenceUpdateSuccess = (responseData) => {
   ` 
 
   // Pass the html to the sequence's index display 
-  $('#sequence-display').html(sequenceHtml)
+  $('#database-content-display').html(sequenceHtml)
 
   // Clear the additional technique inputs
   $('#sequence-update-additional-techniques').html('')
@@ -294,7 +294,7 @@ const onSequenceUpdateFailure = err => {
 // Code to run upon the success of sequence destroy
 const onSequenceDestroySuccess = () => {
   // Send a message to the user
-  $('#sequence-display').text('Sequence Destroyed')
+  $('#database-content-display').text('Sequence Destroyed')
 
   // Reset all forms
   $('form').trigger('reset')
@@ -304,7 +304,7 @@ const onSequenceDestroySuccess = () => {
 
   // Clear success message
   setTimeout(() => {
-    $('#sequence-display').text('')
+    $('#database-content-display').text('')
   }, 5000)
 }
 

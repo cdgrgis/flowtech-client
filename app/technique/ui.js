@@ -35,7 +35,7 @@ const onTechniqueIndexSuccess = responseData => {
   }
 
   // Send html to technique index's display
-  $('#technique-display').html(techniqueHtml)
+  $('#database-content-display').html(techniqueHtml)
 }
 
 const onTechniqueIndexFailure = err => {
@@ -78,7 +78,7 @@ const onTechniqueIndexPersonalSuccess = responseData => {
   }
 
   // Send html to technique index's display
-  $('#technique-display').html(techniqueHtml)
+  $('#database-content-display').html(techniqueHtml)
 }
 
 const onTechniqueIndexPersonalFailure = err => {
@@ -107,7 +107,7 @@ const onTechniqueShowSuccess = responseData => {
     </div>
     ` 
   // Send html to show technique's display
-  $('#technique-display').html(techniqueHtml)
+  $('#database-content-display').html(techniqueHtml)
   // Clear all forms
   $('form').trigger('reset')
 
@@ -143,7 +143,7 @@ const onTechniqueCreateSuccess = responseData => {
     ` 
   
   // Send the html to the create technique's dispaly
-  $('#technique-display').html(techniqueHtml)
+  $('#database-content-display').html(techniqueHtml)
 
   // Clear all forms
   $('form').trigger('reset')
@@ -178,7 +178,7 @@ const onTechniqueUpdateSuccess = responseData => {
   ` 
 
   // Send the html to the technique update's display
-  $('#technique-display').html(techniqueHtml)
+  $('#database-content-display').html(techniqueHtml)
 
   // // Clear all forms
   $('form').trigger('reset')
@@ -205,7 +205,7 @@ const onTechniqueUpdateFailure = err => {
 
 const onTechniqueDestroySuccess = () => {
   // Send message to user
-  $('#technique-display').text('Technique Destroyed')
+  $('#database-content-display').text('Technique Destroyed')
   
   // Clear all forms
   $('form').trigger('reset')

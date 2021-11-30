@@ -42,7 +42,7 @@
         <div id="sign-up-display"></div>
         
   
-        <br><hr><br>
+     
   
         <!-- Button to open sign-in modal -->
         <button id="sign-in-modal-button">Sign In</button>
@@ -75,27 +75,70 @@
         <div id="sign-in-display"></div>
        
       </section> 
-    
 
-
+      <!-- Section available after sign in -->
       <section id="after-sign-in">
-        <!-- Font Awesome Icon Library -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div class="topnav">
+          <section id="auth-dropdown-button">
+            <!-- Font Awesome Icon Library -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+            <!-- Auth drop down button -->
+            <button id="auth-drop" class="btn">Auth</button>
+            <div class="dropdown">
+              <button class="btn" style="border-left:1px solid navy">
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <button id="change-password-button">Change password</button>
+                <button id="sign-out-button">Sign out</button>
+              </div>
+            </div>
+           
+            <div id="auth-display"></div>
+          </section>
 
-        <!-- Auth drop down button -->
-        <button id="auth-drop" class="btn">Auth</button>
-        <div class="dropdown">
-          <button class="btn" style="border-left:1px solid navy">
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <button id="change-password-button">Change password</button>
-            <button id="sign-out-button">Sign out</button>
-          </div>
+          <section id="techniques-dropdown-button">
+
+            <!-- Technique drop down button -->
+            <button id="technique-drop" class="btn">Techniques</button>
+            <div class="dropdown">
+              <button class="btn" style="border-left:1px solid navy">
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <button id="technique-index-button">Get techniques</button>
+                <button id="technique-index-personal-button">Get my techniques</button>
+                <button id="technique-show-button">Show technique</button>
+                <button id="technique-create-button">Create technique</button>
+                <button id="technique-update-button">Update technique</button>
+                <button id="technique-destroy-button">Delete technique</button>
+              </div>
+            </div>
+          </section>
+
+          <section id="sequences-dropdown-button">
+            <!-- Sequence drop down button -->
+            <button id="sequence-drop" class="btn">Sequences</button>
+            <div class="dropdown">
+              <button class="btn" style="border-left:1px solid navy">
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <button id="sequence-index-button">Get sequences</button>
+                <button id="sequence-index-personal-button">Get my sequences</button>
+                <button id="sequence-show-button">Show sequence</button>
+                <button id="sequence-create-button">Create sequence</button>
+                <button id="sequence-update-button">Update sequence</button>
+                <button id="sequence-destroy-button">Delete sequence</button>
+              </div>
+            </div>
+          </section>
         </div>
-        <br><hr><br>
-        <div id="auth-display"></div>
 
+
+        
+        <div id="database-content-display"></div>
   
 
        
@@ -126,27 +169,13 @@
         </div>
       
         
-        <br><hr><br>
+     
          
         <section id="technique-section">
 
-          <!-- Technique drop down button -->
-          <button id="technique-drop" class="btn">Techniques</button>
-          <div class="dropdown">
-            <button class="btn" style="border-left:1px solid navy">
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <button id="technique-index-button">Get techniques</button>
-              <button id="technique-index-personal-button">Get my techniques</button>
-              <button id="technique-show-button">Show technique</button>
-              <button id="technique-create-button">Create technique</button>
-              <button id="technique-update-button">Update technique</button>
-              <button id="technique-destroy-button">Delete technique</button>
-            </div>
-          </div>
+          
 
-          <br><hr><br>
+       
 
           <div id="technique-display"></div>
           <div id="technique-error-display"></div>
@@ -280,27 +309,13 @@
           </div>
         </section>
 
-        <br><hr><br>
+     
 
         <section id="sequence-section">
 
-          <!-- Sequence drop down button -->
-          <button id="sequence-drop" class="btn">Sequences</button>
-          <div class="dropdown">
-            <button class="btn" style="border-left:1px solid navy">
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <button id="sequence-index-button">Get sequences</button>
-              <button id="sequence-index-personal-button">Get my sequences</button>
-              <button id="sequence-show-button">Show sequence</button>
-              <button id="sequence-create-button">Create sequence</button>
-              <button id="sequence-update-button">Update sequence</button>
-              <button id="sequence-destroy-button">Delete sequence</button>
-            </div>
-          </div>
           
-          <br><hr><br>
+          
+       
         
           <div id="sequence-display"></div>
           <div id="sequence-error-display"></div>

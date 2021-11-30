@@ -55,7 +55,7 @@ const onSignInFailure = err => {
 
 const onChangePasswordSuccess = responseData => {
   // Let the user know the password was changed successfully
-  $('#change-password-display').text('Password changed successfully')
+  $('#database-content-display').text('Password changed successfully')
   
   // Clear forms
   $('form').trigger('reset')
@@ -65,7 +65,7 @@ const onChangePasswordSuccess = responseData => {
 
   // Clear success message
   setTimeout(() => {
-    $('#change-password-display').text('')
+    $('#database-content-display').text('')
   }, 5000)
 }
 
@@ -80,7 +80,7 @@ const onChangePasswordFailure = err => {
 
 const onSignOutSuccess = responseData => {
   // Let the user know the sign-out was successful
-  $('#sign-out-display').text('Sign out successful')
+  $('#database-content-display').text('Sign out successful')
   $('#before-sign-in').show()
   $('#after-sign-in').hide()
   
@@ -93,7 +93,7 @@ const onSignOutSuccess = responseData => {
   
   // Clear success message
   setTimeout(() => {
-    $('#sign-out-display').text('')
+    $('#database-content-display').text('')
   }, 5000)
 }
 
