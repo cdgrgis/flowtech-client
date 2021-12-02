@@ -1,0 +1,144 @@
+// Require the store
+const store = require('../store')
+
+const onTechniqueIndexPersonalSuccess = responseData => {
+    console.log(responseData)
+    console.log('user ', responseData.user)
+    console.log('tech ', responseData.user.techniques)
+    // Set the technique data to a variable
+    const techniquesData = responseData.user.techniques
+  
+    // Initialize a variable to hold html
+    let techniqueHtml = ''
+    
+    // Cycle through all techniques in response data
+    for (let i = 0; i < techniquesData.length;  i++) {
+      // Set each technique to a variable
+      const technique = techniquesData[i]
+  
+      // Format html from techniqueData
+      techniqueHtml += `
+        <div class ="technique-library">
+          <h1>${technique.name}</h1>
+          <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3> 
+          <h3>Technique Id: ${technique._id}</h3>
+          <br>
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          <br><br><br>
+        </div>
+        `  
+    }
+  
+    // Send html to technique index's display
+    $('#database-content-display').html(techniqueHtml)
+
+
+}
+
+const onTechniqueIndexPersonalFailure = err => {
+    console.log(err)
+    $('#database-error-display').text('Failed to retrieve your techniques')
+
+    setTimeout(() => {
+        $('#database-error-display').text('')
+    }, 5000)
+}
+
+const onSequenceIndexPersonalSuccess = responseData => {
+ 
+    console.log('user ', responseData.user)
+    console.log('tech ', responseData.user.sequences)
+    console.log('tech length ', responseData.user.sequences[0].techniques.length)
+    console.log('tech 1 ', responseData.user.sequences[0].techniques[0])
+  
+    // Initialize a variable to hold html data 
+    let sequenceHtml = ''
+    
+    // Loop through all sequences
+    for (let i = 0; i < responseData.user.sequences.length;  i++) {
+      // Set each sequence to the variable
+      const sequence = responseData.user.sequences[i]
+      // Add the class and name to sequenceHtml
+      sequenceHtml += `
+        <div class ="sequence-library">
+          <h1>${sequence.name}</h1> `
+       
+      // Loop through techniques techniques
+      for (let j = 0; j < sequence.techniques.length; j++) {
+        // and add them to sequenceHtml
+        sequenceHtml += `
+          <h3>Technique ${j + 1}: ${sequence.techniques[j].name}</h3> `
+      }
+      console.log('sequence html ', sequenceHtml)
+      // Add the sequence's idto sequenceHtml
+      sequenceHtml += `
+          <h3>Sequence Id: ${sequence._id}</h3>
+          <br>
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          <br><br><br>
+        </div>
+        `  
+    }
+    // Pass the html to the sequence's index display 
+    $('#database-content-display').html(sequenceHtml)
+  }
+  
+  // In case of personal sequence index failure
+  const onSequenceIndexPersonalFailure = err => {
+    console.log(err)
+  
+    // Send a message to the user
+    $('#sequence-error-display').text('Failed to retrieve personal sequences')
+  
+    // Clear error message
+    setTimeout(() => {
+      $('#sequence-error-display').text('')
+    }, 5000)
+  }
+
+const onUpdateUserSuccess = (responseData) => {
+    console.log('success')
+    $('#database-content-display').text('User has been updated')
+
+    // Close all modals
+    $('.modal').hide()
+
+    setTimeout(() => {
+        $('#database-content-display').text('')
+    }, 5000)
+}
+
+const onUpdateUserFailure = err => {
+    $('#update-user-error-display').text('Failed to update user')
+
+    setTimeout(() => {
+        $('#update-user-error-display').text('')
+    }, 5000)
+}
+
+const onSearchByUserNameSuccess = responseData => {
+    console.log(responseData.user)
+}
+
+const onSearchByUserNameFailure = err => {
+    console.log(err)
+
+    // Send a message to user
+    $('#search-by-username-error-display').text('Failed to find user')
+
+    // Clear error message
+    setTimeout(() => {
+        $('#search-by-username-error-display').text('')
+    }, 5000)
+}
+  
+module.exports = {
+    onTechniqueIndexPersonalSuccess,
+    onTechniqueIndexPersonalFailure,
+    onSequenceIndexPersonalSuccess,
+    onSequenceIndexPersonalFailure,
+    onUpdateUserSuccess,
+    onUpdateUserFailure,
+    onSearchByUserNameSuccess,
+    onSearchByUserNameFailure
+}
