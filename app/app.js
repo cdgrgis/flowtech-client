@@ -1,6 +1,7 @@
 const authEvents = require('./auth/events')
 const techniqueEvents = require('./technique/events')
 const sequenceEvents = require('./sequence/events')
+const userEvents = require('./user/events')
 // const { nodeName } = require('jquery')
 
 $(() => {
@@ -11,16 +12,20 @@ $(() => {
   $('#sign-in-modal-button').on('click', () => $('#sign-in-modal').show())
   $('#sign-in').on('submit', authEvents.onSignIn)
 
-  $('#change-password-drop').on('click', () => $('#change-password-modal').show())
-  $('#change-password-modal-button').on('click', () => $('#change-password-modal').show())
+  $('#change-password-button').on('click', () => $('#change-password-modal').show())
   $('#change-password').on('submit', authEvents.onChangePassword)
+
+  $('#update-user-button').on('click', () => $('#update-user-modal').show())
+  $('#update-user').on('submit', userEvents.onUpdateUser)
 
   $('#sign-out-button').on('click', authEvents.onSignOut)
   $('#sign-out').on('click', authEvents.onSignOut)
 
+  $('#search-by-username').on('submit', userEvents.onSearchByUserName)
+
   // Technique Event Listeners
   $('#technique-index-button').on('click', techniqueEvents.onTechniqueIndex)
-  $('#technique-index-personal-button').on('click', techniqueEvents.onTechniqueIndexPersonal)
+  $('#technique-index-personal-button').on('click', userEvents.onTechniqueIndexPersonal)
  
   $('#technique-show-button').on('click', () => $('#technique-show-modal').show())
   $('#technique-show-form').on('submit', techniqueEvents.onTechniqueShow)
@@ -36,7 +41,7 @@ $(() => {
 
   // Sequence Event Listeners
   $('#sequence-index-button').on('click', sequenceEvents.onSequenceIndex)
-  $('#sequence-index-personal-button').on('click', sequenceEvents.onSequenceIndexPersonal)
+  $('#sequence-index-personal-button').on('click', userEvents.onSequenceIndexPersonal)
   
   $('#sequence-show-button').on('click', () => $('#sequence-show-modal').show())
   $('#sequence-show').on('submit', sequenceEvents.onSequenceShow)

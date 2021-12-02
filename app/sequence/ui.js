@@ -59,58 +59,7 @@ const onSequenceIndexFailure = err => {
   }, 5000)
 }
 
-// Code to run upon personal sequence index
-const onSequenceIndexPersonalSuccess = responseData => {
- 
-  console.log('user ', responseData.user)
-  console.log('tech ', responseData.user.sequences)
-  console.log('tech length ', responseData.user.sequences[0].techniques.length)
-  console.log('tech 1 ', responseData.user.sequences[0].techniques[0])
 
-  // Initialize a variable to hold html data 
-  let sequenceHtml = ''
-  
-  // Loop through all sequences
-  for (let i = 0; i < responseData.user.sequences.length;  i++) {
-    // Set each sequence to the variable
-    const sequence = responseData.user.sequences[i]
-    // Add the class and name to sequenceHtml
-    sequenceHtml += `
-      <div class ="sequence-library">
-        <h1>${sequence.name}</h1> `
-     
-    // Loop through techniques techniques
-    for (let j = 0; j < sequence.techniques.length; j++) {
-      // and add them to sequenceHtml
-      sequenceHtml += `
-        <h3>Technique ${j + 1}: ${sequence.techniques[j].name}</h3> `
-    }
-    console.log('sequence html ', sequenceHtml)
-    // Add the sequence's idto sequenceHtml
-    sequenceHtml += `
-        <h3>Sequence Id: ${sequence._id}</h3>
-        <br>
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        <br><br><br>
-      </div>
-      `  
-  }
-  // Pass the html to the sequence's index display 
-  $('#database-content-display').html(sequenceHtml)
-}
-
-// In case of personal sequence index failure
-const onSequenceIndexPersonalFailure = err => {
-  console.log(err)
-
-  // Send a message to the user
-  $('#sequence-error-display').text('Failed to retrieve personal sequences')
-
-  // Clear error message
-  setTimeout(() => {
-    $('#sequence-error-display').text('')
-  }, 5000)
-}
 
 // Code to run upon the success of sequence show
 const onSequenceShowSuccess = responseData => {
@@ -324,8 +273,6 @@ const onSequenceDestroyFailure = err => {
 module.exports = {
   onSequenceIndexSuccess,
   onSequenceIndexFailure,
-  onSequenceIndexPersonalSuccess,
-  onSequenceIndexPersonalFailure,
   onSequenceShowSuccess,
   onSequenceShowFailure,
   onSequenceCreateSuccess,

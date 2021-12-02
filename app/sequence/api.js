@@ -15,15 +15,7 @@ const sequenceIndex = () => {
   })
 }
 
-const sequenceIndexPersonal = formData => {
-  return $.ajax({
-    method: 'GET',
-    url: config.apiUrl + '/users/:id',
-    headers: {
-      Authorization: `Bearer ${store.user.token}`
-    }
-  })
-}
+
 
 // API call for sequence create
 const sequenceShow = formData => {
@@ -74,7 +66,6 @@ const sequenceDestroy = formData => {
 
 module.exports = {
   sequenceIndex,
-  sequenceIndexPersonal,
   sequenceShow,
   sequenceCreate,
   sequenceUpdate,

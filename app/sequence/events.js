@@ -24,17 +24,6 @@ const onSequenceIndex = event => {
     .catch(ui.onSequenceIndexFailure)
 }
 
-const onSequenceIndexPersonal = event => {
-   // Stop the browser from refreshing
-   event.preventDefault()
-  
-   
-
-   api.sequenceIndexPersonal()
-    .then(ui.onSequenceIndexPersonalSuccess)
-    .catch(ui.onSequenceIndexPersonalFailure)
-  
-}
 
 
 
@@ -179,7 +168,6 @@ const onSequenceDestroy = event => {
 
 module.exports = {
  onSequenceIndex,
- onSequenceIndexPersonal,
  onSequenceShow,
  onSequenceCreate,
  onSequenceCreateAddTechnique,

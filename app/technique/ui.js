@@ -49,47 +49,7 @@ const onTechniqueIndexFailure = err => {
   }, 5000)
 }
 
-const onTechniqueIndexPersonalSuccess = responseData => {
-  console.log(responseData)
-  console.log('user ', responseData.user)
-  console.log('tech ', responseData.user.techniques)
-  // Set the technique data to a variable
-  const techniquesData = responseData.user.techniques
 
-  // Initialize a variable to hold html
-  let techniqueHtml = ''
-  
-  // Cycle through all techniques in response data
-  for (let i = 0; i < techniquesData.length;  i++) {
-    // Set each technique to a variable
-    const technique = techniquesData[i]
-
-    // Format html from techniqueData
-    techniqueHtml += `
-      <div class ="technique-library">
-        <h1>${technique.name}</h1>
-        <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3> 
-        <h3>Technique Id: ${technique._id}</h3>
-        <br>
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        <br><br><br>
-      </div>
-      `  
-  }
-
-  // Send html to technique index's display
-  $('#database-content-display').html(techniqueHtml)
-}
-
-const onTechniqueIndexPersonalFailure = err => {
-  console.log(err)
-  // Send a message to user
-  $('#technique-error-display').text('Failed to retrieve personal techniques')
-
-  setTimeout(() => {
-    $('#technique-error-display').text('')
-  }, 5000)
-}
 
 const onTechniqueShowSuccess = responseData => {
   console.log(responseData)
@@ -233,8 +193,6 @@ const onTechniqueDestroyFailure = err => {
 module.exports = {
   onTechniqueIndexSuccess,
   onTechniqueIndexFailure,
-  onTechniqueIndexPersonalSuccess,
-  onTechniqueIndexPersonalFailure,
   onTechniqueShowSuccess,
   onTechniqueShowFailure,
   onTechniqueCreateSuccess,

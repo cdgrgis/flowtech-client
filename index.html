@@ -14,7 +14,12 @@
     <body>
       <h1>Welcome to Your Flow Technique Database</h1>
       <h3>Keep track of what techniques you've learned so far or hope to one day achieve</h3>
-
+      <form id="search-by-username">
+        <legend>Find another user</legend>
+        <input value="Flowlogically" name="credentials[userName]" type="text" placeholder="Search by Username" required>
+        <button>Find User</button>
+      </form>
+      <div id="search-username-error-display"></div>
       <br>
       <br>
 
@@ -31,7 +36,9 @@
                 <input name="credentials[email]" type="email" placeholder="Email" required>
                 <input name="credentials[password]" type="password" placeholder="Password" required>
                 <input name="credentials[password_confirmation]" type="password" placeholder="Password Confirmation" required>
-    
+                <input name="credentials[user_name]" type="text" placeholder="Username">
+                <input name="credentials[picture]" type="text" placeholder="Add a link for your profile picture">
+
                 <button>Sign Up</button>
                 <div id="sign-up-error-display"></div>
                 
@@ -92,6 +99,7 @@
               <div class="dropdown-content">
                 <button id="change-password-button">Change password</button>
                 <button id="sign-out-button">Sign out</button>
+                <button id="update-user-button">Update User</button>
               </div>
             </div>
            
@@ -126,7 +134,6 @@
               </button>
               <div class="dropdown-content">
                 <button id="sequence-index-button">Get sequences</button>
-                <button id="sequence-index-personal-button">Get my sequences</button>
                 <button id="sequence-show-button">Show sequence</button>
                 <button id="sequence-create-button">Create sequence</button>
                 <button id="sequence-update-button">Update sequence</button>
@@ -163,6 +170,32 @@
                 
                 <!-- Displays error messages -->
                 <div id="change-password-error-display"></div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+
+        
+        <!-- Change password Modal -->
+        <div id="update-user-modal" class="modal">
+
+          <!-- Change password Content -->
+          <div class="modal-content">
+            <!-- Close modal button (appears as `x`) -->
+            <span class="close">&times;</span>
+        
+            <!-- Sign in form -->
+            <form id="update-user">
+              <fieldset>
+                <legend>Update User</legend>
+                <input name="userData[userName]" type="text" placeholder="UserName">
+                <input name="userData[picture]" type="text" placeholder="Link to your picture">
+
+                <!-- Submit change password data button -->
+                <button>Update</button>
+                
+                <!-- Displays error messages -->
+                <div id="update-user-error-display"></div>
               </fieldset>
             </form>
           </div>
@@ -269,7 +302,7 @@
 
                   <br><br>
                   
-                  <input name="technique[direction]" id="update-same" type="radio" value="Same" checked>
+                  <input name="technique[direction]" id="update-same" type="radio" value="Same">
                   <label for="update-same">Same</label>          
                   <input name="technique[direction]" id="update-opposite" type="radio" value="Opposite">
                   <label for="update-opposite">Opposite</label>
@@ -397,8 +430,8 @@
                   <input name="sequence[id]" type="text" placeholder="Sequence Id" required>
                   <br>
                   <br>
-                  <input name="sequence[technique1]" type="text" placeholder="Technique 1" required>
-                  <input name="sequence[technique2]" type="text" placeholder="Technique 2" required>
+                  <input name="sequence[technique1]" type="text" placeholder="Technique 1">
+                  <input name="sequence[technique2]" type="text" placeholder="Technique 2">
                   <div id="sequence-update-additional-techniques"></div>
 
                   <br><br>

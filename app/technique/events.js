@@ -7,6 +7,7 @@ const ui = require('./ui')
 // Require function to obtain data from form fields when submitted
 const getFormFields= require('../../lib/get-form-fields')
 
+// Require the store object
 const store = require('../store')
 
 
@@ -21,17 +22,7 @@ const onTechniqueIndex = event => {
     .catch(ui.onTechniqueIndexFailure)
 }
 
-const onTechniqueIndexPersonal = event => {
-   // Stop the browser from refreshing
-   event.preventDefault()
-  
-   console.log(store.user.techniques)
 
-   api.techniqueIndexPersonal()
-    .then(ui.onTechniqueIndexPersonalSuccess)
-    .catch(ui.onTechniqueIndexPersonalFailure)
-  
-}
 
 // Technique Show
 const onTechniqueShow = event => {
@@ -40,6 +31,7 @@ const onTechniqueShow = event => {
   
   // Obtain the data from the form fields
   const formData = getFormFields(event.target)
+  console.log(formData)
 
   // Call the technique-create api function
   api.techniqueShow(formData)
@@ -94,7 +86,6 @@ const onTechniqueDestroy = event => {
 
 module.exports = {
  onTechniqueIndex,
- onTechniqueIndexPersonal,
  onTechniqueShow,
  onTechniqueCreate,
  onTechniqueUpdate,

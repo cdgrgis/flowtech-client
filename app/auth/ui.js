@@ -29,6 +29,7 @@ const onSignInSuccess = responseData => {
   // Let the user know the sign in was successful
   $('#sign-in-display').text('Sign in successful')
   $('#before-sign-in').hide()
+  $('#search-by-username').show()
   $('#after-sign-in').show()
   $('#sign-up-modal').hide()
   console.log(responseData)
