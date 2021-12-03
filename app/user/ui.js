@@ -23,6 +23,7 @@ const onTechniqueIndexPersonalSuccess = responseData => {
           <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3> 
           <h3>Technique Id: ${technique._id}</h3>
           <br>
+          <button class="technique-delete" id=${technique._id}>Delete technique</button>
           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           <br><br><br>
         </div>
@@ -70,10 +71,11 @@ const onSequenceIndexPersonalSuccess = responseData => {
           <h3>Technique ${j + 1}: ${sequence.techniques[j].name}</h3> `
       }
       console.log('sequence html ', sequenceHtml)
-      // Add the sequence's idto sequenceHtml
+      // Add the sequence's id to sequenceHtml
       sequenceHtml += `
           <h3>Sequence Id: ${sequence._id}</h3>
           <br>
+          <button class="sequence-delete" id=${sequence._id}>Delete sequence</button>
           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           <br><br><br>
         </div>
@@ -118,6 +120,59 @@ const onUpdateUserFailure = err => {
 
 const onSearchByUserNameSuccess = responseData => {
     console.log(responseData.user)
+
+    const user = responseData.user
+
+    let userHtml = `
+    <h1>${user.userName}</h1>`
+
+    if (user.picture) {
+      userHtml += `
+      <img src=${user.picture} alt="User picture" width="200" height="200">`
+    }
+    
+    if (user.techniques.length !== 0) {
+      userHtml += `
+      <h3>${user.userName}'s Techniques</h3>`
+
+      for (let i = 0; i < user.techniques.length; i++) {
+        const technique = user.techniques[i]
+        userHtml += `
+        <h4>Name: ${technique.name}</h4>
+        <br>
+        <h4>Timing & Direction: ${technique.timing} / ${technique.direction}</h4>
+        <br><hr><br>
+        `
+      }
+    }
+    
+    if (user.sequences.length !== 0) {
+      userHtml += `
+      <br><br>
+      <h3>Sequences</h3>`
+      
+      for (let i = 0; i < user.sequences.length; i++) {
+        const sequence = user.sequences[i]
+        userHtml += `
+        <h4>Name: ${sequence.name}</h4>`
+        
+        for (let j = 0; j < sequence.techniques.length; j++) {
+          userHtml += `
+          <br>
+          <h5>Technique ${j + 1}: ${sequence.techniques[j].name}</h5>
+          <br><hr><br>
+          `
+        }
+      }
+      
+      
+     
+    }
+
+
+  $('#database-content-display').html(userHtml)
+
+    
 }
 
 const onSearchByUserNameFailure = err => {

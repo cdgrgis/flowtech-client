@@ -12,21 +12,28 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Welcome to Your Flow Technique Database</h1>
-      <h3>Keep track of what techniques you've learned so far or hope to one day achieve</h3>
-      <form id="search-by-username">
-        <legend>Find another user</legend>
-        <input value="Flowlogically" name="credentials[userName]" type="text" placeholder="Search by Username" required>
-        <button>Find User</button>
-      </form>
-      <div id="search-username-error-display"></div>
+      <header>
+        <section id="welcome">
+          <h1>Welcome to Your Flow Technique Database</h1>
+          <h3>Keep track of what techniques you've learned so far or hope to one day achieve</h3>
+          <br><br>
+          <form id="search-by-username">
+            <legend>Find another user</legend>
+            <input value="OBJ" name="credentials[userName]" type="text" placeholder="Search by Username" required>
+            <button>Find User</button>
+          </form>
+          <div id="search-username-error-display"></div>
+        </section>
+      </header>
+      <br>
       <br>
       <br>
 
       <section id="before-sign-in">
+      
         <button id="sign-up-modal-button">Sign Up</button>
         <div id="sign-up-modal" class="modal">
-  
+
           <div class="modal-content">
             <span class="close">&times;</span>
             
@@ -47,10 +54,10 @@
           </div>
         </div>
         <div id="sign-up-display"></div>
-        
-  
+          
+    
      
-  
+     
         <!-- Button to open sign-in modal -->
         <button id="sign-in-modal-button">Sign In</button>
 
@@ -98,8 +105,8 @@
               </button>
               <div class="dropdown-content">
                 <button id="change-password-button">Change password</button>
-                <button id="sign-out-button">Sign out</button>
                 <button id="update-user-button">Update User</button>
+                <button id="sign-out-button">Sign out</button>
               </div>
             </div>
            

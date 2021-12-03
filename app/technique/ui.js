@@ -164,6 +164,7 @@ const onTechniqueUpdateFailure = err => {
 }
 
 const onTechniqueDestroySuccess = () => {
+  console.log('hello')
   // Send message to user
   $('#database-content-display').text('Technique Destroyed')
   

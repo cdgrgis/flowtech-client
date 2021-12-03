@@ -84,6 +84,7 @@ const onSignOutSuccess = responseData => {
   $('#database-content-display').text('Sign out successful')
   $('#before-sign-in').show()
   $('#after-sign-in').hide()
+  $('#search-by-user').hide()
   
 
   // Clear forms

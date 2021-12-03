@@ -154,9 +154,21 @@ const onSequenceDestroy = event => {
   // Stop the browser from refreshing
   event.preventDefault()
   
-  // Obtain the data from the form fields
-  const formData = getFormFields(event.target)
-  console.log(formData)
+  console.log('true? ', event.target.id === 'sequence-destroy')
+  console.log('event.target ', event.target.id)
+  let formData = ''
+  if (event.target.id === 'sequence-destroy') {
+    // Obtain the data from the form fields
+    formData = getFormFields(event.target)
+  } else {
+    formData = {
+      "sequence": {
+        "id": event.target.id
+      }
+    }
+  }
+  console.log('form data ', formData)
+
 
   // Call the technique-destroy api function
   api.sequenceDestroy(formData)

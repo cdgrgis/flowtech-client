@@ -38,7 +38,8 @@ $(() => {
   
   $('#technique-destroy-button').on('click', () => $('#technique-destroy-modal').show())
   $('#technique-destroy').on('submit', techniqueEvents.onTechniqueDestroy)
-
+  $('#database-content-display').on('click', '.technique-delete', techniqueEvents.onTechniqueDestroy)
+  
   // Sequence Event Listeners
   $('#sequence-index-button').on('click', sequenceEvents.onSequenceIndex)
   $('#sequence-index-personal-button').on('click', userEvents.onSequenceIndexPersonal)
@@ -57,6 +58,9 @@ $(() => {
 
   $('#sequence-destroy-button').on('click', () => $('#sequence-destroy-modal').show())
   $('#sequence-destroy').on('submit', sequenceEvents.onSequenceDestroy)
+  $('#database-content-display').on('click', '.sequence-delete', sequenceEvents.onSequenceDestroy)
+
+  
   
 
   // Event listener for the `x` button inside each modal
