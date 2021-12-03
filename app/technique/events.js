@@ -1,8 +1,11 @@
 // Require api calls
 const api = require('./api')
 
+const userApi = require('../user/api')
 // Require response handler functions
 const ui = require('./ui')
+
+const userUi = require('../user/ui')
 
 // Require function to obtain data from form fields when submitted
 const getFormFields= require('../../lib/get-form-fields')
@@ -55,13 +58,26 @@ const onTechniqueCreate = event => {
     .catch(ui.onTechniqueCreateFailure)
 }
 
+const onTechniqueShowUpdateModal = event => {
+  event.preventDefault()
+
+  console.log((event.target.id).slice(7))
+  store.updateTechniqueId = (event.target.id).slice(7)
+
+  console.log(store)
+
+  $('#technique-update-modal').show()
+}
+
 // Technique Update
 const onTechniqueUpdate = event => {
   // Stop the browser from refreshing
   event.preventDefault()
-  
+  console.log('tech id', (event.target.id))
   // Obtain the data from the form fields
   const formData = getFormFields(event.target)
+
+  formData.technique.id = store.updateTechniqueId
   console.log('form data ', formData)
 
   // Call the technique-create api function
@@ -74,30 +90,31 @@ const onTechniqueUpdate = event => {
 const onTechniqueDestroy = event => {
   // Stop the browser from refreshing
   event.preventDefault()
-  console.log('true? ', event.target.id === 'technique-destroy')
-  console.log('event.target ', event.target.id)
-  let formData = ''
-  if (event.target.id === 'technique-destroy') {
-    // Obtain the data from the form fields
-    formData = getFormFields(event.target)
-  } else {
-    formData = {
+  console.log('user id ', store.user._id)
+  const techniqueId = (event.target.id).slice(7)
+  const formData = {
       "technique": {
-        "id": event.target.id
+        "id": techniqueId
       }
     }
-  }
+
   console.log('form data ', formData)
   // Call the technique-create api function
   api.techniqueDestroy(formData)
     .then(ui.onTechniqueDestroySuccess) 
     .catch(ui.onTechniqueDestroyFailure)
+
+  userApi.techniqueIndexPersonal()
+    .then(userUi.onTechniqueIndexPersonalSuccess)
+    .catch(userUi.onTechniqueIndexPersonalFailure)
+
 }
 
 module.exports = {
  onTechniqueIndex,
  onTechniqueShow,
  onTechniqueCreate,
+ onTechniqueShowUpdateModal,
  onTechniqueUpdate,
  onTechniqueDestroy
 }

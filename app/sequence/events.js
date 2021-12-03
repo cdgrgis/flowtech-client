@@ -1,8 +1,12 @@
 // Require api calls
 const api = require('./api')
 
+const userApi = require('../user/api')
+
 // Require response handler functions
 const ui = require('./ui')
+
+const userUi = require('../user/ui')
 
 // Require function to obtain data from form fields when submitted
 const getFormFields= require('../../lib/get-form-fields')
@@ -176,6 +180,10 @@ const onSequenceDestroy = event => {
     .then(ui.onSequenceDestroySuccess) 
     // Call the technique-destroy failure function
     .catch(ui.onSequenceDestroyFailure)
+
+  userApi.sequenceIndexPersonal()
+    .then(userUi.onSequenceIndexPersonalSuccess)
+    .catch(userUi.onSequenceIndexPersonalFailure)
 }
 
 module.exports = {

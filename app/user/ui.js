@@ -18,12 +18,14 @@ const onTechniqueIndexPersonalSuccess = responseData => {
   
       // Format html from techniqueData
       techniqueHtml += `
-        <div class ="technique-library">
+        <div class ="technique-library" id=${technique._id}>
+        
           <h1>${technique.name}</h1>
           <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3> 
-          <h3>Technique Id: ${technique._id}</h3>
           <br>
-          <button class="technique-delete" id=${technique._id}>Delete technique</button>
+          <button class="technique-delete" id=delete-${technique._id}>Delete technique</button>
+          <button class="technique-update" id=update-${technique._id}>Update technique</button>
+          <br>
           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           <br><br><br>
         </div>
@@ -76,6 +78,7 @@ const onSequenceIndexPersonalSuccess = responseData => {
           <h3>Sequence Id: ${sequence._id}</h3>
           <br>
           <button class="sequence-delete" id=${sequence._id}>Delete sequence</button>
+          <br>
           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           <br><br><br>
         </div>
@@ -124,7 +127,8 @@ const onSearchByUserNameSuccess = responseData => {
     const user = responseData.user
 
     let userHtml = `
-    <h1>${user.userName}</h1>`
+    <h1>${user.userName}</h1>
+    <br><br>`
 
     if (user.picture) {
       userHtml += `
@@ -133,7 +137,8 @@ const onSearchByUserNameSuccess = responseData => {
     
     if (user.techniques.length !== 0) {
       userHtml += `
-      <h3>${user.userName}'s Techniques</h3>`
+      <h3 class="underline">${user.userName}'s Techniques</h3>
+      <br>`
 
       for (let i = 0; i < user.techniques.length; i++) {
         const technique = user.techniques[i]
@@ -141,7 +146,7 @@ const onSearchByUserNameSuccess = responseData => {
         <h4>Name: ${technique.name}</h4>
         <br>
         <h4>Timing & Direction: ${technique.timing} / ${technique.direction}</h4>
-        <br><hr><br>
+        <br><hr>
         `
       }
     }
@@ -149,20 +154,24 @@ const onSearchByUserNameSuccess = responseData => {
     if (user.sequences.length !== 0) {
       userHtml += `
       <br><br>
-      <h3>Sequences</h3>`
+      <h3 class="underline">${user.userName}'s Sequences</h3>
+      <br>`
       
       for (let i = 0; i < user.sequences.length; i++) {
         const sequence = user.sequences[i]
         userHtml += `
-        <h4>Name: ${sequence.name}</h4>`
+        <h4>Name: ${sequence.name}</h4>
+        <br>`
         
         for (let j = 0; j < sequence.techniques.length; j++) {
           userHtml += `
-          <br>
+          
           <h5>Technique ${j + 1}: ${sequence.techniques[j].name}</h5>
-          <br><hr><br>
+          <br>
           `
         }
+        userHtml += `
+        <br>`
       }
       
       

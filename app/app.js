@@ -33,7 +33,7 @@ $(() => {
   $('#technique-create-button').on('click', () => $('#technique-create-modal').show())
   $('#technique-create').on('submit', techniqueEvents.onTechniqueCreate)
 
-  $('#technique-update-button').on('click', () => $('#technique-update-modal').show())
+  $('#database-content-display').on('click', '.technique-update', techniqueEvents.onTechniqueShowUpdateModal)
   $('#technique-update').on('submit', techniqueEvents.onTechniqueUpdate)
   
   $('#technique-destroy-button').on('click', () => $('#technique-destroy-modal').show())

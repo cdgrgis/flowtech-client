@@ -127,7 +127,6 @@
                 <button id="technique-show-button">Show technique</button>
                 <button id="technique-create-button">Create technique</button>
                 <button id="technique-update-button">Update technique</button>
-                <button id="technique-destroy-button">Delete technique</button>
               </div>
             </div>
           </section>
@@ -264,7 +263,7 @@
                   <input name="technique[name]" type="text" placeholder="Name" required>
                   <br>
                   <br>
-                  <input name="technique[timing]" id="create-split" type="radio" value="Split">
+                  <input name="technique[timing]" id="create-split" type="radio" value="Split" checked>
                   <label for="split">Split</label>          
                   <input name="technique[timing]" id="create-together" type="radio" value="Together">
                   <label for="together">Together</label>
@@ -299,7 +298,7 @@
                 <fieldset>
                   <legend>Update a Technique</legend>
                   <input name="technique[name]" type="text" placeholder="Name" required>
-                  <input name="technique[id]" type="text" placeholder="Technique Id" required>
+                 
 
                   <br><br>
 
@@ -336,11 +335,10 @@
               <!-- Destroy technique form -->
               <form id="technique-destroy">
                 <fieldset>
-                  <legend>Destroy Technique</legend>
-                  <input name="technique[id]" type="text" placeholder="Technique Id" required>
+                  <legend>Your Technique has been destroyed!!</legend>
+                  
 
-                  <!-- Submit destroy technique data button -->
-                  <button>Destroy</button>
+                
                   
                   <!-- Displays error messages -->
                   <div id="technique-destroy-error-display"></div>

@@ -163,21 +163,19 @@ const onTechniqueUpdateFailure = err => {
   }, 5000)
 }
 
-const onTechniqueDestroySuccess = () => {
+const onTechniqueDestroySuccess = (responseData) => {
+  console.log(responseData)
   console.log('hello')
   // Send message to user
-  $('#database-content-display').text('Technique Destroyed')
-  
-  // Clear all forms
-  $('form').trigger('reset')
+  $('#technique-destroy-modal').show()
 
-  // Close all modals
-  $('.modal').hide()
+
+  
 
     // Clear success message
     setTimeout(() => {
-      $('#technique-destroy-display').text('')
-    }, 5000)
+      $('#technique-destroy-modal').hide()
+    }, 2000)
 }
 
 const onTechniqueDestroyFailure = err => {
