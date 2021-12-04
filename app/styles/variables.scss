@@ -1,0 +1,13 @@
+$primary-eagle-green: rgba(0, 78, 100, 1);
+$primary-cerulean: rgba(0, 165, 207, 1);
+$primary-pastel-green: rgba(0, 204, 92, 1);
+$primary-turquoise: rgba(45, 200, 176, 1);;
+$primary-forest-green: rgba(28, 135, 35, 1);
+
+:export {
+  primary-eagle-green: $primary-eagle-green; 
+  primary-cerulean: $primary-cerulean;
+  primary-pastel-green: $primary-pastel-green;
+  primary-turquoise: $primary-turquoise;
+  primary-forest-green: $primary-forest-green;  
+}
