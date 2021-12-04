@@ -64,6 +64,7 @@ const sequenceDestroy = formData => {
   })
 }
 
+// Export functions
 module.exports = {
   sequenceIndex,
   sequenceShow,

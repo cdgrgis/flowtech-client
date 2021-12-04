@@ -1,19 +1,26 @@
 // Require api calls
 const api = require('./api')
 
+// Require the User's api calls
 const userApi = require('../user/api')
 
 // Require response handler functions
 const ui = require('./ui')
 
+// Require User's response handler functions
 const userUi = require('../user/ui')
 
 // Require function to obtain data from form fields when submitted
 const getFormFields= require('../../lib/get-form-fields')
 
+// Require the store object
 const store = require('../store')
 
+// Set count to 3, which is used for the additional techniques in the update and create functions
+// there are initially 2 technique inputs, the additional technique functions adds the third
 const count = 3
+
+// Save the count in the store object
 store.count = count
 
 
@@ -24,6 +31,7 @@ const onSequenceIndex = event => {
   
   // Call the sequence-index api function
   api.sequenceIndex()
+    // Call the success response handler
     .then(ui.onSequenceIndexSuccess) 
     .catch(ui.onSequenceIndexFailure)
 }
@@ -43,6 +51,7 @@ const onSequenceShow = event => {
 
   // Call the technique-create api function
   api.sequenceShow(formData)
+    // Call the success response handler
     .then(ui.onSequenceShowSuccess) 
     .catch(ui.onSequenceShowFailure)
 }
@@ -103,6 +112,16 @@ const onSequenceCreateAddTechnique = () => {
   store.count++
 }
 
+const onSequenceShowUpdateModal = event => {
+   // Stop the browser from refreshing
+   event.preventDefault()
+
+   console.log('update sequence id ', (event.target.id).slice(7))
+   store.updateSequenceId = ((event.target.id).slice(7))
+
+   $('#sequence-update-modal').show()
+}
+
 // Sequence Update
 const onSequenceUpdate = event => {
   // Stop the browser from refreshing
@@ -114,7 +133,7 @@ const onSequenceUpdate = event => {
   let techniquesArray = [] 
   
   // Cycle through the sequence data's keys starting with the optional third technique
-  for (let i = 2; i < Object.keys(formData.sequence).length; i++) {
+  for (let i = 1; i < Object.keys(formData.sequence).length; i++) {
     // If additional Technique exists...
     if(Object.keys(formData.sequence)[i]) {
       // push it to the techniquesArray
@@ -127,10 +146,11 @@ const onSequenceUpdate = event => {
     "sequence": {
       "name": formData.sequence.name,
       "techniques": techniquesArray,
-      "id": formData.sequence.id
+      "id": store.updateSequenceId
     }
   }
 
+  delete store.updateSequenceId
 
   // Call the technique-update ajax function
   api.sequenceUpdate(sequenceData)
@@ -138,6 +158,14 @@ const onSequenceUpdate = event => {
     .then(ui.onSequenceUpdateSuccess) 
     // Call the sequence-update failure function
     .catch(ui.onSequenceUpdateFailure)
+
+  userApi.sequenceIndexPersonal()
+  // Call the success response handler
+    .then(userUi.onSequenceIndexPersonalSuccess)
+    // Call the failure response handler
+    .catch(userUi.onSequenceIndexPersonalFailure)
+
+  
 }
 
 // Function to add another technique input to update form
@@ -160,17 +188,13 @@ const onSequenceDestroy = event => {
   
   console.log('true? ', event.target.id === 'sequence-destroy')
   console.log('event.target ', event.target.id)
-  let formData = ''
-  if (event.target.id === 'sequence-destroy') {
-    // Obtain the data from the form fields
-    formData = getFormFields(event.target)
-  } else {
-    formData = {
-      "sequence": {
-        "id": event.target.id
-      }
+  // Set the form Data for ajax request
+  let formData = {
+    "sequence": {
+      "id": event.target.id
     }
   }
+
   console.log('form data ', formData)
 
 
@@ -181,16 +205,21 @@ const onSequenceDestroy = event => {
     // Call the technique-destroy failure function
     .catch(ui.onSequenceDestroyFailure)
 
+  // Call the personal sequence index function in order to keep page data the same
   userApi.sequenceIndexPersonal()
+    // Call the success response handler
     .then(userUi.onSequenceIndexPersonalSuccess)
+    // Call the failure response handler
     .catch(userUi.onSequenceIndexPersonalFailure)
 }
 
+// Export functions
 module.exports = {
  onSequenceIndex,
  onSequenceShow,
  onSequenceCreate,
  onSequenceCreateAddTechnique,
+ onSequenceShowUpdateModal,
  onSequenceUpdate,
  onSequenceUpdateAddTechnique,
  onSequenceDestroy

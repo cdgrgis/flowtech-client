@@ -128,28 +128,32 @@ const onTechniqueUpdateSuccess = responseData => {
   // set the technique to a variable
   const technique = responseData.technique
 
-  const techniqueHtml = `
-  <br><br>
-  <div class ="technique-library">
-    <h1>${technique.name}</h1>
-    <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
-    <h3>Technique Id: ${technique._id}</h3>
-  </div>
-  ` 
+  $('#technique-update-modal').hide()
+  $('#empty-modal').show()
+  $('#empty-display').text('Technique Updated')
 
-  // Send the html to the technique update's display
-  $('#database-content-display').html(techniqueHtml)
+  // const techniqueHtml = `
+  // <br><br>
+  // <div class ="technique-library">
+  //   <h1>${technique.name}</h1>
+  //   <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
+  //   <h3>Technique Id: ${technique._id}</h3>
+  // </div>
+  // ` 
+
+  // // Send the html to the technique update's display
+  // $('#database-content-display').html(techniqueHtml)
 
   // // Clear all forms
   $('form').trigger('reset')
 
-   // Close all modals
-   $('.modal').hide()
+ 
 
   // Clear success message
   setTimeout(() => {
-    $('#technique-update-display').text('')
-  }, 5000)
+    $('#empty-modal').hide()
+    $('#empty-display').text('')
+  }, 2000)
 }
 
 const onTechniqueUpdateFailure = err => {

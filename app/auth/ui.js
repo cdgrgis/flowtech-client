@@ -8,18 +8,23 @@ const onSignUpSuccess = responseData => {
   console.log(responseData)
   // Clear forms
   $('form').trigger('reset')
+
+  // Hide all modals
   $('.modal').hide()
 
-  // Clear success message
+  // In 5 seconds...
   setTimeout(() => {
+    // ... Clear the message
     $('#sign-up-display').text('')
   }, 5000)
 }
 
 // Error handler for user sign-up
 const onSignUpFailure = err => {
+  // Send a message to user
   $('#sign-up-error-display').text('Sign up failed')
 
+  // Clear error message
   setTimeout(() => {
     $('#sign-up-error-display').text('')
   }, 5000)
@@ -28,10 +33,19 @@ const onSignUpFailure = err => {
 const onSignInSuccess = responseData => {
   // Let the user know the sign in was successful
   $('#sign-in-display').text('Sign in successful')
-  $('#before-sign-in').hide()
-  $('#search-by-username').show()
-  $('#after-sign-in').show()
+
+  // Hide the sign-up modal
   $('#sign-up-modal').hide()
+
+  // Hide the before sign-in section
+  $('#before-sign-in').hide()
+  
+  // Show the search by username input
+  $('#search-by-username').show()
+
+  // show the after sign-in section
+  $('#after-sign-in').show()
+  
   console.log(responseData)
   // Clear forms
   $('form').trigger('reset')
@@ -39,17 +53,21 @@ const onSignInSuccess = responseData => {
   // Store the user object in the store object
   store.user = responseData.user
 
-  // Clear success message
+  // In 5 seconds...
   setTimeout(() => {
+    // ... Clear success message
     $('#sign-in-display').text('')
   }, 5000)
 }
 
 // Error handler for user sign-in
 const onSignInFailure = err => {
+  // Send a message to user
   $('#sign-in-error-display').text('Sign in failed')
 
+  // In 5 seconds...
   setTimeout(() => {
+    // ... Clear error message
     $('#sign-in-error-display').text('')
   }, 5000)
 }
@@ -64,17 +82,21 @@ const onChangePasswordSuccess = responseData => {
   // Close all modals
   $('.modal').hide()
 
-  // Clear success message
+  // In 5 seconds...
   setTimeout(() => {
+    // ... clear success message
     $('#database-content-display').text('')
   }, 5000)
 }
 
 // Error handler for change password
 const onChangePasswordFailure = err => {
+  // Send a message to user
   $('#change-password-error-display').text('Change password failed')
 
+  // In 5 seconds...
   setTimeout(() => {
+    // ... Clear error message
     $('#change-password-error-display').text('')
   }, 5000)
 }
@@ -82,9 +104,16 @@ const onChangePasswordFailure = err => {
 const onSignOutSuccess = responseData => {
   // Let the user know the sign-out was successful
   $('#database-content-display').text('Sign out successful')
-  $('#before-sign-in').show()
+
+  // Hide the after sign-in section
   $('#after-sign-in').hide()
+
+  // Hide the search by user input
   $('#search-by-user').hide()
+
+  // Show the before sign-in section
+  $('#before-sign-in').show()
+  
   
 
   // Clear forms
@@ -93,21 +122,26 @@ const onSignOutSuccess = responseData => {
   // Clear session storage so user does not get signed in on refresh
   sessionStorage.clear()
   
-  // Clear success message
+  // In 5 seconds...
   setTimeout(() => {
+    // ... Clear success message
     $('#database-content-display').text('')
   }, 5000)
 }
 
 // Error handler for user sign-up
 const onSignOutFailure = err => {
+  // Send a message to user
   $('#sign-out-error-display').text('Sign out failed')
 
+  // In 5 seconds...
   setTimeout(() => {
+    // ... Clear error message
     $('#sign-out-error-display').text('')
   }, 5000)
 }
 
+// Export functions for use in app.js
 module.exports = {
   onSignUpSuccess,
   onSignInSuccess,

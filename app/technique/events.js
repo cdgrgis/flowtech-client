@@ -78,12 +78,18 @@ const onTechniqueUpdate = event => {
   const formData = getFormFields(event.target)
 
   formData.technique.id = store.updateTechniqueId
+  delete store.updateTechniqueId
+  console.log('store ', store)
   console.log('form data ', formData)
 
   // Call the technique-create api function
   api.techniqueUpdate(formData)
     .then(ui.onTechniqueUpdateSuccess) 
     .catch(ui.onTechniqueUpdateFailure)
+
+  userApi.techniqueIndexPersonal()
+    .then(userUi.onTechniqueIndexPersonalSuccess)
+    .catch(userUi.onTechniqueIndexPersonalFailure)
 }
 
 // Technique Destroy

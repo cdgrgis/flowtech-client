@@ -51,7 +51,7 @@ $(() => {
   $('#sequence-create').on('submit', sequenceEvents.onSequenceCreate)
   $('#sequence-create-add-technique').on('click', sequenceEvents.onSequenceCreateAddTechnique)
 
-  $('#sequence-update-button').on('click', () => $('#sequence-update-modal').show())
+  $('#database-content-display').on('click', '.sequence-update', sequenceEvents.onSequenceShowUpdateModal)
   $('#sequence-update').on('submit', sequenceEvents.onSequenceUpdate)
   $('#sequence-update-add-technique').on('click', sequenceEvents.onSequenceUpdateAddTechnique)
 

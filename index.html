@@ -19,7 +19,7 @@
           <br><br>
           <form id="search-by-username">
             <legend>Find another user</legend>
-            <input value="OBJ" name="credentials[userName]" type="text" placeholder="Search by Username" required>
+            <input name="credentials[userName]" type="text" placeholder="Search by Username" required>
             <button>Find User</button>
           </form>
           <div id="search-username-error-display"></div>
@@ -126,7 +126,6 @@
                 <button id="technique-index-personal-button">Get my techniques</button>
                 <button id="technique-show-button">Show technique</button>
                 <button id="technique-create-button">Create technique</button>
-                <button id="technique-update-button">Update technique</button>
               </div>
             </div>
           </section>
@@ -143,8 +142,6 @@
                 <button id="sequence-index-personal-button">Get my sequences</button>
                 <button id="sequence-show-button">Show sequence</button>
                 <button id="sequence-create-button">Create sequence</button>
-                <button id="sequence-update-button">Update sequence</button>
-                <button id="sequence-destroy-button">Delete sequence</button>
               </div>
             </div>
           </section>
@@ -155,6 +152,8 @@
         <div id="database-content-display"></div>
   
 
+
+     
        
 
         <!-- Change password Modal -->
@@ -263,14 +262,14 @@
                   <input name="technique[name]" type="text" placeholder="Name" required>
                   <br>
                   <br>
-                  <input name="technique[timing]" id="create-split" type="radio" value="Split" checked>
+                  <input name="technique[timing]" id="create-split" type="radio" value="Split">
                   <label for="split">Split</label>          
                   <input name="technique[timing]" id="create-together" type="radio" value="Together">
                   <label for="together">Together</label>
       
                   <br><br>
                   
-                  <input name="technique[direction]" id="create-same" type="radio" value="Same" checked>
+                  <input name="technique[direction]" id="create-same" type="radio" value="Same">
                   <label for="create-same">Same</label>          
                   <input name="technique[direction]" id="create-opposite" type="radio" value="Opposite">
                   <label for="create-opposite">Opposite</label>
@@ -353,7 +352,23 @@
         <section id="sequence-section">
 
           
+          <!-- Show sequence Modal -->
+          <div id="empty-modal" class="modal">
+
+            <!-- Show sequence Content -->
+            <div class="modal-content">
+              <!-- Close modal button (appears as `x`) -->
+              <span class="close">&times;</span>
           
+              <!-- Show sequence form -->
+              <form id="empty-form">
+                <fieldset>
+                  <legend id="empty-display"></legend>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+      
        
         
           <div id="sequence-display"></div>
@@ -433,7 +448,6 @@
                 <fieldset>
                   <legend>Update a Sequence</legend>
                   <input name="sequence[name]" type="text" placeholder="Name" required>
-                  <input name="sequence[id]" type="text" placeholder="Sequence Id" required>
                   <br>
                   <br>
                   <input name="sequence[technique1]" type="text" placeholder="Technique 1">

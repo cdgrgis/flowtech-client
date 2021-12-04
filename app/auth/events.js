@@ -20,11 +20,17 @@ const onSignUp = event => {
   
   // Call the sign-up api function
   api.signUp(formData)
-    .then(ui.onSignUpSuccess)
-    .then(() => api.signIn(formData))
-      .then(ui.onSignInSuccess)
-      .catch(ui.onSignInFailure)  
+    // Call the success message
+    .then(ui.onSignUpSuccess) 
+    // Call the failure message
     .catch(ui.onSignUpFailure)
+
+  // Call the sign-in api function
+  api.signIn(formData)
+    // Call the success message
+    .then(ui.onSignInSuccess)
+    // Call the failure message
+    .catch(ui.onSignInFailure)
 
 }
 
@@ -42,7 +48,9 @@ const onSignIn = event => {
 
   // Call the sign-up api function
   api.signIn(formData)
+    // Call the success message
     .then(ui.onSignInSuccess)
+    // Call the failure message
     .catch(ui.onSignInFailure)
 }
 
@@ -56,10 +64,13 @@ const onRefreshSignIn = () => {
     }
   }
  
-  // If user is already signed in, call API sign-in
+  // If user is already signed in,
   if (sessionStorage.getItem('email')) {
+    // ... call API sign-in
     api.signIn(formData)
+      // Call the success message
       .then(ui.onSignInSuccess)
+      // Call the failure message
       .catch(ui.onSignInFailure)
   }
 }
@@ -74,7 +85,9 @@ const onChangePassword = event => {
 
   // Call the sign-up api function
   api.changePassword(formData)
+    // Call the success message
     .then(ui.onChangePasswordSuccess)
+    // Call the failure message
     .catch(ui.onChangePasswordFailure)
 }
 
@@ -86,7 +99,9 @@ const onSignOut = event => {
 
   // Call the sign-up api function
   api.signOut()
+    // Call the success message
     .then(ui.onSignOutSuccess)
+    // Call the failure message
     .catch(ui.onSignOutFailure)
 }
 
@@ -102,7 +117,7 @@ const onSignOut = event => {
 // }
 
 
-
+// Export functions
 module.exports = {
   onSignUp,
   onSignIn,

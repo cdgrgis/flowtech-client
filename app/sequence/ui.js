@@ -183,40 +183,16 @@ const onSequenceCreateFailure = err => {
 // Code to run upon the success of sequence update
 const onSequenceUpdateSuccess = (responseData) => {
   console.log('response data ', responseData)
-   // Set the techniques to the variable
-  const techniqueData = responseData.techniqueData
 
-   // Set the sequence to the variable
-  const sequenceData = responseData.sequenceData.sequence
+  // Hide sequence update modal
+  $('#sequence-update-modal').hide()
 
-   // Initialize a variable to hold html data 
-   // and add the class, name, and the required techniques to sequenceHtml
-  sequenceHtml = `
-  <div class ="sequence-library">
-    <h1>${sequenceData.name}</h1>
-    <h3>Technique 1: ${techniqueData[0].name}</h3>
-    <h3>Technique 2: ${techniqueData[1].name}</h3>
-    `
-   // Loop through any additional techniques
-  for (let i = 2; i < techniqueData.length; i++) {
+  // Show the empty modal which holds user messages
+  $('#empty-modal').show()
+
+  // Set the text in the empty modal
+  $('#empty-display').text('Modal Updated')
   
-    // and add them to sequenceHtml
-    sequenceHtml += `
-      <h3>Technique ${i + 1}: ${techniqueData[i].name}</h3>
-      `
-  }
-
-  // Add the sequence's id to sequenceHtml
-  sequenceHtml += `
-    <h3>Sequence Id: ${sequenceData.id}</h3>
-    <br>
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    <br><br><br>
-    </div>
-  ` 
-
-  // Pass the html to the sequence's index display 
-  $('#database-content-display').html(sequenceHtml)
 
   // Clear the additional technique inputs
   $('#sequence-update-additional-techniques').html('')
@@ -224,8 +200,14 @@ const onSequenceUpdateSuccess = (responseData) => {
   // Reset all forms
   $('form').trigger('reset')
 
-  // Close all modals
-  $('.modal').hide()
+  // In 2 seconds...
+  setTimeout(() => {
+    // ... hide the empty modal ...
+    $('#empty-modal').hide()
+    // ... reset text in empty modal
+    $('#empty-display').text('')
+  }, 2000)
+
 }
 
 // In case of sequence update failure

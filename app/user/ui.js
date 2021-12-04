@@ -77,7 +77,8 @@ const onSequenceIndexPersonalSuccess = responseData => {
       sequenceHtml += `
           <h3>Sequence Id: ${sequence._id}</h3>
           <br>
-          <button class="sequence-delete" id=${sequence._id}>Delete sequence</button>
+          <button class="sequence-delete" id=delete-${sequence._id}>Delete</button>
+          <button class="sequence-update" id=update-${sequence._id}>Update</button>
           <br>
           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           <br><br><br>

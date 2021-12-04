@@ -23,6 +23,7 @@ const onTechniqueIndexPersonal = event => {
 const onSequenceIndexPersonal = event => {
     // Stop the browser from refreshing
     event.preventDefault()
+    console.log
    
     
  
