@@ -1,6 +1,6 @@
 let apiUrl
 const apiUrls = {
-  production: '<replace-with-heroku-url>',
+  production: 'https://flow-tech-api.herokuapp.com',
   development: 'http://localhost:4741'
 }
 
