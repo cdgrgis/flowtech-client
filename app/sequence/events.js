@@ -150,6 +150,10 @@ const onSequenceCreateAddTechnique = () => {
   store.count++
 }
 
+const onSequenceCreateDeleteAdditionalTechniques = () => {
+  $('#sequence-create-additional-techniques').text('')
+}
+
 const onSequenceShowUpdateModal = event => {
    // Stop the browser from refreshing
    event.preventDefault()
@@ -259,6 +263,7 @@ module.exports = {
  onSequenceCreateTechniqueDrop1,
  onSequenceCreate,
  onSequenceCreateAddTechnique,
+ onSequenceCreateDeleteAdditionalTechniques,
  onSequenceShowUpdateModal,
  onSequenceUpdate,
  onSequenceUpdateAddTechnique,

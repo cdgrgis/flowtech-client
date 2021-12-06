@@ -55,6 +55,7 @@ $(() => {
   $('#sequence-create-button').on('click', () => $('#sequence-create-modal').show())
   $('#sequence-create').on('submit', sequenceEvents.onSequenceCreate)
   $('#sequence-create-add-technique').on('click', sequenceEvents.onSequenceCreateAddTechnique)
+  $('#sequence-create-delete-additional-techniques').on('click', sequenceEvents.onSequenceCreateDeleteAdditionalTechniques)
 
   $('#database-content-display').on('click', '.sequence-update', sequenceEvents.onSequenceShowUpdateModal)
   $('#sequence-update').on('submit', sequenceEvents.onSequenceUpdate)

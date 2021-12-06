@@ -22,6 +22,24 @@ const onTechniqueIndexPersonalSuccess = responseData => {
         
           <h1 class="title-body">${technique.name}</h1>
           <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3> 
+          `
+      // If there is a description for the technique...
+      if (technique.description) {
+        // ... add the description to the html variable
+        techniqueHtml += `
+          <h3>Description: ${technique.description}</h3>
+          `
+      }
+
+      // If there is a video...
+      if (technique.demonstration) {
+        // .. create a button for the video modal
+        techniqueHtml += `
+          <button class="demonstration-modal-button ${technique._id}">Demonstration</button>
+          `
+      }
+          
+          techniqueHtml += `
           <br>
           <button class="technique-delete" id=delete-${technique._id}>Delete technique</button>
           <button class="technique-update" id=update-${technique._id}>Update technique</button>
@@ -147,6 +165,24 @@ const onSearchByUserNameSuccess = responseData => {
         <h4 class="title-body">Name: ${technique.name}</h4>
         <br>
         <h4>Timing & Direction: ${technique.timing} / ${technique.direction}</h4>
+        `
+    // If there is a description for the technique...
+    if (technique.description) {
+      // ... add the description to the html variable
+      userHtml += `
+        <h3>Description: ${technique.description}</h3>
+        `
+    }
+
+    if (technique.demonstration) {
+      // .. create a button for the video modal
+      userHtml += `
+        <button class="demonstration-modal-button ${technique._id}">Demonstration</button>
+        `
+    }
+
+    
+    userHtml += `
         <br><hr>
         `
       }

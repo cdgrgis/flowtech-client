@@ -24,25 +24,30 @@ const onTechniqueIndexSuccess = responseData => {
         <h1 class="title-body">${technique.name}</h1>
         <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
         `
-    
+    // If there is a description for the technique...
     if (technique.description) {
+      // ... add the description to the html variable
       techniqueHtml += `
         <h3>Description: ${technique.description}</h3>
         `
     }
     
+    // Add the technique's id and creator's username to html variable
     techniqueHtml += `
         <h3>Technique Id: ${technique._id}</h3>
         <h3>Added by: ${userName}</h3>
         <br>
         `
 
+    // If there is a video...
     if (technique.demonstration) {
+      // .. create a button for the video modal
       techniqueHtml += `
         <button class="demonstration-modal-button ${technique._id}">Demonstration</button>
         `
     }
     
+    // Close div
     techniqueHtml += `
         <br>
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -102,13 +107,31 @@ const onTechniqueShowSuccess = responseData => {
   const technique = responseData.technique
 
   // Format the html from the response Data
-  const techniqueHtml = `
+  let techniqueHtml = `
     <br><br>
     <div class ="technique-library">
       <h1 class="title-body">${technique.name}</h1>
       <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
+      `
+    
+      if (technique.description) {
+        techniqueHtml += `
+          <h3>Description: ${technique.description}</h3>
+          `
+      }
+      
+      techniqueHtml += `
       <h3>Technique Id: ${technique._id}</h3>
       <h3>Added by: ${technique.owner.email}</h3>
+      `
+
+      if (technique.demonstration) {
+        techniqueHtml += `
+          <button class="demonstration-modal-button ${technique._id}">Demonstration</button>
+          `
+      }
+      
+      techniqueHtml += `
     </div>
     ` 
   // Send html to show technique's display
@@ -137,17 +160,36 @@ const onTechniqueCreateSuccess = responseData => {
   console.log(technique)
   console.log(responseData)
   console.log(technique.owner)
+
   // format the html from the response data
-  const techniqueHtml = `
+  let techniqueHtml = `
     <br><br>
     <div class ="technique-library">
       <h1 class="title-body">${technique.name}</h1>
       <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
+      `
+    
+      if (technique.description) {
+        techniqueHtml += `
+          <h3>Description: ${technique.description}</h3>
+          `
+      }
+      
+      techniqueHtml += `
       <h3>Technique Id: ${technique._id}</h3>
+      `
+
+      if (technique.demonstration) {
+        techniqueHtml += `
+          <button class="demonstration-modal-button ${technique._id}">Demonstration</button>
+          `
+      }
+      
+      techniqueHtml += `
     </div>
     ` 
   
-  // Send the html to the create technique's dispaly
+  // Send the html to the create technique's display
   $('#database-content-display').html(techniqueHtml)
 
   // Clear all forms
