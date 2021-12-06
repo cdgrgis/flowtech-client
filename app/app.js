@@ -25,6 +25,9 @@ $(() => {
 
   // Technique Event Listeners
   $('#technique-index-button').on('click', techniqueEvents.onTechniqueIndex)
+  $('#database-content-display').on('click', '.demonstration-modal-button', techniqueEvents.onTechniqueDemonstration)
+  $('#sequence-technique-details-modal-display').on('click', '.demonstration-modal-button', techniqueEvents.onTechniqueDemonstration)
+
   $('#technique-index-personal-button').on('click', userEvents.onTechniqueIndexPersonal)
  
   $('#technique-show-button').on('click', () => $('#technique-show-modal').show())
@@ -42,6 +45,8 @@ $(() => {
   
   // Sequence Event Listeners
   $('#sequence-index-button').on('click', sequenceEvents.onSequenceIndex)
+  $('#database-content-display').on('click', '.sequence-technique-details', sequenceEvents.onSequenceTechniqueDetails)
+
   $('#sequence-index-personal-button').on('click', userEvents.onSequenceIndexPersonal)
   
   $('#sequence-show-button').on('click', () => $('#sequence-show-modal').show())

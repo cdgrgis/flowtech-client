@@ -21,15 +21,15 @@ const onSequenceIndexSuccess = responseData => {
     // Add the class, name, and the required techniques to sequenceHtml
     sequenceHtml += `
       <div class ="sequence-library">
-        <h1>${sequence.name}</h1>
-        <h3>Technique 1: ${sequence.techniques[0].name}</h3>
-        <h3>Technique 2: ${sequence.techniques[1].name}</h3>
+        <h1 class="title-body">${sequence.name}</h1>
+        <h3>Technique 1: ${sequence.techniques[0].name}</h3> <button class="sequence-technique-details ${sequence.techniques[0]._id}">Details</button>
+        <h3>Technique 2: ${sequence.techniques[1].name}</h3> <button class="sequence-technique-details ${sequence.techniques[0]._id}">Details</button>
         `
     // Loop through any additional techniques
     for (let j = 2; j < sequence.techniques.length; j++) {
       // and add them to sequenceHtml
       sequenceHtml += `
-        <h3>Technique ${j + 1}: ${sequence.techniques[j].name}</h3>
+        <h3>Technique ${j + 1}: ${sequence.techniques[j].name}</h3> <button class="sequence-technique-details ${sequence.techniques[0]._id}">Details</button>
         `
     }
     // Add the sequence's id and the username to sequenceHtml
@@ -59,6 +59,47 @@ const onSequenceIndexFailure = err => {
   }, 5000)
 }
 
+const onSequenceTechniqueDetailsSuccess = responseData => {
+  console.log('response data ', responseData)
+  const technique = responseData.technique
+
+  let techniqueHtml = `
+    <div class ="technique-library">
+      <h1 class="title-body">${technique.name}</h1>
+      <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
+      `
+  if (technique.description) {
+    techniqueHtml += `
+      <h3>Description: ${technique.description}</h3>`
+  }
+      
+  techniqueHtml += `    
+      <h3>Technique Id: ${technique._id}</h3>
+    </div>
+  `
+  if (technique.demonstration) {
+    techniqueHtml += `
+    <button class="demonstration-modal-button ${technique._id}">Demonstration</button>
+    `
+  }
+
+  $('#sequence-technique-details-modal').show()
+  $('#sequence-technique-details-modal-display').html(techniqueHtml)
+}
+
+
+const onSequenceTechniqueDetailsFailure = err => {
+  console.log(err)
+
+   // Send a message to the user
+   $('#database-error-display').text('Sequence not found')
+
+   // Clear error message
+   setTimeout(() => {
+     $('#database-error-display').text('')
+   }, 5000)
+}
+
 
 
 // Code to run upon the success of sequence show
@@ -74,7 +115,7 @@ const onSequenceShowSuccess = responseData => {
   // and add the class, name, and the required techniques to sequenceHtml
   let sequenceHtml = `
       <div class ="sequence-library">
-        <h1>${sequence.name}</h1>
+        <h1 class="title-body">${sequence.name}</h1>
         <h3>Technique 1: ${sequence.techniques[0].name}</h3>
         <h3>Technique 2: ${sequence.techniques[1].name}</h3>
         `
@@ -131,7 +172,7 @@ const onSequenceCreateSuccess = responseData => {
   // and add the class, name, and the required techniques to sequenceHtml
   sequenceHtml = `
       <div class ="sequence-library">
-        <h1>${sequence.name}</h1>
+        <h1 class="title-body">${sequence.name}</h1>
         <h3>Technique 1: ${techniqueData[0].name}</h3>
         <h3>Technique 2: ${techniqueData[1].name}</h3>
         `
@@ -255,6 +296,8 @@ const onSequenceDestroyFailure = err => {
 module.exports = {
   onSequenceIndexSuccess,
   onSequenceIndexFailure,
+  onSequenceTechniqueDetailsSuccess,
+  onSequenceTechniqueDetailsFailure,
   onSequenceShowSuccess,
   onSequenceShowFailure,
   onSequenceCreateSuccess,

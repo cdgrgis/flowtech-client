@@ -20,7 +20,7 @@ const onTechniqueIndexPersonalSuccess = responseData => {
       techniqueHtml += `
         <div class ="technique-library" id=${technique._id}>
         
-          <h1>${technique.name}</h1>
+          <h1 class="title-body">${technique.name}</h1>
           <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3> 
           <br>
           <button class="technique-delete" id=delete-${technique._id}>Delete technique</button>
@@ -64,7 +64,7 @@ const onSequenceIndexPersonalSuccess = responseData => {
       // Add the class and name to sequenceHtml
       sequenceHtml += `
         <div class ="sequence-library">
-          <h1>${sequence.name}</h1> `
+          <h1 class="title-body">${sequence.name}</h1> `
        
       // Loop through techniques techniques
       for (let j = 0; j < sequence.techniques.length; j++) {
@@ -144,7 +144,7 @@ const onSearchByUserNameSuccess = responseData => {
       for (let i = 0; i < user.techniques.length; i++) {
         const technique = user.techniques[i]
         userHtml += `
-        <h4>Name: ${technique.name}</h4>
+        <h4 class="title-body">Name: ${technique.name}</h4>
         <br>
         <h4>Timing & Direction: ${technique.timing} / ${technique.direction}</h4>
         <br><hr>
@@ -161,7 +161,7 @@ const onSearchByUserNameSuccess = responseData => {
       for (let i = 0; i < user.sequences.length; i++) {
         const sequence = user.sequences[i]
         userHtml += `
-        <h4>Name: ${sequence.name}</h4>
+        <h4 class="title-body">Name: ${sequence.name}</h4>
         <br>`
         
         for (let j = 0; j < sequence.techniques.length; j++) {

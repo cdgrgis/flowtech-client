@@ -13,9 +13,17 @@
     </head>
     <body>
       <header>
-        <section id="welcome">
-          <h1>Welcome to Your Flow Technique Database</h1>
-          <h3>Keep track of what techniques you've learned so far or hope to one day achieve</h3>
+        <section id="welcome" >
+          <h1 class="title-header">Welcome to the Flow Technique Database</h1>
+          <h3>Keep track of what techniques (moves, tricks) you've learned so far or hope to one day achieve</h3>
+          <h3>Attach a tutorial to each technique to help spread your knowledge</h3>
+          <h3>Create sequences of chained techniques</h3>
+          <h4>by copying the technique ID and pasting it the create sequence screen</h4>
+          <h5>This functionality will be improved in future updates</h5>
+
+         
+          
+        
           <br><br>
           <form id="search-by-username">
             <legend>Find another user</legend>
@@ -31,7 +39,7 @@
       <br>
       <br>
 
-      <section id="before-sign-in">
+      <section class="before-sign-in">
       
         <button id="sign-up-modal-button" class="before-sign-in-button">Sign Up</button>
         <div id="sign-up-modal" class="modal">
@@ -94,7 +102,7 @@
       </section> 
 
       <!-- Section available after sign in -->
-      <section id="after-sign-in">
+      <section class="after-sign-in">
         <div class="topnav">
           <section id="auth-dropdown-button">
             <!-- Font Awesome Icon Library -->
@@ -214,6 +222,25 @@
      
          
         <section id="technique-section">
+          <div id="demonstration-modal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              
+              <form>
+               <div id="demonstration-modal-display"></div>
+              </form>
+            </div>
+          </div>
+
+          <div id="sequence-technique-details-modal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              
+              <form>
+               <div id="sequence-technique-details-modal-display"></div>
+              </form>
+            </div>
+          </div>
 
           
 
@@ -276,6 +303,10 @@
                   <label for="create-same">Same</label>          
                   <input name="technique[direction]" id="create-opposite" type="radio" value="Opposite">
                   <label for="create-opposite">Opposite</label>
+
+                  <br><br>
+
+                  <input name="technique[demonstration]" type="text" placeholder="Embedded Video">
                   
                   <br><br>
 

@@ -25,6 +25,24 @@ const onTechniqueIndex = event => {
     .catch(ui.onTechniqueIndexFailure)
 }
 
+const onTechniqueDemonstration = event => {
+  // Stop the browser from refreshing
+  event.preventDefault()
+
+  console.log('event target ', event.target)
+  console.log('id ', $(event.target).attr('class').slice(27))
+
+  const formData = {
+    "technique": {
+      "id": $(event.target).attr('class').slice(27)
+    }
+  }
+
+  api.techniqueShow(formData)
+    .then(ui.onTechniqueDemonstrationSuccess)
+    .catch(ui.onTechniqueDemonstrationFailure)
+}
+
 
 
 // Technique Show
@@ -122,5 +140,6 @@ module.exports = {
  onTechniqueCreate,
  onTechniqueShowUpdateModal,
  onTechniqueUpdate,
- onTechniqueDestroy
+ onTechniqueDestroy,
+ onTechniqueDemonstration
 }

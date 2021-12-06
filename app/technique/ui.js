@@ -21,17 +21,29 @@ const onTechniqueIndexSuccess = responseData => {
     // Format html from technique data
     techniqueHtml += `
       <div class ="technique-library">
-        <h1>${technique.name}</h1>
+        <h1 class="title-body">${technique.name}</h1>
         <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
         <h3>Description: ${technique.description}</h3>
         
         <h3>Technique Id: ${technique._id}</h3>
         <h3>Added by: ${userName}</h3>
         <br>
+        `
+
+    if (technique.demonstration) {
+      techniqueHtml += `
+        <button class="demonstration-modal-button ${technique._id}">Demonstration</button>
+        `
+    }
+    
+    techniqueHtml += `
+        <br>
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         <br><br><br>
       </div>
       `  
+
+   
   }
 
   // Send html to technique index's display
@@ -49,6 +61,26 @@ const onTechniqueIndexFailure = err => {
   }, 5000)
 }
 
+const onTechniqueDemonstrationSuccess = responseData => {
+  console.log('response data ', responseData)
+  
+  $('.modal').hide()
+  $('#demonstration-modal').show()
+  $('#demonstration-modal-display').html(responseData.technique.demonstration)
+
+}
+
+const onTechniqueDemonstrationFailure = err => {
+  console.log(err)
+
+   // Send message to user
+   $('#database-error-display').text('Failed to retrieve video')
+
+   // Clear error message
+   setTimeout(() => {
+     $('#database-error-display').text('')
+   }, 5000)
+}
 
 
 const onTechniqueShowSuccess = responseData => {
@@ -60,7 +92,7 @@ const onTechniqueShowSuccess = responseData => {
   const techniqueHtml = `
     <br><br>
     <div class ="technique-library">
-      <h1>${technique.name}</h1>
+      <h1 class="title-body">${technique.name}</h1>
       <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
       <h3>Technique Id: ${technique._id}</h3>
       <h3>Added by: ${technique.owner.email}</h3>
@@ -96,7 +128,7 @@ const onTechniqueCreateSuccess = responseData => {
   const techniqueHtml = `
     <br><br>
     <div class ="technique-library">
-      <h1>${technique.name}</h1>
+      <h1 class="title-body">${technique.name}</h1>
       <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
       <h3>Technique Id: ${technique._id}</h3>
     </div>
@@ -196,6 +228,8 @@ const onTechniqueDestroyFailure = err => {
 module.exports = {
   onTechniqueIndexSuccess,
   onTechniqueIndexFailure,
+  onTechniqueDemonstrationSuccess,
+  onTechniqueDemonstrationFailure,
   onTechniqueShowSuccess,
   onTechniqueShowFailure,
   onTechniqueCreateSuccess,

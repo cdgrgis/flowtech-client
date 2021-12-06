@@ -4,11 +4,17 @@ const api = require('./api')
 // Require the User's api calls
 const userApi = require('../user/api')
 
+// Require the Technique's api calls
+const techniqueApi = require('../technique/api')
+
 // Require response handler functions
 const ui = require('./ui')
 
 // Require User's response handler functions
 const userUi = require('../user/ui')
+
+// Require Technique's ui calls
+const techniqueUi = require('../technique/ui')
 
 // Require function to obtain data from form fields when submitted
 const getFormFields= require('../../lib/get-form-fields')
@@ -37,6 +43,26 @@ const onSequenceIndex = event => {
 }
 
 
+const onSequenceTechniqueDetails = event => {
+  // Stop the browser from refreshing
+  event.preventDefault()
+
+  console.log('event target ', event.target)
+  console.log('id ', $(event.target).attr('class').slice(27))
+
+
+  const formData = {
+    "technique": {
+      "id": $(event.target).attr('class').slice(27)
+    }
+  }
+  
+  techniqueApi.techniqueShow(formData)
+    .then(ui.onSequenceTechniqueDetailsSuccess)
+    .catch(ui.onSequenceTechniqueDetailsFailure)
+
+}
+
 
 
 // Sequence Show
@@ -54,6 +80,18 @@ const onSequenceShow = event => {
     // Call the success response handler
     .then(ui.onSequenceShowSuccess) 
     .catch(ui.onSequenceShowFailure)
+}
+
+
+
+// Show sequence create modal
+const onSequenceCreateTechniqueDrop1 = event => {
+  // Stop the browser from refreshing
+  event.preventDefault()
+
+  techniqueApi.techniqueIndex()
+    .then(ui.onSequenceCreateTechniqueDrop1Success)
+    .catch(ui.onSequenceCreateTechniqueDrop1Failure)
 }
 
 
@@ -216,7 +254,9 @@ const onSequenceDestroy = event => {
 // Export functions
 module.exports = {
  onSequenceIndex,
+ onSequenceTechniqueDetails,
  onSequenceShow,
+ onSequenceCreateTechniqueDrop1,
  onSequenceCreate,
  onSequenceCreateAddTechnique,
  onSequenceShowUpdateModal,

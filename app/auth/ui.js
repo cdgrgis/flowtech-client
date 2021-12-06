@@ -38,13 +38,13 @@ const onSignInSuccess = responseData => {
   $('#sign-up-modal').hide()
 
   // Hide the before sign-in section
-  $('#before-sign-in').hide()
+  $('.before-sign-in').hide()
   
   // Show the search by username input
   $('#search-by-username').show()
 
   // show the after sign-in section
-  $('#after-sign-in').show()
+  $('.after-sign-in').show()
   
   console.log(responseData)
   // Clear forms
@@ -106,13 +106,13 @@ const onSignOutSuccess = responseData => {
   $('#database-content-display').text('Sign out successful')
 
   // Hide the after sign-in section
-  $('#after-sign-in').hide()
+  $('.after-sign-in').hide()
 
   // Hide the search by user input
   $('#search-by-user').hide()
 
   // Show the before sign-in section
-  $('#before-sign-in').show()
+  $('.before-sign-in').show()
   
   
 
