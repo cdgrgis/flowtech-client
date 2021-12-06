@@ -1,128 +1,72 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+# Flow Technique Database
 
-# browser-template
+This is a database for flow techniques (tricks, moves) and sequences which are a chain of techniques. You can add a description, video demonstration, and video comment to each technique for the opportunity to spread your knowledge to other flow artists. 
 
-A template for starting front-end projects. Webpack for `require` system, build
-pipeline, and development server. Boostrap and Handlebars.js included. No
-front-end frameworks included.
+I originally started this as a project for my Software Engineering boot camp with General Assembly.
 
-## Installation
+In planning for this project, I completed the User authentication first, followed by the techniques, and finally the sequences. I was able to increase the usability (drop down buttons, modals, delete and update buttons in technique index) of the site after I had completed the structure. My public launch date is currently 1/01/2022.
 
-1. [Download](../../archive/main.zip) this template.
-    - **Do Not Fork And Clone**
-    - Click the "Clone or Download" button and select "Download Zip".
-1. Move to the `sei/projects` directory, then unzip the template directory with
-    `unzip /Users/<user-name>/Downloads/browser-template-main.zip`.
-1. Rename the template directory from `browser-template-main` to
-    `<project-name>-client`.
-1. Empty [`README.md`](README.md) and fill with your own content.
-1. Replace the `name` `seir-flex-831.browser-template` with the name of
-    your project in `package.json`.
-2. Move into the new project and `git init`.
-3. Add all of the files in your project with the command `git add --all`.
-      - **Note: This is the only time you should run this command!**
-4. Commit all of your files with the command `git commit`.
-      - Your commit title should read `Initial commit`.
-5. Install dependencies with `npm install`.
-6. Create a new repository on [github.com](https://github.com),
-    _not GitHub Enterprise_.
-7. Name the new repository with the same name used on Step 3.
-8. Follow the instructions on your new repository's setup page. For details on
-   how to push to Github, refer to the section on Github entitled **"…or push an existing
-   repository from the command line."** Further documentation can be found [here](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/).
-   > **Note:** This last step will rename your default branch to **main**. This branch name will be used when deploying.
+## Setup Steps
+  1. Fork and clone this repository
+  2. Run `npm install` to install all dependencies.
+  3. Use `grunt serve` to start up server.
 
-## Structure
+## Important Links
+[Flow Technique Database] (https://cdgrgis.github.io/flowtech-client)
 
-### App
+## Screenshots
+![Before Sign-in](https://media.git.generalassemb.ly/user/37795/files/f2dc3180-56bc-11ec-99f3-8575857fcc13)
 
-Developers should store JavaScript files in [`app`](app).
-The "manifest" or entry-point is
-[`app/app.js`](app/app.js). In general, only
-application initialization goes in this file. It's normal for developers to
-start putting all code in this file, but encourage them to break out different
-responsibilities and use the `require` syntax put references where they're
-needed.
+![After Sign-in](https://media.git.generalassemb.ly/user/37795/files/f5d72200-56bc-11ec-9cba-d405157687d3)
 
-### Config
+![All buttons shown](https://media.git.generalassemb.ly/user/37795/files/26b75700-56bd-11ec-87e5-f319afc8d689)
 
-Developers should set `apiUrls.production` and `apiUrls.development` in
-[`app/config.js`](app/config.js).  With
-`apiUrls` set, developers may rely on `apiUrl` as the base for API
-URLs.
+### User stories
 
-### Styles
+| As a      |      I would like to            | 
+|-----------|---------------------------------|
+| User      | Sign up & sign in automatically |
+| User      | Sign in                         |
+| User      | Change password                 |
+| User      | Update user                     | 
+| User      | Search users by username        |
+| User      | Index all techniques            |
+| User      | Index my techniques             |
+| User      | Create techniques               |
+| User      | Modify techniques               |
+| User      | Show techniques                 |
+| User      | Delete techniques               |
+| User      | Index all sequences             |
+| User      | Index my sequences              |
+| User      | Show a sequence                 |
+| User      | Create sequences                |
+| User      | Modify a sequence               |
+| User      | Delete a sequence               |
+ 
+# Wireframes
 
-Developers should store styles in [`app/styles`](app/styles) and load them
-from [`app/styles/index.scss`](app/styles/index.scss). Bootstrap version 3 is
-included in this template.
+#### Before-sign-in
+![Before Sign-in](https://media.git.generalassemb.ly/user/37795/files/9830ad80-4a0d-11ec-8592-328bbf873cb0)
 
-### Forms and Using `getFormFields`
-
-Developers should use [getFormFields](get-form-fields.md) to retrieve form data
-to send to an API.
-
-### Deployment
-
-To deploy a browser-template based SPA, run `grunt deploy`.
-
-## Adding Images
-
-To add images to your project, you must store them in the `public` directory.
-To use the image in HTML or CSS, write the path to the image like this:
-
-```html
-<img src="public/cat.jpg">
-```
-or
-```css
-#my-cool-div {
-  background-image: url('public/cat.jpg')
-}
-```
-
-Note that there's no `./` or `/` in front of `public/filename.jpg`.
-
-## Adding Fonts
-
-To add custom fonts to your app, you can either use a CDN like Google Fonts, or
-you can download the fonts and save them in the `public` directory. If you use
-the former method, follow the directions on the website providing the fonts.
-
-For local fonts, put the files in `public`, and then import and use them in a
-`.scss` file like this:
-
-```scss
-@font-face {
-  font-family: 'Nature Beauty';
-  src: url('public/Nature-Beauty.ttf') format('truetype');
-}
-
-.element-with-custom-font {
-  font-family: 'Nature Beauty';
-}
-```
-
-## Tasks
-
-Developers should run these often!
-
-- `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
-- `grunt make-standard`: reformats all your code in the JavaScript Standard Style
-- `grunt <server|serve|s>`: generates bundles, watches, and livereloads
-- `grunt build`: place bundled styles and scripts where `index.html` can find
-    them
-- `grunt deploy`: builds and deploys main branch
+![After Sign-in](https://media.git.generalassemb.ly/user/37795/files/9a930780-4a0d-11ec-9daa-cbe43bdef4c7)
 
 
-## Additional Resources
+# ERD
+![Model ERD](https://media.git.generalassemb.ly/user/37795/files/a9411600-56bf-11ec-929e-721ff2a06d5f)
 
-- [Modern Javascript Explained for Dinosaurs](https://medium.com/@peterxjang/modern-javascript-explained-for-dinosaurs-f695e9747b70)
-- [Making Sense of Front End Build Tools](https://medium.freecodecamp.org/making-sense-of-front-end-build-tools-3a1b3a87043b)
+## Technologies Used
+    - Express
+    - Node.js
+    - Mongodb
+    - JavaScript
+    - jQuery
+    - HTML
+    - CSS
+    - Flex Box
 
-## [License](LICENSE)
+## Unsolved Problems
+    - Find a way to list techniques in Sequence create to phase out the use of model ids
+    - Better user interface
+    - Enhanced styling
 
-1. All content is licensed under a CC­BY­NC­SA 4.0 license.
-1. All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+
