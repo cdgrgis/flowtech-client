@@ -290,14 +290,17 @@
                 <fieldset>
                   <legend>Create a Technique</legend>
                   <input name="technique[name]" type="text" placeholder="Name" required>
-                  <br>
-                  <br>
+                  <br><br>
+                  
+                  <textarea rows="3" cols="40" name="technique[description]" type="text" placeholder="Description"></textarea>
+
+                  <br><br>
                   <input name="technique[timing]" id="create-split" type="radio" value="Split">
                   <label for="split">Split</label>          
                   <input name="technique[timing]" id="create-together" type="radio" value="Together">
                   <label for="together">Together</label>
       
-                  <br><br>
+                  <br>
                   
                   <input name="technique[direction]" id="create-same" type="radio" value="Same">
                   <label for="create-same">Same</label>          
@@ -308,7 +311,9 @@
 
                   <input name="technique[demonstration]" type="text" placeholder="Embedded Video">
                   
-                  <br><br>
+                  <br>
+
+                  <textarea rows="3" cols="40" name="technique[demonstrationComment]" type="text" placeholder="Demonstration Comment"></textarea>
 
                   <button>Create</button>
                   <div id="technique-create-error-display"></div>

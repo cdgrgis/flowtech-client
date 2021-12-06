@@ -23,8 +23,15 @@ const onTechniqueIndexSuccess = responseData => {
       <div class ="technique-library">
         <h1 class="title-body">${technique.name}</h1>
         <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
+        `
+    
+    if (technique.description) {
+      techniqueHtml += `
         <h3>Description: ${technique.description}</h3>
-        
+        `
+    }
+    
+    techniqueHtml += `
         <h3>Technique Id: ${technique._id}</h3>
         <h3>Added by: ${userName}</h3>
         <br>
@@ -63,10 +70,16 @@ const onTechniqueIndexFailure = err => {
 
 const onTechniqueDemonstrationSuccess = responseData => {
   console.log('response data ', responseData)
+
+  const demonstrationHtml = `
+    ${responseData.technique.demonstration}
+    <br>
+    ${responseData.technique.demonstrationComment}
+    `
   
   $('.modal').hide()
   $('#demonstration-modal').show()
-  $('#demonstration-modal-display').html(responseData.technique.demonstration)
+  $('#demonstration-modal-display').html(demonstrationHtml)
 
 }
 
