@@ -1,6 +1,6 @@
-# Flow Technique Database
+# Flow Technique Client
 
-This is a database for flow techniques (tricks, moves) and sequences which are a chain of techniques. You can add a description, video demonstration, and video comment to each technique for the opportunity to spread your knowledge to other flow artists. 
+This is a site to store and share flow techniques (tricks, moves) and sequences which are a chain of techniques. You can add a description, video demonstration, and video comment to each technique for the opportunity to spread your knowledge to other flow artists. 
 
 I originally started this as a project for my Software Engineering boot camp with General Assembly.
 
