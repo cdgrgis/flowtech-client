@@ -4,7 +4,7 @@ const config = require('../config')
 // Obtain the store object for data storage
 const store = require('../store')
 
-const techniqueIndexPersonal = () => {
+const indexPersonal = () => {
     return $.ajax({
         method: 'GET',
         url: config.apiUrl + '/users/:id',
@@ -14,15 +14,7 @@ const techniqueIndexPersonal = () => {
     })
 }
 
-const sequenceIndexPersonal = () => {
-    return $.ajax({
-      method: 'GET',
-      url: config.apiUrl + '/users/:id',
-      headers: {
-        Authorization: `Bearer ${store.user.token}`
-      }
-    })
-}
+
 
 const updateUser = formData => {
     return $.ajax({
@@ -47,8 +39,7 @@ const searchByUserName = formData => {
 }
 
 module.exports = {
-    techniqueIndexPersonal,
-    sequenceIndexPersonal,
+    indexPersonal,
     updateUser,
     searchByUserName
 }

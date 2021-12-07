@@ -85,9 +85,9 @@ $(() => {
   $('#database-content-display').on('click', '.sequence-delete', sequenceEvents.onSequenceDestroy)
 
   
-  $('#auth-drop').on('click', () => $('#auth-dropdown-content').show())
-  $('#technique-drop').on('click', () => $('#technique-dropdown-content').show())
-  $('#sequence-drop').on('click', () => $('#sequence-dropdown-content').show())
+  $('#auth-drop').on('click', userEvents.onUserIndex)
+  $('#technique-drop').on('click', userEvents.onTechniqueIndexPersonal)
+  $('#sequence-drop').on('click', userEvents.onSequenceIndexPersonal)
   
   // Event listener for the `x` button inside each modal
   $('.close').on('click', () => $('.modal').hide())

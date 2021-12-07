@@ -15,7 +15,7 @@ const onTechniqueIndexPersonal = event => {
   // Stop the browser from refreshing
   event.preventDefault()
 
-  api.techniqueIndexPersonal()
+  api.indexPersonal()
     .then(ui.onTechniqueIndexPersonalSuccess)
     .catch(ui.onTechniqueIndexPersonalFailure)
 }
@@ -27,38 +27,47 @@ const onSequenceIndexPersonal = event => {
    
     
  
-    api.sequenceIndexPersonal()
+    api.indexPersonal()
      .then(ui.onSequenceIndexPersonalSuccess)
      .catch(ui.onSequenceIndexPersonalFailure)
    
- }
+}
 
- const onUpdateUser = event => {
-       // Stop the browser from refreshing
+const onUserIndex = event => {
+
+    api.indexPersonal()
+      .then(ui.onSearchByUserNameSuccess)
+      .catch(ui.onSearchByUserNameFailure)
+}
+
+
+const onUpdateUser = event => {
+    // Stop the browser from refreshing
+event.preventDefault()
+
+const formData = getFormFields(event.target)
+console.log('form data ', formData)
+
+api.updateUser(formData)
+    .then(ui.onUpdateUserSuccess)
+    .catch(ui.onUpdateUserFailure)
+}
+
+const onSearchByUserName = event => {
+    // Stop the browser from refreshing
     event.preventDefault()
-   
+
     const formData = getFormFields(event.target)
-    console.log('form data ', formData)
 
-    api.updateUser(formData)
-        .then(ui.onUpdateUserSuccess)
-        .catch(ui.onUpdateUserFailure)
- }
-
- const onSearchByUserName = event => {
-     // Stop the browser from refreshing
-     event.preventDefault()
-
-     const formData = getFormFields(event.target)
-
-     api.searchByUserName(formData)
-        .then(ui.onSearchByUserNameSuccess)
-        .catch(ui.onSearchByUserNameFailure)
- }
+    api.searchByUserName(formData)
+    .then(ui.onSearchByUserNameSuccess)
+    .catch(ui.onSearchByUserNameFailure)
+}
 
 module.exports = {
     onTechniqueIndexPersonal,
     onSequenceIndexPersonal,
+    onUserIndex,
     onUpdateUser,
     onSearchByUserName
 }
