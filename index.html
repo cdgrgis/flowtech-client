@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>FLOW TECHNIQUES</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <header>
+        <section id="welcome" >
+          <h1 class="title-header">Welcome to the Flow Technique Database</h1>
+          <h3>Keep track of what techniques (moves, tricks) you've learned so far or hope to one day achieve</h3>
+          <h3>Attach a tutorial to each technique to help spread your knowledge</h3>
+          <h3>Create sequences of chained techniques</h3>
+          <h4>by copying the technique ID and pasting it the create sequence screen</h4>
+          <h5>This functionality will be improved in future updates</h5>
+
+         
+          
+        
+          <br><br>
+          <form id="search-by-username">
+            <legend>Find another user</legend>
+            <input name="credentials[userName]" type="text" placeholder="Search by Username" required>
+            <button>Find User</button>
+          </form>
+          <div id="search-username-error-display"></div>
+        </section>
+
+      
+      </header>
+      <br>
+      <br>
+      <br>
+
+      <section class="before-sign-in">
+      
+        <button id="sign-up-modal-button" class="before-sign-in-button">Sign Up</button>
+        <div id="sign-up-modal" class="modal">
+
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            
+            <form id="sign-up">
+              <fieldset>
+                <legend>Sign Up</legend>
+                <input name="credentials[email]" type="email" placeholder="Email" required>
+                <input name="credentials[password]" type="password" placeholder="Password" required>
+                <input name="credentials[password_confirmation]" type="password" placeholder="Password Confirmation" required>
+                <input name="credentials[user_name]" type="text" placeholder="Username">
+                <input name="credentials[picture]" type="text" placeholder="Add a link for your profile picture">
+
+                <button>Sign Up</button>
+                <div id="sign-up-error-display"></div>
+                
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <div id="sign-up-display"></div>
+          
+    
+     
+     
+        <!-- Button to open sign-in modal -->
+        <button id="sign-in-modal-button" class="before-sign-in-button">Sign In</button>
+
+        <!-- Sign in Modal -->
+        <div id="sign-in-modal" class="modal">
+  
+          <!-- Sign in Content -->
+          <div class="modal-content">
+            <!-- Close modal button (appears as `x`) -->
+            <span class="close">&times;</span>
+        
+            <!-- Sign in form -->
+            <form id="sign-in">
+              <fieldset>
+                <legend>Sign In</legend>
+                <input name="credentials[email]" type="email" placeholder="Email" required>
+                <input name="credentials[password]" type="password" placeholder="Password" required>
+  
+                <!-- Submit sign in data button -->
+                <button>Sign In</button>
+                
+                <!-- Displays error messages -->
+                <div id="sign-in-error-display"></div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <!-- Displays success messages -->
+        <div id="sign-in-display"></div>
+
+       
+      </section> 
+
+      <!-- Section available after sign in -->
+      <section class="after-sign-in">
+        <div id="database-message-display"></div>
+        <div class="topnav">
+          <section id="auth-dropdown-button">
+            <!-- Font Awesome Icon Library -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+            <!-- Auth drop down button -->
+            <button id="auth-drop" class="btn">Account</button>
+            <div class="dropdown">
+              <button class="btn" style="border-left:1px solid navy">
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="auth-dropdown-content" class="dropdown-content">
+                <button id="change-password-button" class="drop-button">Change password</button>
+                <button id="update-user-button" class="drop-button">Update User</button>
+                <button id="sign-out-button" class="drop-button">Sign out</button>
+              </div>
+            </div>
+           
+            <div id="auth-display"></div>
+          </section>
+
+          <section id="techniques-dropdown-button">
+
+            <!-- Technique drop down button -->
+            <button id="technique-drop" class="btn">Techniques</button>
+            <div class="dropdown">
+              <button class="btn" style="border-left:1px solid navy">
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="technique-dropdown-content" class="dropdown-content">
+                <button id="technique-index-button" class="drop-button">Get techniques</button>
+                <button id="technique-index-personal-button" class="drop-button">Get my techniques</button>
+                <button id="technique-create-button" class="drop-button">Create technique</button>
+              </div>
+            </div>
+          </section>
+
+          <section id="sequences-dropdown-button">
+            <!-- Sequence drop down button -->
+            <button id="sequence-drop" class="btn">Sequences</button>
+            <div class="dropdown">
+              <button class="btn" style="border-left:1px solid navy">
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="sequence-dropdown-content" class="dropdown-content">
+                <button id="sequence-index-button" class="drop-button">Get sequences</button>
+                <button id="sequence-index-personal-button" class="drop-button">Get my sequences</button>
+                <button id="sequence-create-button" class="drop-button">Create sequence</button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+
+        <div id="database-error-display"></div>
+        <div id="database-content-display"></div>
+  
+
+
+     
+       
+
+        <!-- Change password Modal -->
+        <div id="change-password-modal" class="modal">
+
+          <!-- Change password Content -->
+          <div class="modal-content">
+            <!-- Close modal button (appears as `x`) -->
+            <span class="close">&times;</span>
+        
+            <!-- Sign in form -->
+            <form id="change-password">
+              <fieldset>
+                <legend>Change Password</legend>
+                <input name="passwords[old]" type="password" placeholder="Old Password" required>
+                <input name="passwords[new]" type="password" placeholder="New Password" required>
+
+                <!-- Submit change password data button -->
+                <button>Change Password</button>
+                
+                <!-- Displays error messages -->
+                <div id="change-password-error-display"></div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+
+        
+        <!-- Change password Modal -->
+        <div id="update-user-modal" class="modal">
+
+          <!-- Change password Content -->
+          <div class="modal-content">
+            <!-- Close modal button (appears as `x`) -->
+            <span class="close">&times;</span>
+        
+            <!-- Sign in form -->
+            <form id="update-user">
+              <fieldset>
+                <legend>Update User</legend>
+                <input name="userData[userName]" type="text" placeholder="UserName">
+                <input name="userData[picture]" type="text" placeholder="Link to your picture">
+
+                <!-- Submit change password data button -->
+                <button>Update</button>
+                
+                <!-- Displays error messages -->
+                <div id="update-user-error-display"></div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      
+        
+     
+         
+        <section id="technique-section">
+          <div id="demonstration-modal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              
+              <form>
+               <div id="demonstration-modal-display"></div>
+              </form>
+            </div>
+          </div>
+
+          <div id="sequence-technique-details-modal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              
+              <form>
+               <div id="sequence-technique-details-modal-display"></div>
+              </form>
+            </div>
+          </div>
+
+          
+
+       
+
+          <div id="technique-display"></div>
+          <div id="technique-error-display"></div>
+        
+          <!-- Show technique Modal -->
+          <div id="technique-show-modal" class="modal">
+
+            <!-- Show technique Content -->
+            <div class="modal-content">
+
+              <form id="technique-show-form">
+                <!-- Close modal button (appears as `x`) -->
+                <span class="close">&times;</span>
+            
+                <!-- Show technique form -->
+              
+                  <fieldset>
+                    <legend>Show Technique</legend>
+                    <input name="technique[id]" type="text" placeholder="Technique Id" required>
+
+                    <!-- Submit show technique data button -->
+                    <button id="technique-show-submit-modal">Show</button>
+                    
+                    <!-- Displays error messages -->
+                    <div id="technique-show-error-display"></div>
+                  </fieldset>
+              </form>      
+            </div>
+          </div>
+          
+        
+
+          <!-- Create technique Modal -->
+          <div id="technique-create-modal" class="modal">
+
+            <!-- Create technique Content -->
+            <div class="modal-content">
+              <!-- Close modal button (appears as `x`) -->
+              <span class="close">&times;</span>
+          
+              <!-- Create technique form -->
+              <form id="technique-create">
+                <fieldset>
+                  <legend>Create a Technique</legend>
+                  <input name="technique[name]" type="text" placeholder="Name" required>
+                  <br><br>
+                  
+                  <textarea rows="3" cols="40" name="technique[description]" type="text" placeholder="Description"></textarea>
+
+                  <br><br>
+                  <input name="technique[timing]" id="create-split" type="radio" value="Split">
+                  <label for="split">Split</label>          
+                  <input name="technique[timing]" id="create-together" type="radio" value="Together">
+                  <label for="together">Together</label>
+      
+                  <br>
+                  
+                  <input name="technique[direction]" id="create-same" type="radio" value="Same">
+                  <label for="create-same">Same</label>          
+                  <input name="technique[direction]" id="create-opposite" type="radio" value="Opposite">
+                  <label for="create-opposite">Opposite</label>
+
+                  <br><br>
+
+                  <input name="technique[demonstration]" type="text" placeholder="Embedded Video">
+                  
+                  <br>
+
+                  <textarea rows="3" cols="40" name="technique[demonstrationComment]" type="text" placeholder="Demonstration Comment"></textarea>
+
+                  <button>Create</button>
+                  <div id="technique-create-error-display"></div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+  
+
+          <!-- Update technique Modal -->
+          <div id="technique-update-modal" class="modal">
+
+            <!-- Update technique Content -->
+            <div class="modal-content">
+              <!-- Close modal button (appears as `x`) -->
+              <span class="close">&times;</span>
+
+              <!-- Update technique form -->
+              <form id="technique-update">
+                <fieldset>
+                  <legend>Update a Technique</legend>
+                 
+                  <input name="technique[name]" type="text" placeholder="Name" required>
+                  <br><br>
+                  
+                  <textarea rows="3" cols="40" name="technique[description]" type="text" placeholder="Description"></textarea>
+
+                  <br><br>
+                  <input name="technique[timing]" id="update-split" type="radio" value="Split">
+                  <label for="split">Split</label>          
+                  <input name="technique[timing]" id="update-together" type="radio" value="Together">
+                  <label for="together">Together</label>
+      
+                  <br>
+                  
+                  <input name="technique[direction]" id="update-same" type="radio" value="Same">
+                  <label for="update-same">Same</label>          
+                  <input name="technique[direction]" id="update-opposite" type="radio" value="Opposite">
+                  <label for="update-opposite">Opposite</label>
+
+                  <br><br>
+
+                  <input name="technique[demonstration]" type="text" placeholder="Embedded Video">
+                  
+                  <br>
+
+                  <textarea rows="3" cols="40" name="technique[demonstrationComment]" type="text" placeholder="Demonstration Comment"></textarea>
+                  
+                  <br><br>
+
+                  <button>Update</button>
+                  <div id="technique-update-error-display"></div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+      
+
+          <!-- Destroy technique Modal -->
+          <div id="technique-destroy-modal" class="modal">
+
+            <!-- Destroy technique Content -->
+            <div class="modal-content">
+              <!-- Close modal button (appears as `x`) -->
+              <span class="close">&times;</span>
+          
+              <!-- Destroy technique form -->
+              <form id="technique-destroy">
+                <fieldset>
+                  <legend>Your Technique has been destroyed!!</legend>
+                  
+
+                
+                  
+                  <!-- Displays error messages -->
+                  <div id="technique-destroy-error-display"></div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </section>
+
+     
+
+        <section id="sequence-section">
+
+          
+          <!-- Show sequence Modal -->
+          <div id="empty-modal" class="modal">
+
+            <!-- Show sequence Content -->
+            <div class="modal-content">
+              <!-- Close modal button (appears as `x`) -->
+              <span class="close">&times;</span>
+          
+              <!-- Show sequence form -->
+              <form id="empty-form">
+                <fieldset>
+                  <legend id="empty-display"></legend>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+      
+       
+        
+          <div id="sequence-display"></div>
+          <div id="sequence-error-display"></div>
+          
+          
+        
+
+          <!-- Show sequence Modal -->
+          <div id="sequence-show-modal" class="modal">
+
+            <!-- Show sequence Content -->
+            <div class="modal-content">
+              <!-- Close modal button (appears as `x`) -->
+              <span class="close">&times;</span>
+          
+              <!-- Show sequence form -->
+              <form id="sequence-show">
+                <fieldset>
+                  <legend>Show Sequence</legend>
+                  <input name="sequence[id]" type="text" placeholder="Sequence Id" required>
+
+                  <!-- Submit show sequence data button -->
+                  <button>Show</button>
+                  
+                  <!-- Displays error messages -->
+                  <div id="sequence-show-error-display"></div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+     
+
+ 
+
+        
+
+          <!-- Create sequence Modal -->
+          <div id="sequence-create-modal" class="modal">
+
+            <!-- Create sequence Content -->
+            <div class="modal-content">
+              <!-- Close modal button (appears as `x`) -->
+              <span class="close">&times;</span>
+          
+              <!-- Create sequence form -->
+              <form id="sequence-create">
+                <fieldset>
+                  <legend>Create a Sequence</legend>
+                  <input name="sequence[name]" type="text" placeholder="Name" required>
+                  <br>
+                  <br>
+                  <input name="sequence[technique1]" type="text" placeholder="Technique 1" required>
+                  <input name="sequence[technique2]" type="text" placeholder="Technique 2" required>
+                  <div id="sequence-create-additional-techniques"></div>
+    
+                  <br><br>
+    
+                  <button>Create</button>
+                  <div id="sequence-create-error-display"></div>
+                </fieldset>
+              </form>
+              <button id="sequence-create-add-technique">Add another Technique</button>
+              <button id="sequence-create-delete-additional-techniques">RESET</button>
+            </div>s
+          </div>
+ 
+          <!-- Update sequence Modal -->
+          <div id="sequence-update-modal" class="modal">
+
+            <!-- Update sequence Content -->
+            <div class="modal-content">
+              <!-- Update modal button (appears as `x`) -->
+              <span class="close">&times;</span>
+          
+              <!-- Update sequence form -->
+              <form id="sequence-update">
+                <fieldset>
+                  <legend>Update a Sequence</legend>
+                  <input name="sequence[name]" type="text" placeholder="Name" required>
+                  <br>
+                  <br>
+                  <input name="sequence[technique1]" type="text" placeholder="Technique 1">
+                  <input name="sequence[technique2]" type="text" placeholder="Technique 2">
+                  <div id="sequence-update-additional-techniques"></div>
+
+                  <br><br>
+
+                  <button>Update</button>
+                  <div id="sequence-update-error-display"></div>
+                </fieldset>
+              </form>
+              <button id="sequence-update-add-technique">Add another Technique</button>
+            </div>
+          </div>
+  
+          <!-- Destroy sequence modal -->
+          <div id="sequence-destroy-modal" class="modal">
+
+            <!-- Destroy sequence content -->
+            <div class="modal-content">
+              <!-- Close modal button (appears as `x`) -->
+              <span class="close">&times;</span>
+
+              <!-- Destroy sequence form -->
+              <form id="sequence-destroy">
+                <fieldset>
+                  <legend>Destroy Sequence</legend>
+                  <input name="sequence[id]" type="text" placeholder="Sequence Id" required>
+
+                  <!-- Submit destroy sequence data button -->
+                  <button>Destroy</button>
+
+                  <!-- Displays error messages -->
+                  <div id="sequence-destroy-error-display"></div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+    
+        </section>
+      </section>
+    </body>
+</html>
