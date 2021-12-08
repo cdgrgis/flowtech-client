@@ -15,8 +15,6 @@ const techniqueIndex = () => {
   })
 }
 
-
-
 // API call for technique create
 const techniqueShow = formData => {
   return $.ajax({

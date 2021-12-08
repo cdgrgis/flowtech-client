@@ -14,8 +14,6 @@ const indexPersonal = () => {
     })
 }
 
-
-
 const updateUser = formData => {
     return $.ajax({
         method: 'PATCH',

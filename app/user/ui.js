@@ -2,9 +2,6 @@
 const store = require('../store')
 
 const onTechniqueIndexPersonalSuccess = responseData => {
-    console.log(responseData)
-    console.log('user ', responseData.user)
-    console.log('tech ', responseData.user.techniques)
     // Set the technique data to a variable
     const techniquesData = responseData.user.techniques
   
@@ -52,12 +49,10 @@ const onTechniqueIndexPersonalSuccess = responseData => {
   
     // Send html to technique index's display
     $('#database-content-display').html(techniqueHtml)
-
-
 }
 
 const onTechniqueIndexPersonalFailure = err => {
-    console.log(err)
+    
     $('#database-error-display').text('Failed to retrieve your techniques')
 
     setTimeout(() => {
@@ -66,11 +61,7 @@ const onTechniqueIndexPersonalFailure = err => {
 }
 
 const onSequenceIndexPersonalSuccess = responseData => {
- 
-  console.log('user ', responseData.user)
-  console.log('tech ', responseData.user.sequences)
-  console.log('tech length ', responseData.user.sequences[0].techniques.length)
-  console.log('tech 1 ', responseData.user.sequences[0].techniques[0])
+
 
   // Initialize a variable to hold html data 
   let sequenceHtml = ''
@@ -90,10 +81,9 @@ const onSequenceIndexPersonalSuccess = responseData => {
       sequenceHtml += `
         <h3>Technique ${j + 1}: ${sequence.techniques[j].name}</h3> `
     }
-    console.log('sequence html ', sequenceHtml)
+   
     // Add the sequence's id to sequenceHtml
     sequenceHtml += `
-        <h3>Sequence Id: ${sequence._id}</h3>
         <br>
         <button class="sequence-delete" id=delete-${sequence._id}>Delete</button>
         <button class="sequence-update" id=update-${sequence._id}>Update</button>
@@ -109,8 +99,6 @@ const onSequenceIndexPersonalSuccess = responseData => {
 
 // In case of personal sequence index failure
 const onSequenceIndexPersonalFailure = err => {
-  console.log(err)
-
   // Send a message to the user
   $('#sequence-error-display').text('Failed to retrieve personal sequences')
 
@@ -120,24 +108,7 @@ const onSequenceIndexPersonalFailure = err => {
   }, 5000)
 }
 
-const onUserIndexSuccess = responseData => {
-  console.log(responseData)
-}
-
-const onUserIndexFailure = err => {
-  console.log(err)
-
-  $('#database-error-display').text('Failed to retrieve User data')
-
-  setTimeout(() => {
-    $('#database-error-display').text('')
-  }, 5000)
-}
-
-
-
 const onUpdateUserSuccess = (responseData) => {
-    console.log('success')
     $('#database-content-display').text('User has been updated')
 
     // Close all modals
@@ -157,8 +128,6 @@ const onUpdateUserFailure = err => {
 }
 
 const onSearchByUserNameSuccess = responseData => {
-    console.log(responseData.user)
-
     const user = responseData.user
 
     let userHtml = `
@@ -197,7 +166,6 @@ const onSearchByUserNameSuccess = responseData => {
         `
     }
 
-    
     userHtml += `
         <br><hr>
         `
@@ -226,20 +194,12 @@ const onSearchByUserNameSuccess = responseData => {
         userHtml += `
         <br>`
       }
-      
-      
-     
     }
 
-
   $('#database-content-display').html(userHtml)
-
-    
 }
 
 const onSearchByUserNameFailure = err => {
-    console.log(err)
-
     // Send a message to user
     $('#search-by-username-error-display').text('Failed to retrieve user data')
 
@@ -254,8 +214,6 @@ module.exports = {
     onTechniqueIndexPersonalFailure,
     onSequenceIndexPersonalSuccess,
     onSequenceIndexPersonalFailure,
-    onUserIndexSuccess,
-    onUserIndexFailure,
     onUpdateUserSuccess,
     onUpdateUserFailure,
     onSearchByUserNameSuccess,

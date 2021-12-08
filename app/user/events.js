@@ -7,9 +7,6 @@ const ui = require('./ui')
 // Require function to obtain data from form fields when submitted
 const getFormFields= require('../../lib/get-form-fields')
 
-// Require the store object
-const store = require('../store')
-
 // Function to obtain user's techniques
 const onTechniqueIndexPersonal = event => {
   // Stop the browser from refreshing
@@ -23,14 +20,10 @@ const onTechniqueIndexPersonal = event => {
 const onSequenceIndexPersonal = event => {
     // Stop the browser from refreshing
     event.preventDefault()
-    console.log
-   
-    
  
     api.indexPersonal()
      .then(ui.onSequenceIndexPersonalSuccess)
      .catch(ui.onSequenceIndexPersonalFailure)
-   
 }
 
 const onUserIndex = event => {
@@ -46,7 +39,6 @@ const onUpdateUser = event => {
 event.preventDefault()
 
 const formData = getFormFields(event.target)
-console.log('form data ', formData)
 
 api.updateUser(formData)
     .then(ui.onUpdateUserSuccess)

@@ -2,7 +2,7 @@ const authEvents = require('./auth/events')
 const techniqueEvents = require('./technique/events')
 const sequenceEvents = require('./sequence/events')
 const userEvents = require('./user/events')
-// const { nodeName } = require('jquery')
+
 
 $(() => {
   // Authentication Event Listeners
@@ -43,7 +43,7 @@ $(() => {
   // When the personal technique index button is clicked, call the onTechniqueIndexPersonal function
   $('#technique-index-personal-button').on('click', userEvents.onTechniqueIndexPersonal)
  
-  // When the show technique button is clicked, show the technique show modal
+  // When the technique show button is clicked, show the technique show modal
   $('#technique-show-button').on('click', () => $('#technique-show-modal').show())
   // When the show technique form is submitted, call the onTechniqueShows function
   $('#technique-show-form').on('submit', techniqueEvents.onTechniqueShow)
@@ -62,32 +62,47 @@ $(() => {
   $('#database-content-display').on('click', '.technique-delete', techniqueEvents.onTechniqueDestroy)
   
   // Sequence Event Listeners
+  // When technique index button is clicked, call onTechnique Index function
   $('#sequence-index-button').on('click', sequenceEvents.onSequenceIndex)
+  // When the details button is clicked, call the onSequenceTechniqueDetails function
   $('#database-content-display').on('click', '.sequence-technique-details', sequenceEvents.onSequenceTechniqueDetails)
 
+  // When the personal technique index button is clicked, call the onTechniqueIndexPersonal function
   $('#sequence-index-personal-button').on('click', userEvents.onSequenceIndexPersonal)
   
+  // When the technique show button is clicked, show the technique show modal
   $('#sequence-show-button').on('click', () => $('#sequence-show-modal').show())
+  // When the show technique form is submitted, call the onTechniqueShows function
   $('#sequence-show').on('submit', sequenceEvents.onSequenceShow)
 
+  // When the create technique button is clicked, show the technique create modal
   $('#sequence-create-button').on('click', () => $('#sequence-create-modal').show())
+  // When the create technique form is submitted, call the onTechniqueCreate function
   $('#sequence-create').on('submit', sequenceEvents.onSequenceCreate)
+  // When the add technique button is clicked, call the function to add another technique input
   $('#sequence-create-add-technique').on('click', sequenceEvents.onSequenceCreateAddTechnique)
+  // When the RESET button is clicked, clear the additional technique inputs
   $('#sequence-create-delete-additional-techniques').on('click', sequenceEvents.onSequenceCreateDeleteAdditionalTechniques)
 
+  // When the update update button is clicked in the personal sequence view,
+  // save the sequence id to the store object, and open the update modal
   $('#database-content-display').on('click', '.sequence-update', sequenceEvents.onSequenceShowUpdateModal)
+  // When update form is submitted, update the Sequence 
   $('#sequence-update').on('submit', sequenceEvents.onSequenceUpdate)
+  // When the add technique button is clicked inside the sequence update modal, 
+  // add another technique input to the modal
   $('#sequence-update-add-technique').on('click', sequenceEvents.onSequenceUpdateAddTechnique)
 
-
-  $('#sequence-destroy-button').on('click', () => $('#sequence-destroy-modal').show())
-  $('#sequence-destroy').on('submit', sequenceEvents.onSequenceDestroy)
+  // When the destroy sequence form is submitted, 
+  // destroy the sequence and redirect user back to personal sequence index
   $('#database-content-display').on('click', '.sequence-delete', sequenceEvents.onSequenceDestroy)
 
-  
+  // When the account drop button is clicked, direct user to their personal page
   $('#auth-drop').on('click', userEvents.onUserIndex)
-  $('#technique-drop').on('click', userEvents.onTechniqueIndexPersonal)
-  $('#sequence-drop').on('click', userEvents.onSequenceIndexPersonal)
+  // When the techniques drop button is clicked, direct user to their personal technique index
+  $('#technique-drop').on('click', techniqueEvents.onTechniqueIndex)
+  // When the sequence drop button is clicked, direct user to their personal sequence index
+  $('#sequence-drop').on('click', sequenceEvents.onSequenceIndex)
   
   // Event listener for the `x` button inside each modal
   $('.close').on('click', () => $('.modal').hide())
@@ -98,5 +113,6 @@ $(() => {
   
   // When browser reloads, call the refresh sign in function (signing the user in)
   window.onload = authEvents.onRefreshSignIn()
+
   // window.onclick = authEvents.onSignUpModalOutsideClick
 })

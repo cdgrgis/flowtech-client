@@ -3,10 +3,7 @@ const store = require('../store')
 
 
 const onTechniqueIndexSuccess = responseData => {
-  console.log(responseData)
-  console.log(responseData.techniques.length)
-  console.log(responseData.techniques[0])
-  
+
   // Initialize a variable to hold technique's html
   let techniqueHtml = ''
   
@@ -54,8 +51,6 @@ const onTechniqueIndexSuccess = responseData => {
         <br><br><br>
       </div>
       `  
-
-   
   }
 
   // Send html to technique index's display
@@ -63,7 +58,6 @@ const onTechniqueIndexSuccess = responseData => {
 }
 
 const onTechniqueIndexFailure = err => {
-  console.log(err)
   // Send a message to user
   $('#technique-error-display').text('Failed to retrieve Techniques')
 
@@ -74,14 +68,12 @@ const onTechniqueIndexFailure = err => {
 }
 
 const onTechniqueDemonstrationSuccess = responseData => {
-  console.log('response data ', responseData)
-
   const demonstrationHtml = `
     ${responseData.technique.demonstration}
     <br>
     ${responseData.technique.demonstrationComment}
     `
-  
+
   $('.modal').hide()
   $('#demonstration-modal').show()
   $('#demonstration-modal-display').html(demonstrationHtml)
@@ -89,8 +81,6 @@ const onTechniqueDemonstrationSuccess = responseData => {
 }
 
 const onTechniqueDemonstrationFailure = err => {
-  console.log(err)
-
    // Send message to user
    $('#database-error-display').text('Failed to retrieve video')
 
@@ -102,7 +92,6 @@ const onTechniqueDemonstrationFailure = err => {
 
 
 const onTechniqueShowSuccess = responseData => {
-  console.log(responseData)
   // Set the technique to a variable
   const technique = responseData.technique
 
@@ -144,7 +133,6 @@ const onTechniqueShowSuccess = responseData => {
 }
 
 const onTechniqueShowFailure = err => {
-  console.log(err)
   // Send message to user
   $('#technique-show-error-display').text('Technique not found')
 
@@ -157,9 +145,6 @@ const onTechniqueShowFailure = err => {
 const onTechniqueCreateSuccess = responseData => {
   // Set the technique to a variable
   const technique = responseData.technique
-  console.log(technique)
-  console.log(responseData)
-  console.log(technique.owner)
 
   // format the html from the response data
   let techniqueHtml = `
@@ -200,7 +185,6 @@ const onTechniqueCreateSuccess = responseData => {
 }
 
 const onTechniqueCreateFailure = err => {
-  console.log(err)
   // Send message to user
   $('#technique-destroy-create-display').text('Failed to Create Technique')
 
@@ -211,30 +195,12 @@ const onTechniqueCreateFailure = err => {
 }
 
 const onTechniqueUpdateSuccess = responseData => {
-  console.log(responseData)
-  // set the technique to a variable
-  const technique = responseData.technique
-
   $('#technique-update-modal').hide()
   $('#empty-modal').show()
   $('#empty-display').text('Technique Updated')
 
-  // const techniqueHtml = `
-  // <br><br>
-  // <div class ="technique-library">
-  //   <h1>${technique.name}</h1>
-  //   <h3>Timing: ${technique.timing} / Direction: ${technique.direction}</h3>
-  //   <h3>Technique Id: ${technique._id}</h3>
-  // </div>
-  // ` 
-
-  // // Send the html to the technique update's display
-  // $('#database-content-display').html(techniqueHtml)
-
   // // Clear all forms
   $('form').trigger('reset')
-
- 
 
   // Clear success message
   setTimeout(() => {
@@ -244,7 +210,6 @@ const onTechniqueUpdateSuccess = responseData => {
 }
 
 const onTechniqueUpdateFailure = err => {
-  console.log(err)
   // Send message to user
   $('#technique-update-error-display').text('Failed to Update Technique')
 
@@ -255,22 +220,16 @@ const onTechniqueUpdateFailure = err => {
 }
 
 const onTechniqueDestroySuccess = (responseData) => {
-  console.log(responseData)
-  console.log('hello')
   // Send message to user
   $('#technique-destroy-modal').show()
 
-
-  
-
-    // Clear success message
-    setTimeout(() => {
-      $('#technique-destroy-modal').hide()
-    }, 2000)
+  // Clear success message
+  setTimeout(() => {
+    $('#technique-destroy-modal').hide()
+  }, 2000)
 }
 
 const onTechniqueDestroyFailure = err => {
-  console.log(err)
   // Send message to user
   $('#technique-destroy-error-display').text('Failed to Delete Technique')
 

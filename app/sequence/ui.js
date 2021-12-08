@@ -3,9 +3,6 @@ const store = require('../store')
 
 // Code to run upon the success of sequence index
 const onSequenceIndexSuccess = responseData => {
-  console.log(responseData)
-  
-  console.log(responseData.sequences[0].techniques.length)
   // Initialize a variable to hold html data 
   let sequenceHtml = ''
   
@@ -13,8 +10,7 @@ const onSequenceIndexSuccess = responseData => {
   for (let i = 0; i < responseData.sequences.length;  i++) {
     // Set each sequence to the variable
     const sequence = responseData.sequences[i]
-    console.log('sequence ', sequence)
-    
+
     // If the user has a username use this, otherwise use their email
     const userName = sequence.owner.userName ? sequence.owner.userName : sequence.owner.email
    
@@ -25,6 +21,7 @@ const onSequenceIndexSuccess = responseData => {
         <h3>Technique 1: ${sequence.techniques[0].name}</h3> <button class="sequence-technique-details ${sequence.techniques[0]._id}">Details</button>
         <h3>Technique 2: ${sequence.techniques[1].name}</h3> <button class="sequence-technique-details ${sequence.techniques[0]._id}">Details</button>
         `
+
     // Loop through any additional techniques
     for (let j = 2; j < sequence.techniques.length; j++) {
       // and add them to sequenceHtml
@@ -32,9 +29,9 @@ const onSequenceIndexSuccess = responseData => {
         <h3>Technique ${j + 1}: ${sequence.techniques[j].name}</h3> <button class="sequence-technique-details ${sequence.techniques[0]._id}">Details</button>
         `
     }
+
     // Add the sequence's id and the username to sequenceHtml
     sequenceHtml += `
-        <h3>Sequence Id: ${sequence._id}</h3>
         <h3>Added by: ${userName}</h3>
         <br>
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,7 +46,6 @@ const onSequenceIndexSuccess = responseData => {
 
 // In case of sequence index failure
 const onSequenceIndexFailure = err => {
-  console.log(err)
   // Send a message to the user
   $('#sequence-error-display').text('Failed to retrieve Sequences')
 
@@ -60,7 +56,6 @@ const onSequenceIndexFailure = err => {
 }
 
 const onSequenceTechniqueDetailsSuccess = responseData => {
-  console.log('response data ', responseData)
   const technique = responseData.technique
 
   let techniqueHtml = `
@@ -89,8 +84,6 @@ const onSequenceTechniqueDetailsSuccess = responseData => {
 
 
 const onSequenceTechniqueDetailsFailure = err => {
-  console.log(err)
-
    // Send a message to the user
    $('#database-error-display').text('Sequence not found')
 
@@ -104,7 +97,6 @@ const onSequenceTechniqueDetailsFailure = err => {
 
 // Code to run upon the success of sequence show
 const onSequenceShowSuccess = responseData => {
-  console.log(responseData)
    // Set sequence to the variable
   const sequence = responseData.sequence
 
@@ -142,13 +134,12 @@ const onSequenceShowSuccess = responseData => {
   // Reset all forms
   $('form').trigger('reset')
 
-    // Close all modals
-    $('.modal').hide()
+  // Close all modals
+  $('.modal').hide()
 }
 
 // In case of sequence show failure
 const onSequenceShowFailure = err => {
-  console.log(err)
   // Send a message to the user
   $('#sequence-error-display').text('Sequence not found')
 
@@ -160,14 +151,11 @@ const onSequenceShowFailure = err => {
 
 // Code to run upon the success of sequence create
 const onSequenceCreateSuccess = responseData => {
-  console.log('response data ', responseData)
    // Set the sequence to the variable
   const sequence = responseData.sequenceData
    // Set the technique to the variable
   const techniqueData = responseData.techniqueData
-  console.log('sequence.techniques', sequence.techniques)
  
-  console.log('owner', sequence.owner)
   // Initialize a variable to hold html data 
   // and add the class, name, and the required techniques to sequenceHtml
   sequenceHtml = `
@@ -196,7 +184,7 @@ const onSequenceCreateSuccess = responseData => {
   $('#database-content-display').html(sequenceHtml)
 
   // Clear the additional technique inputs
-  // $('#sequence-create-additional-techniques').html('')
+  $('#sequence-create-additional-techniques').html('')
 
   // Reset all forms
   $('form').trigger('reset')
@@ -210,8 +198,6 @@ const onSequenceCreateSuccess = responseData => {
 
 // In case of sequence create failure
 const onSequenceCreateFailure = err => {
-  console.log(err)
-
   // Send a message to the user
   $('#sequence-error-display').text('Failed to Create Sequence')
 
@@ -223,8 +209,6 @@ const onSequenceCreateFailure = err => {
 
 // Code to run upon the success of sequence update
 const onSequenceUpdateSuccess = (responseData) => {
-  console.log('response data ', responseData)
-
   // Hide sequence update modal
   $('#sequence-update-modal').hide()
 
@@ -234,7 +218,6 @@ const onSequenceUpdateSuccess = (responseData) => {
   // Set the text in the empty modal
   $('#empty-display').text('Modal Updated')
   
-
   // Clear the additional technique inputs
   $('#sequence-update-additional-techniques').html('')
 
@@ -253,7 +236,6 @@ const onSequenceUpdateSuccess = (responseData) => {
 
 // In case of sequence update failure
 const onSequenceUpdateFailure = err => {
-  console.log(err)
   // Send a message to the user
   $('#sequence-error-display').text('Failed to Update Sequence')
 
@@ -266,23 +248,16 @@ const onSequenceUpdateFailure = err => {
 // Code to run upon the success of sequence destroy
 const onSequenceDestroySuccess = () => {
   // Send a message to the user
-  $('#database-content-display').text('Sequence Destroyed')
-
-  // Reset all forms
-  $('form').trigger('reset')
-
-  // Close all modals
-  $('.modal').hide()
+  $('#database-message-display').text('Sequence Destroyed')
 
   // Clear success message
   setTimeout(() => {
-    $('#database-content-display').text('')
+    $('#database-message-display').text('')
   }, 5000)
 }
 
 // In case of sequence destroy failure
 const onSequenceDestroyFailure = err => {
-  console.log(err)
   // Send a message to the user
   $('#sequence-error-display').text('Failed to Delete Sequence')
   

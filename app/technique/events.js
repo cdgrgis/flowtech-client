@@ -29,9 +29,6 @@ const onTechniqueDemonstration = event => {
   // Stop the browser from refreshing
   event.preventDefault()
 
-  console.log('event target ', event.target)
-  console.log('id ', $(event.target).attr('class').slice(27))
-
   const formData = {
     "technique": {
       "id": $(event.target).attr('class').slice(27)
@@ -52,7 +49,6 @@ const onTechniqueShow = event => {
   
   // Obtain the data from the form fields
   const formData = getFormFields(event.target)
-  console.log(formData)
 
   // Call the technique-create api function
   api.techniqueShow(formData)
@@ -68,7 +64,6 @@ const onTechniqueCreate = event => {
 
   // Obtain the data from the form fields
   const formData = getFormFields(event.target)
-  console.log(formData)
 
   // Call the technique-create api function
   api.techniqueCreate(formData)
@@ -79,10 +74,7 @@ const onTechniqueCreate = event => {
 const onTechniqueShowUpdateModal = event => {
   event.preventDefault()
 
-  console.log((event.target.id).slice(7))
   store.updateTechniqueId = (event.target.id).slice(7)
-
-  console.log(store)
 
   $('#technique-update-modal').show()
 }
@@ -91,21 +83,19 @@ const onTechniqueShowUpdateModal = event => {
 const onTechniqueUpdate = event => {
   // Stop the browser from refreshing
   event.preventDefault()
-  console.log('tech id', (event.target.id))
+
   // Obtain the data from the form fields
   const formData = getFormFields(event.target)
 
   formData.technique.id = store.updateTechniqueId
   delete store.updateTechniqueId
-  console.log('store ', store)
-  console.log('form data ', formData)
-
+ 
   // Call the technique-create api function
   api.techniqueUpdate(formData)
     .then(ui.onTechniqueUpdateSuccess) 
     .catch(ui.onTechniqueUpdateFailure)
 
-  userApi.techniqueIndexPersonal()
+  userApi.indexPersonal()
     .then(userUi.onTechniqueIndexPersonalSuccess)
     .catch(userUi.onTechniqueIndexPersonalFailure)
 }
@@ -114,7 +104,7 @@ const onTechniqueUpdate = event => {
 const onTechniqueDestroy = event => {
   // Stop the browser from refreshing
   event.preventDefault()
-  console.log('user id ', store.user._id)
+
   const techniqueId = (event.target.id).slice(7)
   const formData = {
       "technique": {
@@ -122,13 +112,12 @@ const onTechniqueDestroy = event => {
       }
     }
 
-  console.log('form data ', formData)
   // Call the technique-create api function
   api.techniqueDestroy(formData)
     .then(ui.onTechniqueDestroySuccess) 
     .catch(ui.onTechniqueDestroyFailure)
 
-  userApi.techniqueIndexPersonal()
+  userApi.indexPersonal()
     .then(userUi.onTechniqueIndexPersonalSuccess)
     .catch(userUi.onTechniqueIndexPersonalFailure)
 

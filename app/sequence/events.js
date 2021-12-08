@@ -13,9 +13,6 @@ const ui = require('./ui')
 // Require User's response handler functions
 const userUi = require('../user/ui')
 
-// Require Technique's ui calls
-const techniqueUi = require('../technique/ui')
-
 // Require function to obtain data from form fields when submitted
 const getFormFields= require('../../lib/get-form-fields')
 
@@ -46,17 +43,15 @@ const onSequenceIndex = event => {
 const onSequenceTechniqueDetails = event => {
   // Stop the browser from refreshing
   event.preventDefault()
-
-  console.log('event target ', event.target)
-  console.log('id ', $(event.target).attr('class').slice(27))
-
-
+  
+  // Set up form Data for api call
   const formData = {
     "technique": {
       "id": $(event.target).attr('class').slice(27)
     }
   }
   
+  // Call the api function and response messages
   techniqueApi.techniqueShow(formData)
     .then(ui.onSequenceTechniqueDetailsSuccess)
     .catch(ui.onSequenceTechniqueDetailsFailure)
@@ -72,8 +67,6 @@ const onSequenceShow = event => {
   
   // Obtain the data from the form fields
   const formData = getFormFields(event.target)
-
-  console.log('form data ', formData)
 
   // Call the technique-create api function
   api.sequenceShow(formData)
@@ -123,10 +116,6 @@ const onSequenceCreate = event => {
     }
   }
 
- 
-  console.log('sequence data before api ', sequenceData)
-  
-
   // Call the technique-create ajax function
    api.sequenceCreate(sequenceData)
       // Call the technique-create success function
@@ -143,7 +132,6 @@ const onSequenceCreateAddTechnique = () => {
   <br>
   `
 
-  console.log(additionalTechniqueHtml)
   // Add the input underneath the previous inputs
   $('#sequence-create-additional-techniques').append(additionalTechniqueHtml)
   // Increase the count of keys in the sequence object ( object used for create & update sequences)
@@ -158,7 +146,6 @@ const onSequenceShowUpdateModal = event => {
    // Stop the browser from refreshing
    event.preventDefault()
 
-   console.log('update sequence id ', (event.target.id).slice(7))
    store.updateSequenceId = ((event.target.id).slice(7))
 
    $('#sequence-update-modal').show()
@@ -201,13 +188,12 @@ const onSequenceUpdate = event => {
     // Call the sequence-update failure function
     .catch(ui.onSequenceUpdateFailure)
 
-  userApi.sequenceIndexPersonal()
+  
+  userApi.indexPersonal()
   // Call the success response handler
     .then(userUi.onSequenceIndexPersonalSuccess)
     // Call the failure response handler
     .catch(userUi.onSequenceIndexPersonalFailure)
-
-  
 }
 
 // Function to add another technique input to update form
@@ -228,17 +214,12 @@ const onSequenceDestroy = event => {
   // Stop the browser from refreshing
   event.preventDefault()
   
-  console.log('true? ', event.target.id === 'sequence-destroy')
-  console.log('event.target ', event.target.id)
   // Set the form Data for ajax request
   let formData = {
     "sequence": {
-      "id": event.target.id
+      "id": (event.target.id).slice(7)
     }
   }
-
-  console.log('form data ', formData)
-
 
   // Call the technique-destroy api function
   api.sequenceDestroy(formData)
@@ -248,7 +229,7 @@ const onSequenceDestroy = event => {
     .catch(ui.onSequenceDestroyFailure)
 
   // Call the personal sequence index function in order to keep page data the same
-  userApi.sequenceIndexPersonal()
+  userApi.indexPersonal()
     // Call the success response handler
     .then(userUi.onSequenceIndexPersonalSuccess)
     // Call the failure response handler

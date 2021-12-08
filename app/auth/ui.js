@@ -5,7 +5,7 @@ const store = require('../store')
 const onSignUpSuccess = responseData => {
   // Let the user know the sign up was successful
   $('#sign-up-display').text('Sign up successful')
-  console.log(responseData)
+
   // Clear forms
   $('form').trigger('reset')
 
@@ -46,7 +46,7 @@ const onSignInSuccess = responseData => {
   // show the after sign-in section
   $('.after-sign-in').show()
   
-  console.log(responseData)
+  
   // Clear forms
   $('form').trigger('reset')
 
@@ -113,8 +113,6 @@ const onSignOutSuccess = responseData => {
 
   // Show the before sign-in section
   $('.before-sign-in').show()
-  
-  
 
   // Clear forms
   $('form').trigger('reset')

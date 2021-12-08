@@ -2,10 +2,8 @@
 
 @import './variables.scss';
 
-
 body {
-  background-color: $primary-turquoise;
-  
+  background-color: $primary-turquoise;  
 }
 
 header {
@@ -19,10 +17,6 @@ header {
 button {
   background-color: $primary-cerulean;
   color: white;
-}
-
-input.input-optional {
-  
 }
 
 .topnav {
@@ -51,6 +45,11 @@ button .before-sign-in-button {
   height: 30px;
 }
 
+#database-message-display {
+  display: flex;
+  justify-content: center;
+}
+
 #sign-up-modal-button {
   position: absolute;
   top: 0;
@@ -62,7 +61,6 @@ button .before-sign-in-button {
   position: absolute;
   top: 0;
   right: 0;
-  
 }
 
 #database-content-display {
@@ -72,43 +70,8 @@ button .before-sign-in-button {
   font: 80px;
 }
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: $primary-forest-green; /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: $primary-eagle-green;
-  color: $primary-pastel-green;
-  margin: 15% auto; /* 15% from the top and centered */
-  margin-top: 10%;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 47%; /* Could be more or less, depending on screen size */
-}
-
-
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -122,17 +85,9 @@ button .before-sign-in-button {
   display: none;
 }
 
-#technique-section {
-//  display: none;
-}
-
-
-
 .after-sign-in {
   display: none;
 }
-
-
 
 /* Dropdown Button */
 .btn {
@@ -178,4 +133,37 @@ button .before-sign-in-button {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .btn:hover, .dropdown:hover .btn  {
   background-color: #0b7dda;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: $primary-forest-green; /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: $primary-eagle-green;
+  color: $primary-pastel-green;
+  margin: 15% auto; /* 15% from the top and centered */
+  margin-top: 10%;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 47%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }

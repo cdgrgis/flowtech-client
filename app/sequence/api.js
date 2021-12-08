@@ -15,8 +15,6 @@ const sequenceIndex = () => {
   })
 }
 
-
-
 // API call for sequence create
 const sequenceShow = formData => {
   return $.ajax({

@@ -12,26 +12,32 @@ const onSignUp = event => {
   // Stop the browser from refreshing
   event.preventDefault()
 
-
   // Obtain the data from the form fields
-  const formData = getFormFields(event.target)
+  const signUpData = getFormFields(event.target)
 
-  console.log('form data ', formData)
+  // Set the data for the sign-in api call
+  const signInData = {
+    "credentials": {
+      "email": signUpData.credentials.email,
+      "password": signUpData.credentials.password
+    }
+  }
   
   // Call the sign-up api function
-  api.signUp(formData)
+  api.signUp(signUpData)
     // Call the success message
     .then(ui.onSignUpSuccess) 
     // Call the failure message
     .catch(ui.onSignUpFailure)
 
+  setTimeout(() => {
   // Call the sign-in api function
-  api.signIn(formData)
-    // Call the success message
-    .then(ui.onSignInSuccess)
-    // Call the failure message
-    .catch(ui.onSignInFailure)
-
+    api.signIn(signInData)
+      // Call the success message
+      .then(ui.onSignInSuccess)
+      // Call the failure message
+      .catch(ui.onSignInFailure)
+  }, 100)
 }
 
 // User sign-in

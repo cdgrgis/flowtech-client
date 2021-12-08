@@ -103,6 +103,7 @@
 
       <!-- Section available after sign in -->
       <section class="after-sign-in">
+        <div id="database-message-display"></div>
         <div class="topnav">
           <section id="auth-dropdown-button">
             <!-- Font Awesome Icon Library -->
@@ -115,9 +116,9 @@
                 <i class="fa fa-caret-down"></i>
               </button>
               <div id="auth-dropdown-content" class="dropdown-content">
-                <button id="change-password-button">Change password</button>
-                <button id="update-user-button">Update User</button>
-                <button id="sign-out-button">Sign out</button>
+                <button id="change-password-button" class="drop-button">Change password</button>
+                <button id="update-user-button" class="drop-button">Update User</button>
+                <button id="sign-out-button" class="drop-button">Sign out</button>
               </div>
             </div>
            
@@ -133,10 +134,9 @@
                 <i class="fa fa-caret-down"></i>
               </button>
               <div id="technique-dropdown-content" class="dropdown-content">
-                <button id="technique-index-button">Get techniques</button>
-                <button id="technique-index-personal-button">Get my techniques</button>
-                <button id="technique-show-button">Show technique</button>
-                <button id="technique-create-button">Create technique</button>
+                <button id="technique-index-button" class="drop-button">Get techniques</button>
+                <button id="technique-index-personal-button" class="drop-button">Get my techniques</button>
+                <button id="technique-create-button" class="drop-button">Create technique</button>
               </div>
             </div>
           </section>
@@ -149,10 +149,9 @@
                 <i class="fa fa-caret-down"></i>
               </button>
               <div id="sequence-dropdown-content" class="dropdown-content">
-                <button id="sequence-index-button">Get sequences</button>
-                <button id="sequence-index-personal-button">Get my sequences</button>
-                <button id="sequence-show-button">Show sequence</button>
-                <button id="sequence-create-button">Create sequence</button>
+                <button id="sequence-index-button" class="drop-button">Get sequences</button>
+                <button id="sequence-index-personal-button" class="drop-button">Get my sequences</button>
+                <button id="sequence-create-button" class="drop-button">Create sequence</button>
               </div>
             </div>
           </section>
@@ -335,22 +334,32 @@
               <form id="technique-update">
                 <fieldset>
                   <legend>Update a Technique</legend>
-                  <input name="technique[name]" type="text" placeholder="Name" required>
                  
+                  <input name="technique[name]" type="text" placeholder="Name" required>
+                  <br><br>
+                  
+                  <textarea rows="3" cols="40" name="technique[description]" type="text" placeholder="Description"></textarea>
 
                   <br><br>
-
                   <input name="technique[timing]" id="update-split" type="radio" value="Split">
                   <label for="split">Split</label>          
                   <input name="technique[timing]" id="update-together" type="radio" value="Together">
                   <label for="together">Together</label>
-
-                  <br><br>
+      
+                  <br>
                   
                   <input name="technique[direction]" id="update-same" type="radio" value="Same">
                   <label for="update-same">Same</label>          
                   <input name="technique[direction]" id="update-opposite" type="radio" value="Opposite">
                   <label for="update-opposite">Opposite</label>
+
+                  <br><br>
+
+                  <input name="technique[demonstration]" type="text" placeholder="Embedded Video">
+                  
+                  <br>
+
+                  <textarea rows="3" cols="40" name="technique[demonstrationComment]" type="text" placeholder="Demonstration Comment"></textarea>
                   
                   <br><br>
 
